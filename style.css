@@ -155,3 +155,41 @@ footer{
 .download-text{
     margin:0 0 10px 0;
 }
+
+.menu-btn{
+    display:none;
+    font-size:28px;
+    background:none;
+    border:none;
+    color:#BEEE11;
+    cursor:pointer;
+}
+
+/* موبايل */
+@media(max-width:768px){
+
+    .menu-btn{
+        display:block;
+    }
+
+    nav{
+        position:absolute;
+        top:70px;
+        left:0;
+        right:0;
+        background:#0f1720;
+        display:none;
+        flex-direction:column;
+        text-align:center;
+        padding:15px;
+    }
+
+    nav.active{
+        display:flex;
+    }
+
+    nav a{
+        padding:10px;
+        display:block;
+    }
+}
