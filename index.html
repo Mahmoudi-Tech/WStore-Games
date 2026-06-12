@@ -1,110 +1,563 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>WStore Games</title>
-
-<link rel="icon" type="image/png" href="logo.png">
-<link rel="stylesheet" href="style.css">
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>WStore Games | شحن الألعاب أونلاين</title>
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: linear-gradient(145deg, #0a0f1e 0%, #0c1225 100%);
+            color: #eef5ff;
+            line-height: 1.6;
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1a1f2e;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #3a4b7a;
+            border-radius: 10px;
+        }
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        header {
+            background: rgba(10, 15, 30, 0.75);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(72, 187, 255, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 16px 0;
+        }
+        .header-flex {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        .logo-img {
+            width: 60px;
+            height: 60px;
+            background: #11171f;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid #2ecc71;
+            box-shadow: 0 0 12px rgba(46,204,113,0.3);
+            overflow: hidden;
+            background-color: #0f172a;
+        }
+        .logo-img img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+        .logo-text h1 {
+            font-size: 28px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #FFFFFF, #2ecc71, #1e90ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .logo-text p {
+            font-size: 14px;
+            color: #a0b3d9;
+        }
+        .nav-buttons {
+            display: flex;
+            gap: 16px;
+        }
+        .btn-download {
+            background: linear-gradient(95deg, #2ecc71, #27ae60);
+            padding: 12px 28px;
+            border-radius: 40px;
+            font-weight: 700;
+            color: white;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: 0.3s;
+            border: none;
+            box-shadow: 0 5px 15px rgba(46,204,113,0.3);
+            cursor: pointer;
+        }
+        .btn-download:hover {
+            transform: translateY(-3px);
+            background: linear-gradient(95deg, #3be184, #2ecc71);
+            box-shadow: 0 12px 20px rgba(46,204,113,0.4);
+        }
+        .btn-outline {
+            background: transparent;
+            border: 1.5px solid #2ecc71;
+            padding: 12px 28px;
+            border-radius: 40px;
+            color: #eef5ff;
+            font-weight: 600;
+            text-decoration: none;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+        .btn-outline:hover {
+            background: rgba(46,204,113,0.1);
+            border-color: #4cd964;
+        }
+        .hero {
+            padding: 70px 0 50px;
+            text-align: center;
+        }
+        .hero h2 {
+            font-size: 48px;
+            font-weight: 800;
+            background: linear-gradient(to left, #ffffff, #2ecc71, #48cae4);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 20px;
+        }
+        .hero p {
+            font-size: 20px;
+            color: #b9c7e3;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        .app-section {
+            background: linear-gradient(120deg, #0d142c, #0a1022);
+            border-radius: 48px;
+            margin: 60px 0;
+            padding: 50px 30px;
+            text-align: center;
+            border: 1px solid rgba(46,204,113,0.3);
+        }
+        .app-flex {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 40px;
+        }
+        .app-info h3 {
+            font-size: 36px;
+            font-weight: 800;
+        }
+        .app-info p {
+            margin: 16px 0 25px;
+            font-size: 18px;
+            max-width: 500px;
+        }
+        .download-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .download-btn {
+            background: #1f2a44;
+            padding: 14px 32px;
+            border-radius: 60px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: white;
+            font-weight: 600;
+            transition: 0.2s;
+            border: 1px solid #2ecc71;
+            cursor: pointer;
+        }
+        .download-btn i {
+            font-size: 28px;
+            color: #2ecc71;
+        }
+        .download-btn:hover {
+            background: #2ecc71;
+            color: #0a0f1e;
+            border-color: white;
+        }
+        .download-btn:hover i {
+            color: #0a0f1e;
+        }
+        .app-mock {
+            background: #111827;
+            border-radius: 32px;
+            padding: 15px;
+            box-shadow: 0 20px 30px -10px black;
+        }
+        .app-mock i {
+            font-size: 100px;
+            color: #2ecc71;
+        }
+        .download-counter {
+            margin-top: 25px;
+            padding: 15px 25px;
+            background: rgba(46, 204, 113, 0.15);
+            border-radius: 60px;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 18px;
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(46,204,113,0.4);
+        }
+        .download-counter i {
+            font-size: 24px;
+            color: #2ecc71;
+        }
+        .download-counter span {
+            font-size: 28px;
+            font-weight: 800;
+            color: #2ecc71;
+            margin: 0 5px;
+        }
+        
+        /* صفحة السياسات والأمان */
+        .policy-section {
+            background: rgba(15, 25, 45, 0.6);
+            border-radius: 40px;
+            padding: 50px 40px;
+            margin: 50px 0;
+            border: 1px solid rgba(46,204,113,0.25);
+            backdrop-filter: blur(5px);
+        }
+        .policy-title {
+            font-size: 36px;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 40px;
+            background: linear-gradient(135deg, #fff, #2ecc71);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .policy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        .policy-card {
+            background: rgba(10, 20, 35, 0.7);
+            border-radius: 28px;
+            padding: 28px 22px;
+            transition: 0.3s;
+            border-bottom: 3px solid #2ecc71;
+        }
+        .policy-card i {
+            font-size: 45px;
+            color: #2ecc71;
+            margin-bottom: 15px;
+        }
+        .policy-card h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+        .policy-card p {
+            color: #b9c4e0;
+            line-height: 1.7;
+        }
+        .contact-box {
+            background: linear-gradient(135deg, #0f172a, #0a0f22);
+            border-radius: 32px;
+            padding: 35px;
+            text-align: center;
+            margin-top: 30px;
+            border: 1px solid #2ecc71;
+        }
+        .contact-box h4 {
+            font-size: 26px;
+            margin-bottom: 20px;
+        }
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 15px;
+        }
+        .contact-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: #1e2a4a;
+            padding: 12px 25px;
+            border-radius: 60px;
+            text-decoration: none;
+            color: white;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+        .contact-item i {
+            font-size: 24px;
+            color: #2ecc71;
+        }
+        .contact-item:hover {
+            background: #2ecc71;
+            color: #0a0f1e;
+            transform: translateY(-3px);
+        }
+        .contact-item:hover i {
+            color: #0a0f1e;
+        }
+        
+        .toast-message {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) scale(0.9);
+            background: #1f2a3e;
+            backdrop-filter: blur(12px);
+            color: #2ecc71;
+            padding: 14px 28px;
+            border-radius: 60px;
+            font-weight: bold;
+            border-right: 5px solid #2ecc71;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            z-index: 1000;
+            transition: 0.2s;
+            opacity: 0;
+            visibility: hidden;
+            font-size: 16px;
+        }
+        .toast-message.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) scale(1);
+        }
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            border-top: 1px solid rgba(72,187,255,0.1);
+            margin-top: 40px;
+            color: #7a89b0;
+        }
+        @media (max-width: 760px) {
+            .hero h2 { font-size: 32px; }
+            .logo-text h1 { font-size: 22px; }
+            .btn-download, .btn-outline { padding: 8px 20px; }
+            .container { padding: 0 18px; }
+            .download-counter span { font-size: 22px; }
+            .policy-section { padding: 30px 20px; }
+        }
+    </style>
 </head>
 <body>
 
-<header class="header">
-
-    <button class="menu-btn" onclick="toggleMenu()">☰</button>
-
-    <nav id="menu">
-        <a href="#home">الرئيسية</a>
-        <a href="#download">تحميل التطبيق</a>
-        <a href="#privacy">الخصوصية</a>
-        <a href="#contact">تواصل معنا</a>
-    </nav>
-
-    <div class="brand">
-        <span>WStore Games</span>
-        <img src="logo.png" class="logo" alt="WStore Games">
+<header>
+    <div class="container header-flex">
+        <div class="logo-area">
+            <div class="logo-img">
+                <img src="logo.png" alt="WStore Games Logo" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2240%22%20height%3D%2240%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22%232ecc71%22%3E%3Cpath%20d%3D%22M12%202C6.48%202%202%206.48%202%2012s4.48%2010%2010%2010%2010-4.48%2010-10S17.52%202%2012%202zm0%204c1.1%200%202%20.9%202%202s-.9%202-2%202-2-.9-2-2%20.9-2%202-2zm4%2012H8v-1c0-1.33%202.67-2%204-2s4%20.67%204%202v1z%22%2F%3E%3C%2Fsvg%3E';">
+            </div>
+            <div class="logo-text">
+                <h1>WStore Games</h1>
+                <p>شحن في ثواني • أفضل العروض</p>
+            </div>
+        </div>
+        <div class="nav-buttons">
+            <a href="#app-download" class="btn-outline"><i class="fas fa-mobile-alt"></i> التطبيق</a>
+            <a href="#policy" class="btn-outline"><i class="fas fa-shield-alt"></i> الأمان</a>
+            <a href="#app-download" class="btn-download"><i class="fas fa-download"></i> شحن الآن</a>
+        </div>
     </div>
 </header>
 
-<section class="hero" id="home">
-
-    <img src="logo.png" class="hero-logo" alt="Logo">
-
-    <h1>WStore Games</h1>
-
-    <p>
-        منصة شحن الألعاب بسرعة وأمان وسهولة
-    </p>
-
-    <div class="downloads">
-        🔥 عدد التحميلات:
-        <span id="count">0</span>
+<main class="container">
+    <div class="hero">
+        <h2>🕹️ شحن العابك المفضلة بأفضل الأسعار</h2>
+        <p>WStore Games هو التطبيق الأمثل لشحن رصيد PUBG، فري فاير، كول أوف ديوتي، جينشين و أكثر. توصيل فوري وأمان تام.</p>
+        <a href="#app-download" class="btn-download" style="background: #2563eb; box-shadow: 0 5px 15px #1e40af;"><i class="fas fa-download"></i> حمل تطبيق WStore Games الآن</a>
     </div>
 
-    <a href="#download" class="btn">
-        تحميل التطبيق
-    </a>
-
-</section>
-
-<section class="features">
-
-    <div class="card">
-        ⚡ شحن فوري
+    <!-- صفحة السياسات والأمان -->
+    <div id="policy" class="policy-section">
+        <h2 class="policy-title"><i class="fas fa-shield-heart"></i> سياسات الخصوصية والأمان</h2>
+        <div class="policy-grid">
+            <div class="policy-card">
+                <i class="fas fa-bolt"></i>
+                <h3>⚡ شحن سريع وفوري</h3>
+                <p>نوفر لك شحن فوري خلال ثواني بعد تأكيد الدفع. لا تنتظر ساعات، احصل على رصيدك فوراً واستمتع بلعبك بدون تأخير.</p>
+            </div>
+            <div class="policy-card">
+                <i class="fas fa-lock"></i>
+                <h3>🔒 أمان تام للبيانات</h3>
+                <p>بياناتك الشخصية مشفرة بالكامل. لا نشارك معلوماتك مع أي طرف ثالث. خصوصيتك خط أحمر بالنسبة لنا.</p>
+            </div>
+            <div class="policy-card">
+                <i class="fas fa-credit-card"></i>
+                <h3>💳 طرق دفع آمنة</h3>
+                <p>نحن نستخدم بوابات دفع معتمدة ومشفرة لحماية معاملاتك المالية. يمكنك الدفع بكل ثقة وأمان.</p>
+            </div>
+            <div class="policy-card">
+                <i class="fas fa-headset"></i>
+                <h3>👨‍💻 دعم فني 24/7</h3>
+                <p>فريق الدعم الفني متاح طوال اليوم لحل أي مشكلة تواجهك. راحتك هي أولويتنا الأولى.</p>
+            </div>
+        </div>
+        
+        <div class="contact-box">
+            <h4><i class="fas fa-envelope"></i> تواصل معنا</h4>
+            <div class="contact-links">
+                <a href="https://wa.me/201010050851" target="_blank" class="contact-item">
+                    <i class="fab fa-whatsapp"></i>
+                    <span>01010050851</span>
+                </a>
+                <a href="mailto:VirusAhlawy@Gmail.Com" class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>VirusAhlawy@Gmail.Com</span>
+                </a>
+            </div>
+            <p style="margin-top: 25px; font-size: 14px; color: #a0b3d9;">نحن هنا للإجابة على استفساراتك على مدار الساعة</p>
+        </div>
+        
+        <div style="margin-top: 35px; text-align: center; padding: 20px; background: rgba(46,204,113,0.1); border-radius: 28px;">
+            <i class="fas fa-check-circle" style="color: #2ecc71; font-size: 28px;"></i>
+            <p style="margin-top: 10px; font-weight: 500;">✅ نلتزم بحماية بياناتك وعدم مشاركتها مع أي جهة خارجية. جميع عمليات الشحن مشفرة بالكامل لحماية حساباتك.</p>
+        </div>
     </div>
 
-    <div class="card">
-        🔒 حماية وأمان
+    <!-- قسم تحميل التطبيق مع عداد التنزيلات -->
+    <div class="app-section" id="app-download">
+        <div class="app-flex">
+            <div class="app-info">
+                <h3><i class="fas fa-rocket"></i> WStore Games App</h3>
+                <p>تطبيق شحن الألعاب الأول في العالم العربي! حمل التطبيق الآن واستمتع بشحن فوري، خصومات تصل إلى 40% ودعم 24/7.</p>
+                <div class="download-buttons">
+                    <div class="download-btn" id="downloadApkBtn"><i class="fab fa-android"></i> تحميل APK (أندرويد)</div>
+                    <div class="download-btn" id="downloadIosBtn"><i class="fab fa-apple"></i> قريباً على App Store</div>
+                </div>
+                
+                <div class="download-counter">
+                    <i class="fas fa-download"></i>
+                    <span>إجمالي التحميلات:</span>
+                    <span id="downloadCount">0</span>
+                    <i class="fas fa-users"></i>
+                </div>
+                <p style="margin-top: 20px; font-size: 13px;">⭐ تقييم 4.9 | أكثر من 100k مستخدم</p>
+            </div>
+            <div class="app-mock">
+                <i class="fas fa-gamepad"></i>
+                <div style="margin-top: 10px; font-weight: bold;">WStore Games</div>
+                <small>v3.2.0</small>
+            </div>
+        </div>
     </div>
-
-    <div class="card">
-        🎮 جميع الألعاب
-    </div>
-
-</section>
-
-<section id="download" class="section">
-
-    <h2 class="download-title">تحميل التطبيق</h2>
-
-    <p class="download-text">
-        قم بتحميل أحدث إصدار من تطبيق WStore Games
-    </p>
-
-    <button class="btn" onclick="downloadApp()">
-        تحميل APK
-    </button>
-
-</section>
-
-<section id="privacy" class="section">
-
-    <h2>سياسة الخصوصية</h2>
-
-    <p>
-        نحترم خصوصية المستخدمين ولا نقوم ببيع أو مشاركة البيانات الشخصية مع أي جهة خارجية.
-    </p>
-
-</section>
-
-<section id="contact" class="section">
-
-    <h2>تواصل معنا</h2>
-
-    <p>
-        virusahlawy@gmail.com
-    </p>
-
-</section>
+</main>
 
 <footer>
-    © 2026 WStore Games
+    <p>© 2026 WStore Games - جميع الحقوق محفوظة | شحن آمن وسريع لجميع الألعاب</p>
+    <p style="margin-top: 8px;"><i class="fas fa-envelope"></i> VirusAhlawy@Gmail.Com | <i class="fab fa-whatsapp"></i> 01010050851</p>
 </footer>
 
-<script type="module" src="app.js"></script>
+<div id="toastMsg" class="toast-message">✅ تم إضافة طلب الشحن!</div>
 
+<script>
+    // -------------------- 🔥 إعدادات Firebase --------------------
+    const firebaseConfig = {
+        apiKey: "AIzaSyA8zbwD7QNk-GeNA4x-MWKLuLhcrV8OtgI",
+        authDomain: "wstore-games-site.firebaseapp.com",
+        databaseURL: "https://wstore-games-site-default-rtdb.firebaseio.com",
+        projectId: "wstore-games-site",
+        storageBucket: "wstore-games-site.firebasestorage.app",
+        messagingSenderId: "422122681134",
+        appId: "1:422122681134:web:0036b85a274996c49000bf"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const database = firebase.database();
+    const downloadsRef = database.ref('appDownloads');
+
+    const downloadCountSpan = document.getElementById('downloadCount');
+    const toast = document.getElementById('toastMsg');
+
+    function showToast(msg, isError = false) {
+        toast.textContent = msg || (isError ? "⚠️ حدث خطأ، حاول مرة أخرى" : "✅ تمت العملية بنجاح!");
+        toast.classList.add('show');
+        setTimeout(() => {
+            toast.classList.remove('show');
+        }, 3000);
+    }
+
+    function loadDownloadCount() {
+        downloadsRef.on('value', (snapshot) => {
+            const count = snapshot.val() || 0;
+            downloadCountSpan.innerText = count.toLocaleString('ar-EG');
+        }, (error) => {
+            console.error("خطأ في قراءة العداد:", error);
+            downloadCountSpan.innerText = "?";
+            showToast("⚠️ تعذر الاتصال بخادم الإحصائيات", true);
+        });
+    }
+
+    function incrementDownloadCount() {
+        downloadsRef.transaction((currentCount) => {
+            return (currentCount || 0) + 1;
+        }, (error, committed) => {
+            if (error) {
+                console.error("فشل تحديث العداد:", error);
+                showToast("❌ حدث خطأ، لم يتم تسجيل التحميل", true);
+            } else if (committed) {
+                showToast("✅ تم تسجيل تحميلك! شكراً لك 💚");
+            }
+        });
+    }
+
+    const downloadApkBtn = document.getElementById('downloadApkBtn');
+    if (downloadApkBtn) {
+        downloadApkBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            incrementDownloadCount();
+            const apkUrl = "https://github.com/Mahmoudi-Tech/WStore-Games/releases/download/WStore-Games/WStore.Games.apk";
+            setTimeout(() => {
+                window.open(apkUrl, '_blank');
+                showToast("📱 جاري تحميل التطبيق...");
+            }, 500);
+        });
+    }
+
+    const downloadIosBtn = document.getElementById('downloadIosBtn');
+    if (downloadIosBtn) {
+        downloadIosBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            showToast("🍏 تطبيق iOS قيد التطوير، سيصبح متاحاً قريباً في متجر Apple.");
+        });
+    }
+
+    loadDownloadCount();
+
+    document.querySelectorAll('a[href="#app-download"], a[href="#policy"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href').substring(1);
+            document.getElementById(targetId).scrollIntoView({ behavior: 'smooth' });
+        });
+    });
+</script>
 </body>
 </html>
