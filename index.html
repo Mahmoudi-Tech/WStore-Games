@@ -4,6 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>WStore Games | شحن الألعاب أونلاين</title>
+    
+    <!-- ✅ أيقونة الموقع (Favicon) - تظهر جمب اسم الموقع في المتصفح -->
+    <link rel="icon" type="image/png" sizes="32x32" href="logo.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="logo.png">
+    <link rel="apple-touch-icon" href="logo.png">
+    <link rel="shortcut icon" href="logo.png">
+    
     <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -567,11 +574,6 @@
         }, 4000);
     }
 
-    function showToast(msg, isError = false) {
-        // رسالة عادية إذا أردت استخدامها لاحقاً
-        console.log(msg);
-    }
-
     function loadDownloadCount() {
         downloadsRef.on('value', (snapshot) => {
             const count = snapshot.val() || 0;
@@ -589,7 +591,6 @@
             if (error) {
                 console.error("فشل تحديث العداد:", error);
             } else if (committed) {
-                // إظهار رسالة الشكر عند نجاح التحميل
                 showThankYouMessage();
             }
         });
@@ -600,7 +601,7 @@
         downloadApkBtn.addEventListener('click', (e) => {
             e.preventDefault();
             incrementDownloadCount();
-            const apkUrl = "https://github.com/Mahmoudi-Tech/WStore-Games/releases/download/WStore-Games/WStore.Games.apk";
+            const apkUrl = "https://wstoregames.com/download/app.apk";
             setTimeout(() => {
                 window.open(apkUrl, '_blank');
             }, 300);
