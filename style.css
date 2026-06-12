@@ -148,3 +148,10 @@ footer{
         display:flex;
     }
 }
+.download-title{
+    margin-bottom:5px;
+}
+
+.download-text{
+    margin:0 0 10px 0;
+}
