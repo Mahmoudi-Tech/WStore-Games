@@ -1,104 +1,113 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>WStore Games PRO++</title>
-<link rel="stylesheet" href="style.css">
-</head>
 
+<title>WStore Games</title>
+
+<link rel="icon" type="image/png" href="logo.png">
+<link rel="stylesheet" href="style.css">
+
+</head>
 <body>
 
 <header class="header">
 
-  <div class="brand">
-    <img src="logo.png" class="logo">
-    <h2>WStore Games</h2>
-  </div>
+    <button class="menu-btn" onclick="toggleMenu()">☰</button>
 
-  <!-- زر الموبايل -->
-  <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+    <nav id="menu">
+        <a href="#home">الرئيسية</a>
+        <!-- <a href="#download">تحميل التطبيق</a> -->
+        <a href="#privacy">الخصوصية</a>
+        <a href="#contact">تواصل معنا</a>
+    </nav>
 
-  <nav id="nav">
-    <a href="#home">الرئيسية</a>
-    <a href="#download">تحميل</a>
-  </nav>
+    <div class="brand">
+        <span>WStore Games</span>
+        <img src="logo.png" class="logo" alt="WStore Games">
+
+    </div>
+
 
 </header>
 
-<!-- HERO -->
 <section class="hero" id="home">
 
-  <div class="app-box">
-    <img src="logo.png" class="app-icon">
+    <img src="logo.png" class="hero-logo" alt="Logo">
 
     <h1>WStore Games</h1>
 
-    <p>🎮 منصة شحن الألعاب الأسرع والأكثر أمانًا</p>
+    <p>
+        منصة شحن الألعاب بسرعة وأمان وسهولة
+    </p>
 
-    <div class="rating">
-      ⭐⭐⭐⭐⭐ <span>(4.9)</span>
+    <div class="downloads">
+        🔥 عدد التحميلات:
+        <span id="count">0</span>
     </div>
 
-    <div class="counter">
-      🔥 عدد التحميلات: <span id="count">0</span>
-    </div>
-
-    <a class="btn" onclick="downloadApp()">⬇️ تحميل التطبيق</a>
-  </div>
+    <a href="#download" class="btn">
+        تحميل التطبيق
+    </a>
 
 </section>
 
-<!-- FEATURES -->
 <section class="features">
 
-  <div class="card">⚡ شحن فوري<br><small>تنفيذ في ثواني</small></div>
-  <div class="card">🔒 أمان عالي<br><small>حماية كاملة</small></div>
-  <div class="card">🎮 كل الألعاب<br><small>PUBG - FF - COD</small></div>
+    <div class="card">
+        ⚡ شحن فوري
+    </div>
+
+    <div class="card">
+        🔒 حماية وأمان
+    </div>
+
+    <div class="card">
+        🎮 جميع الألعاب
+    </div>
+
+</section>
+
+<!-- <section id="download" class="section">
+
+    <h2>تحميل التطبيق</h2>
+
+    <p>
+        قم بتحميل أحدث إصدار من تطبيق WStore Games
+    </p>
+
+    <button class="btn" onclick="downloadApp()">
+        تحميل APK
+    </button> -->
+
+</section>
+
+<section id="privacy" class="section">
+
+    <h2>سياسة الخصوصية</h2>
+
+    <p>
+        نحترم خصوصية المستخدمين ولا نقوم ببيع أو مشاركة البيانات الشخصية مع أي جهة خارجية.
+    </p>
+
+</section>
+
+<section id="contact" class="section">
+
+    <h2>تواصل معنا</h2>
+
+    <p>
+        support@wstoregames.com
+    </p>
 
 </section>
 
 <footer>
-© 2026 WStore Games - All Rights Reserved
+    © 2026 WStore Games
 </footer>
 
-<!-- FIREBASE -->
-<script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { getDatabase, ref, onValue, get, set } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
-
-// 🔥 ضع بيانات Firebase هنا
-const firebaseConfig = {
-  apiKey: "AIzaSyA8zbwD7QNk-GeNA4x-MWKLuLhcrV8OtgI",
-  authDomain: "wstore-games-site.firebaseapp.com",
-  databaseURL: "https://wstore-games-site-default-rtdb.firebaseio.com",
-  projectId: "wstore-games-site",
-  storageBucket: "wstore-games-site.firebasestorage.app",
-  messagingSenderId: "422122681134",
-  appId: "1:422122681134:web:0036b85a274996c49000bf",
-//  measurementId: "G-EW3CKE4M6L"
-};
-
-const app = initializeApp(firebaseConfig);
-const db = getDatabase(app);
-
-const counterRef = ref(db, "downloads");
-
-// Live Counter
-onValue(counterRef, (snapshot) => {
-  document.getElementById("count").innerText = snapshot.val() || 0;
-});
-
-// Download function
-window.downloadApp = async function () {
-  const snap = await get(counterRef);
-  let count = snap.val() || 0;
-
-  await set(counterRef, count + 1);
-
-  window.location.href = "https://github.com/Mahmoudi-Tech/WStore-Games/releases/download/WStore-Games/WStore.Games.apk";
-};
-</script>
+<script type="module" src="app.js"></script>
 
 </body>
 </html>
