@@ -1,55 +1,104 @@
 <!DOCTYPE html>
 <html lang="ar">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>WStore Games - شحن الألعاب</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WStore Games PRO++</title>
+<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<header>
-  <div class="logo">
-    <img src="logo.png" alt="logo">
+<header class="header">
+
+  <div class="brand">
+    <img src="logo.png" class="logo">
     <h2>WStore Games</h2>
   </div>
 
-  <nav>
-    <a href="#features">المميزات</a>
+  <!-- زر الموبايل -->
+  <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+
+  <nav id="nav">
+    <a href="#home">الرئيسية</a>
     <a href="#download">تحميل</a>
-    <a href="#contact">تواصل</a>
   </nav>
+
 </header>
 
-<section class="hero">
-  <h1>اشحن ألعابك بسرعة وأمان ⚡</h1>
-  <p>منصة WStore Games توفر لك شحن جميع الألعاب في ثواني وبشكل آمن 100%</p>
+<!-- HERO -->
+<section class="hero" id="home">
 
-  <a href="https://github.com/Mahmoudi-Tech/WStore-Games/releases/download/WStore-Games/WStore.Games.apk" class="btn">⬇️ تحميل التطبيق</a>
+  <div class="app-box">
+    <img src="logo.png" class="app-icon">
+
+    <h1>WStore Games</h1>
+
+    <p>🎮 منصة شحن الألعاب الأسرع والأكثر أمانًا</p>
+
+    <div class="rating">
+      ⭐⭐⭐⭐⭐ <span>(4.9)</span>
+    </div>
+
+    <div class="counter">
+      🔥 عدد التحميلات: <span id="count">0</span>
+    </div>
+
+    <a class="btn" onclick="downloadApp()">⬇️ تحميل التطبيق</a>
+  </div>
+
 </section>
 
-<section id="features" class="features">
-  <div class="card">⚡ شحن فوري <p>تنفيذ سريع بدون تأخير</p></div>
-  <div class="card">🔒 أمان كامل <p>حماية بيانات المستخدم</p></div>
-  <div class="card">🎮 كل الألعاب <p>يدعم PUBG - Free Fire - وغيرها</p></div>
-</section>
+<!-- FEATURES -->
+<section class="features">
 
-<section id="download" class="download">
-  <h2>تحميل التطبيق</h2>
-  <p>اضغط على الزر لتحميل أحدث نسخة</p>
-  <a href="https://github.com/Mahmoudi-Tech/WStore-Games/releases/download/WStore-Games/WStore.Games.apk" class="btn">تحميل APK</a>
-</section>
+  <div class="card">⚡ شحن فوري<br><small>تنفيذ في ثواني</small></div>
+  <div class="card">🔒 أمان عالي<br><small>حماية كاملة</small></div>
+  <div class="card">🎮 كل الألعاب<br><small>PUBG - FF - COD</small></div>
 
-<section id="contact" class="contact">
-  <h2>تواصل معنا</h2>
-  <p>Email: VirusAhlawy@Gmail.com</p>
 </section>
 
 <footer>
-  © 2026 WStore Games - All Rights Reserved
+© 2026 WStore Games - All Rights Reserved
 </footer>
 
-<script src="app.js"></script>
+<!-- FIREBASE -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getDatabase, ref, onValue, get, set } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+
+// 🔥 ضع بيانات Firebase هنا
+const firebaseConfig = {
+  apiKey: "AIzaSyA8zbwD7QNk-GeNA4x-MWKLuLhcrV8OtgI",
+  authDomain: "wstore-games-site.firebaseapp.com",
+  databaseURL: "https://wstore-games-site-default-rtdb.firebaseio.com",
+  projectId: "wstore-games-site",
+  storageBucket: "wstore-games-site.firebasestorage.app",
+  messagingSenderId: "422122681134",
+  appId: "1:422122681134:web:0036b85a274996c49000bf",
+//  measurementId: "G-EW3CKE4M6L"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+
+const counterRef = ref(db, "downloads");
+
+// Live Counter
+onValue(counterRef, (snapshot) => {
+  document.getElementById("count").innerText = snapshot.val() || 0;
+});
+
+// Download function
+window.downloadApp = async function () {
+  const snap = await get(counterRef);
+  let count = snap.val() || 0;
+
+  await set(counterRef, count + 1);
+
+  window.location.href = "https://github.com/Mahmoudi-Tech/WStore-Games/releases/download/WStore-Games/WStore.Games.apk";
+};
+</script>
+
 </body>
 </html>

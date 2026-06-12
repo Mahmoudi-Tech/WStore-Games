@@ -1,78 +1,206 @@
-body {
-  margin: 0;
-  font-family: Arial;
-  background: #0f172a;
-  color: white;
+:root{
+  --main:#BEEE11;
+  --bg:#0b1220;
+  --card:#111827;
 }
 
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 40px;
-  background: #111827;
+body{
+  margin:0;
+  font-family:Arial;
+  background:var(--bg);
+  color:white;
 }
 
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 10px;
+/* HEADER */
+.header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:15px 25px;
+  background:#0f172a;
+  border-bottom:2px solid var(--main);
 }
 
-.logo img {
-  width: 40px;
-  border-radius: 8px;
+.brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
 }
 
-nav a {
-  color: white;
-  margin-left: 15px;
-  text-decoration: none;
+.logo{
+  width:45px;
+  height:45px;
+  border-radius:12px;
+  box-shadow:0 0 10px rgba(190,238,17,0.5);
 }
 
-.hero {
-  text-align: center;
-  padding: 80px 20px;
-  background: linear-gradient(135deg,#1e293b,#0f172a);
+.brand h2{
+  margin:0;
 }
 
-.hero h1 {
-  font-size: 40px;
+/* HERO */
+.hero{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:80px 20px;
+  text-align:center;
 }
 
-.btn {
-  display: inline-block;
-  margin-top: 20px;
-  padding: 12px 25px;
-  background: #00ffcc;
-  color: black;
-  font-weight: bold;
-  border-radius: 10px;
-  text-decoration: none;
+.app-box{
+  background:var(--card);
+  padding:30px;
+  border-radius:20px;
+  width:320px;
+  box-shadow:0 0 25px rgba(190,238,17,0.1);
 }
 
-.features {
-  display: grid;
-  grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
-  gap: 15px;
-  padding: 40px;
+.app-icon{
+  width:90px;
+  border-radius:18px;
+  margin-bottom:10px;
 }
 
-.card {
-  background: #111827;
-  padding: 20px;
-  border-radius: 12px;
+.rating{
+  margin:10px 0;
+  color:var(--main);
 }
 
-.download, .contact {
-  text-align: center;
-  padding: 50px 20px;
-  background: #0b1220;
+/* BUTTON */
+.btn{
+  display:inline-block;
+  padding:14px 25px;
+  background:var(--main);
+  color:black;
+  font-weight:bold;
+  border-radius:12px;
+  margin-top:15px;
+  cursor:pointer;
+  text-decoration:none;
+  transition:0.3s;
 }
 
-footer {
-  text-align: center;
-  padding: 20px;
-  background: #111827;
-  font-size: 12px;
+.btn:hover{
+  transform:scale(1.05);
+}
+
+/* FEATURES */
+.features{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:15px;
+  padding:40px;
+}
+
+.card{
+  background:var(--card);
+  padding:20px;
+  border-radius:15px;
+  text-align:center;
+}
+
+/* FOOTER */
+footer{
+  text-align:center;
+  padding:20px;
+  background:#0f172a;
+  border-top:2px solid var(--main);
+}
+
+.header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:15px 25px;
+  background:#0f172a;
+  border-bottom:2px solid #BEEE11;
+  position:sticky;
+  top:0;
+  z-index:1000;
+}
+
+/* اللوجو */
+.brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.logo{
+  width:40px;
+  border-radius:10px;
+}
+
+/* الناف */
+nav{
+  display:flex;
+  gap:20px;
+}
+
+nav a{
+  color:white;
+  text-decoration:none;
+  position:relative;
+  padding:5px 0;
+  transition:0.3s;
+}
+
+/* ✨ Hover احترافي */
+nav a::after{
+  content:"";
+  position:absolute;
+  width:0%;
+  height:2px;
+  background:#BEEE11;
+  left:0;
+  bottom:-4px;
+  transition:0.3s;
+}
+
+nav a:hover{
+  color:#BEEE11;
+}
+
+nav a:hover::after{
+  width:100%;
+}
+
+/* زر الموبايل */
+.menu-toggle{
+  display:none;
+  font-size:26px;
+  cursor:pointer;
+  color:#BEEE11;
+}
+
+/* 📱 Mobile */
+@media(max-width:768px){
+
+  .menu-toggle{
+    display:block;
+  }
+
+  nav{
+    position:absolute;
+    top:70px;
+    right:0;
+    left:0;
+    background:#0f172a;
+    flex-direction:column;
+    align-items:center;
+    gap:15px;
+    display:none;
+    padding:20px;
+    border-bottom:2px solid #BEEE11;
+  }
+
+  nav.active{
+    display:flex;
+    animation:fade 0.3s ease-in-out;
+  }
+
+  @keyframes fade{
+    from{opacity:0; transform:translateY(-10px);}
+    to{opacity:1; transform:translateY(0);}
+  }
 }

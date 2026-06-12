@@ -1,1 +1,3 @@
-console.log("WStore Games website loaded");
+function toggleMenu(){
+  document.getElementById("nav").classList.toggle("active");
+}
