@@ -1,0 +1,1 @@
+console.log("WStore Games website loaded");
