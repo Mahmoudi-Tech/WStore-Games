@@ -58,13 +58,19 @@
             50% { border-color: rgba(190, 238, 17, 0.8); box-shadow: 0 0 20px rgba(190, 238, 17, 0.4); }
             100% { border-color: rgba(190, 238, 17, 0.3); box-shadow: 0 0 0 0 rgba(190, 238, 17, 0.2); }
         }
+        @keyframes countdownPulse {
+            0% { transform: scale(1); background: rgba(190, 238, 17, 0.1); }
+            50% { transform: scale(1.02); background: rgba(190, 238, 17, 0.2); }
+            100% { transform: scale(1); background: rgba(190, 238, 17, 0.1); }
+        }
         .animate-float { animation: float 4s ease-in-out infinite; }
         .animate-glow { animation: glow 2s ease-in-out infinite; }
-        .hero, .app-section, .policy-section, .update-section, .policy-card, .contact-box {
+        .hero, .app-section, .policy-section, .update-section, .policy-card, .contact-box, .countdown-section {
             animation: fadeInUp 0.8s ease forwards;
             opacity: 0;
         }
         .hero { animation-delay: 0.1s; }
+        .countdown-section { animation-delay: 0.15s; }
         .update-section { animation-delay: 0.2s; }
         .app-section { animation-delay: 0.3s; }
         .policy-section { animation-delay: 0.5s; }
@@ -160,7 +166,7 @@
             transform: translateY(-2px);
         }
         .hero {
-            padding: 70px 0 50px;
+            padding: 70px 0 30px;
             text-align: center;
         }
         .hero h2 {
@@ -177,6 +183,99 @@
             color: #b9c7e3;
             max-width: 700px;
             margin: 0 auto 30px;
+        }
+        
+        /* ========== قسم العداد التنازلي ========== */
+        .countdown-section {
+            background: linear-gradient(135deg, #0d142c, #091020);
+            border-radius: 60px;
+            margin: 30px 0 50px;
+            padding: 40px 30px;
+            text-align: center;
+            border: 1px solid rgba(190, 238, 17, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+        .countdown-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(190,238,17,0.08) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .countdown-title {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+        }
+        .countdown-title i {
+            color: #BEEE11;
+            margin-left: 10px;
+        }
+        .countdown-date {
+            font-size: 18px;
+            color: #a0b3d9;
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 1;
+        }
+        .countdown-timer {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+            margin-bottom: 25px;
+            position: relative;
+            z-index: 1;
+        }
+        .countdown-box {
+            background: rgba(10, 20, 35, 0.8);
+            backdrop-filter: blur(10px);
+            border-radius: 24px;
+            padding: 20px 25px;
+            min-width: 110px;
+            text-align: center;
+            border: 1px solid rgba(190, 238, 17, 0.3);
+            transition: all 0.3s ease;
+            animation: countdownPulse 2s ease-in-out infinite;
+        }
+        .countdown-box:hover {
+            transform: translateY(-5px);
+            border-color: #BEEE11;
+            box-shadow: 0 10px 30px rgba(190, 238, 17, 0.2);
+        }
+        .countdown-number {
+            font-size: 52px;
+            font-weight: 800;
+            color: #BEEE11;
+            line-height: 1;
+            font-family: monospace;
+            letter-spacing: 3px;
+        }
+        .countdown-label {
+            font-size: 16px;
+            color: #a0b3d9;
+            margin-top: 10px;
+            font-weight: 500;
+        }
+        .countdown-message {
+            font-size: 18px;
+            color: #BEEE11;
+            font-weight: 600;
+            position: relative;
+            z-index: 1;
+        }
+        .countdown-message i {
+            margin: 0 5px;
         }
         
         /* ========== قسم التحديث الجديد ========== */
@@ -478,6 +577,11 @@
             .version-date { font-size: 11px; }
             .features-container { padding: 20px; }
             .nav-buttons { justify-content: center; width: 100%; }
+            .countdown-timer { gap: 12px; }
+            .countdown-box { padding: 12px 15px; min-width: 70px; }
+            .countdown-number { font-size: 28px; }
+            .countdown-label { font-size: 12px; }
+            .countdown-title { font-size: 20px; }
         }
     </style>
 </head>
@@ -495,8 +599,8 @@
             </div>
         </div>
         <div class="nav-buttons">
-            <a href="#app-download" class="btn-outline"><i class="fas fa-mobile-alt"></i> التطبيق</a>
             <a href="#updates" class="btn-outline"><i class="fas fa-code-branch"></i> التحديثات</a>
+            <a href="#app-download" class="btn-outline"><i class="fas fa-mobile-alt"></i> التطبيق</a>
             <a href="#policy" class="btn-outline"><i class="fas fa-shield-alt"></i> الأمان</a>
         </div>
     </div>
@@ -509,13 +613,45 @@
         <a href="#app-download" class="btn-download-nav"><i class="fas fa-download"></i> حمل تطبيق WStore Games الآن</a>
     </div>
 
+    <!-- ========== قسم العداد التنازلي للإصدار ========== -->
+    <div class="countdown-section" data-aos="fade-up" data-aos-duration="800">
+        <div class="countdown-title">
+            <i class="fas fa-clock"></i>
+            موعد إصدار التطبيق الرسمي
+        </div>
+        <div class="countdown-date">
+            <i class="fas fa-calendar-alt"></i> 30 يونيو 2026 - الساعة 8:00 مساءً
+        </div>
+        <div class="countdown-timer" id="countdownTimer">
+            <div class="countdown-box">
+                <div class="countdown-number" id="days">00</div>
+                <div class="countdown-label">يوم</div>
+            </div>
+            <div class="countdown-box">
+                <div class="countdown-number" id="hours">00</div>
+                <div class="countdown-label">ساعة</div>
+            </div>
+            <div class="countdown-box">
+                <div class="countdown-number" id="minutes">00</div>
+                <div class="countdown-label">دقيقة</div>
+            </div>
+            <div class="countdown-box">
+                <div class="countdown-number" id="seconds">00</div>
+                <div class="countdown-label">ثانية</div>
+            </div>
+        </div>
+        <div class="countdown-message">
+            <i class="fas fa-gift"></i> استعد لأقوى عروض الإطلاق! <i class="fas fa-rocket"></i>
+        </div>
+    </div>
+
     <!-- ========== قسم مميزات التحديث الجديد ========== -->
     <div id="updates" class="update-section" data-aos="fade-up" data-aos-duration="800">
         <div class="update-header">
             <div class="version-badge">
                 <i class="fas fa-code-branch"></i>
                 <span class="version-number">الإصدار v1.1.0</span>
-                <span class="version-date">• تم الإصدار 15 يونيو 2026</span>
+                <span class="version-date">• سيتم الإصدار يوم 15 يونيو 2026</span>
             </div>
             <h3>🎉 تحديث جديد كلياً 🎉</h3>
             <p>أحدث إصدار من WStore Games يقدم تجربة شحن فائقة السرعة ومميزات غير مسبوقة</p>
@@ -639,7 +775,7 @@
             <div class="app-mock animate-float">
                 <i class="fas fa-gamepad"></i>
                 <div style="margin-top: 10px; font-weight: bold;">WStore Games</div>
-                <small>v1.1.0</small>
+                <small>v1.0.0</small>
             </div>
         </div>
     </div>
@@ -659,6 +795,41 @@
 <script>
     AOS.init({ once: true, duration: 800, easing: 'ease-out-cubic' });
 
+    // ========== العداد التنازلي ==========
+    // تاريخ الإصدار: 15 يونيو 2026 الساعة 12:00:00
+    const releaseDate = new Date(2026, 6, 15, 12, 0, 0).getTime();
+    
+    function updateCountdown() {
+        const now = new Date().getTime();
+        const distance = releaseDate - now;
+        
+        if (distance < 0) {
+            // انتهى الوقت - إصدار التطبيق
+            document.getElementById('days').innerHTML = '00';
+            document.getElementById('hours').innerHTML = '00';
+            document.getElementById('minutes').innerHTML = '00';
+            document.getElementById('seconds').innerHTML = '00';
+            document.querySelector('.countdown-message').innerHTML = '<i class="fas fa-check-circle"></i> تم إطلاق التطبيق رسمياً! حمله الآن <i class="fas fa-download"></i>';
+            document.querySelector('.countdown-message').style.color = '#BEEE11';
+            return;
+        }
+        
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        
+        document.getElementById('days').innerHTML = days.toString().padStart(2, '0');
+        document.getElementById('hours').innerHTML = hours.toString().padStart(2, '0');
+        document.getElementById('minutes').innerHTML = minutes.toString().padStart(2, '0');
+        document.getElementById('seconds').innerHTML = seconds.toString().padStart(2, '0');
+    }
+    
+    // تحديث العداد كل ثانية
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+
+    // -------------------- 🔥 إعدادات Firebase --------------------
     const firebaseConfig = {
         apiKey: "AIzaSyA8zbwD7QNk-GeNA4x-MWKLuLhcrV8OtgI",
         authDomain: "wstore-games-site.firebaseapp.com",
@@ -707,7 +878,7 @@
         downloadApkBtn.addEventListener('click', (e) => {
             e.preventDefault();
             incrementDownloadCount();
-            const apkUrl = "https://github.com/Mahmoudi-Tech/WStore-Games/releases/download/WStore-Games/WStore.Games.apk";
+            const apkUrl = "https://wstoregames.com/download/app.apk";
             setTimeout(() => window.open(apkUrl, '_blank'), 300);
         });
     }
