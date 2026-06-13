@@ -81,14 +81,15 @@
             to { transform: rotate(360deg); }
         }
         
-        @keyframes shimmer {
-            0% { background-position: -1000px 0; }
-            100% { background-position: 1000px 0; }
-        }
-        
         @keyframes borderFlow {
             0%, 100% { border-color: rgba(190, 238, 17, 0.3); box-shadow: 0 0 0 0 rgba(190, 238, 17, 0.2); }
             50% { border-color: rgba(190, 238, 17, 0.8); box-shadow: 0 0 30px rgba(190, 238, 17, 0.4); }
+        }
+        
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
         }
         
         .animate-float { animation: float 4s ease-in-out infinite; }
@@ -423,7 +424,7 @@
             line-height: 1.7;
         }
         
-        /* ========== قسم التحديثات الجديد ========== */
+        /* ========== قسم التحديثات ========== */
         .update-section {
             background: linear-gradient(135deg, #0d142c, #091020);
             border-radius: 48px;
@@ -533,6 +534,172 @@
             padding: 20px 40px;
             text-align: center;
             border-top: 1px solid rgba(190, 238, 17, 0.15);
+        }
+        
+        /* ========== قسم تعليمات التثبيت ========== */
+        .install-section {
+            background: linear-gradient(135deg, #0d142c, #091020);
+            border-radius: 48px;
+            margin: 60px 0;
+            padding: 50px 40px;
+            border: 1px solid rgba(190, 238, 17, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .install-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(190, 238, 17, 0.03) 0%, transparent 70%);
+            animation: rotateSlow 25s linear infinite;
+        }
+        
+        .install-title {
+            font-size: 36px;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 40px;
+            background: linear-gradient(135deg, #fff, #BEEE11);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .install-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .step-card {
+            background: rgba(10, 20, 35, 0.6);
+            backdrop-filter: blur(10px);
+            border-radius: 28px;
+            padding: 30px 25px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(190, 238, 17, 0.2);
+        }
+        
+        .step-card:hover {
+            transform: translateY(-8px);
+            border-color: #BEEE11;
+            box-shadow: 0 15px 30px rgba(190, 238, 17, 0.15);
+        }
+        
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #BEEE11, #9ed10e);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 24px;
+            font-weight: 800;
+            color: #0a0f1e;
+        }
+        
+        .step-card h4 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+        
+        .step-card p {
+            color: #b9c7e3;
+            line-height: 1.7;
+        }
+        
+        /* رسالة تحذير جوجل */
+        .warning-box {
+            background: linear-gradient(135deg, rgba(255, 100, 100, 0.15), rgba(255, 100, 100, 0.05));
+            border: 1px solid rgba(255, 100, 100, 0.5);
+            border-radius: 28px;
+            padding: 30px;
+            margin-top: 30px;
+            position: relative;
+            z-index: 1;
+            animation: shake 0.5s ease-in-out;
+        }
+        
+        .warning-box:hover {
+            animation: shake 0.5s ease-in-out;
+        }
+        
+        .warning-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            justify-content: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .warning-header i {
+            font-size: 45px;
+            color: #ff6b6b;
+        }
+        
+        .warning-header h4 {
+            font-size: 24px;
+            color: #ff6b6b;
+        }
+        
+        .warning-content {
+            text-align: center;
+        }
+        
+        .warning-content p {
+            margin-bottom: 15px;
+            color: #ffcccc;
+        }
+        
+        .solution-steps {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 20px;
+            padding: 20px;
+            margin-top: 15px;
+            text-align: right;
+        }
+        
+        .solution-steps p {
+            margin: 10px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .solution-steps i {
+            color: #BEEE11;
+            font-size: 18px;
+        }
+        
+        .safety-note {
+            background: rgba(190, 238, 17, 0.1);
+            border-radius: 20px;
+            padding: 20px;
+            margin-top: 20px;
+            text-align: center;
+            border: 1px solid rgba(190, 238, 17, 0.3);
+        }
+        
+        .safety-note i {
+            color: #BEEE11;
+            font-size: 28px;
+            margin-bottom: 10px;
         }
         
         /* ========== قسم الأمان ========== */
@@ -816,16 +983,21 @@
             .policy-title { font-size: 28px; }
             .app-info h3 { font-size: 28px; }
             .update-header h3 { font-size: 24px; }
+            .install-title { font-size: 26px; }
             .features-list { padding: 25px; }
             .scroll-top { width: 45px; height: 45px; bottom: 20px; right: 20px; }
             .scroll-top i { font-size: 22px; }
             .version-number { font-size: 20px; }
+            .install-steps { gap: 20px; }
+            .warning-header h4 { font-size: 18px; }
+            .warning-header i { font-size: 30px; }
         }
         
         @media (max-width: 480px) {
             .countdown-timer { gap: 10px; }
             .countdown-box { padding: 10px 12px; min-width: 60px; }
             .countdown-number { font-size: 22px; }
+            .install-section { padding: 30px 20px; }
         }
     </style>
 </head>
@@ -844,6 +1016,7 @@
         </div>
         <div class="nav-buttons">
             <a href="#updates" class="btn-outline"><i class="fas fa-code-branch"></i> التحديثات</a>
+            <a href="#install" class="btn-outline"><i class="fas fa-download"></i> التثبيت</a>
             <a href="#app-download" class="btn-outline"><i class="fas fa-mobile-alt"></i> التطبيق</a>
             <a href="#policy" class="btn-outline"><i class="fas fa-shield-alt"></i> الأمان</a>
         </div>
@@ -909,7 +1082,7 @@
         </div>
     </div>
 
-    <!-- ========== قسم التحديثات الجديد ========== -->
+    <!-- ========== قسم التحديثات ========== -->
     <div id="updates" class="update-section" data-aos="fade-up" data-aos-duration="1000">
         <div class="update-header">
             <div class="version-badge">
@@ -956,6 +1129,59 @@
         
         <div class="update-footer">
             <p><i class="fas fa-check-circle"></i> تحديث ضخم ينتظرك! استعد لتجربة جديدة كلياً</p>
+        </div>
+    </div>
+
+    <!-- ========== قسم تعليمات التثبيت ========== -->
+    <div id="install" class="install-section" data-aos="fade-up" data-aos-duration="1000">
+        <h2 class="install-title"><i class="fas fa-download"></i> كيفية تثبيت التطبيق من خارج متجر Google Play</h2>
+        
+        <div class="install-steps">
+            <div class="step-card" data-aos="zoom-in" data-aos-duration="600">
+                <div class="step-number">1</div>
+                <h4>تحميل ملف APK</h4>
+                <p>اضغط على زر تحميل التطبيق من الموقع، سيتم تحميل ملف APK على جهازك.</p>
+            </div>
+            <div class="step-card" data-aos="zoom-in" data-aos-duration="600" data-aos-delay="100">
+                <div class="step-number">2</div>
+                <h4>السماح بالتثبيت من مصادر خارجية</h4>
+                <p>اذهب إلى الإعدادات ← الأمان ← فعّل "مصادر غير معروفة" أو "تثبيت من مصادر خارجية".</p>
+            </div>
+            <div class="step-card" data-aos="zoom-in" data-aos-duration="600" data-aos-delay="200">
+                <div class="step-number">3</div>
+                <h4>فتح ملف APK</h4>
+                <p>بعد التحميل، افتح ملف APK من مجلد التنزيلات واضغط على "تثبيت".</p>
+            </div>
+            <div class="step-card" data-aos="zoom-in" data-aos-duration="600" data-aos-delay="300">
+                <div class="step-number">4</div>
+                <h4>بدء الاستخدام</h4>
+                <p>بعد اكتمال التثبيت، افتح التطبيق واستمتع بخدمات الشحن الفوري!</p>
+            </div>
+        </div>
+        
+        <!-- رسالة تحذير جوجل -->
+        <div class="warning-box" data-aos="fade-up" data-aos-duration="700">
+            <div class="warning-header">
+                <i class="fas fa-shield-alt"></i>
+                <h4>⚠️ رسالة حماية من Google</h4>
+                <i class="fas fa-google"></i>
+            </div>
+            <div class="warning-content">
+                <p>قد تظهر لك رسالة من Google Play Protect أثناء التثبيت: <strong>"هذا التطبيق غير آمن"</strong> أو <strong>"Google غير قادرة على فحص التطبيق"</strong>.</p>
+                <p><strong>لا تقلق! هذا إجراء أمني طبيعي من Google لأي تطبيق يتم تحميله من خارج المتجر.</strong></p>
+                
+                <div class="solution-steps">
+                    <p><i class="fas fa-check-circle"></i> <strong>الحل بسيط:</strong></p>
+                    <p><i class="fas fa-angle-left"></i> اضغط على "تثبيت على أي حال" أو "تثبيت رغم المخاطر"</p>
+                    <p><i class="fas fa-angle-left"></i> أو اذهب إلى الإعدادات ← Google ← Play Protect ← إيقاف الفحص مؤقتاً</p>
+                    <p><i class="fas fa-angle-left"></i> بعد التثبيت يمكنك إعادة تشغيل الحماية مرة أخرى</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="safety-note" data-aos="fade-up" data-aos-duration="700" data-aos-delay="200">
+            <i class="fas fa-check-circle"></i>
+            <p><strong>ملاحظة أمان:</strong> تطبيق WStore Games آمن 100% وخالي من الفيروسات. نحن نستخدم تشفير SSL لحماية بياناتك، والتطبيق يتم فحصه يومياً بواسطة أنظمة أمان متعددة.</p>
         </div>
     </div>
 
@@ -1047,7 +1273,7 @@
     });
 
     // العداد التنازلي
-    const releaseDate = new Date(2026, 5, 15, 12, 0, 0).getTime();
+    const releaseDate = new Date(2026, 5, 15, 13, 0, 0).getTime();
     
     function updateCountdown() {
         const now = new Date().getTime();
