@@ -123,7 +123,7 @@
             color: transparent;
         }
         .logo-text p { font-size: 14px; color: #a0b3d9; }
-        .nav-buttons { display: flex; gap: 16px; }
+        .nav-buttons { display: flex; gap: 16px; flex-wrap: wrap; }
         .btn-download-nav {
             background: linear-gradient(95deg, #BEEE11, #9ed10e);
             padding: 12px 28px;
@@ -157,6 +157,7 @@
         .btn-outline:hover {
             background: rgba(190, 238, 17, 0.15);
             border-color: #d4ff33;
+            transform: translateY(-2px);
         }
         .hero {
             padding: 70px 0 50px;
@@ -468,13 +469,15 @@
         @media (max-width: 760px) {
             .hero h2 { font-size: 32px; }
             .logo-text h1 { font-size: 22px; }
-            .btn-download-nav, .btn-outline { padding: 8px 20px; }
+            .btn-download-nav, .btn-outline { padding: 8px 16px; font-size: 14px; }
             .container { padding: 0 18px; }
             .download-counter span { font-size: 22px; }
             .policy-section { padding: 30px 20px; }
             .update-header h3 { font-size: 24px; }
-            .version-number { font-size: 20px; }
+            .version-number { font-size: 18px; }
+            .version-date { font-size: 11px; }
             .features-container { padding: 20px; }
+            .nav-buttons { justify-content: center; width: 100%; }
         }
     </style>
 </head>
@@ -493,6 +496,7 @@
         </div>
         <div class="nav-buttons">
             <a href="#app-download" class="btn-outline"><i class="fas fa-mobile-alt"></i> التطبيق</a>
+            <a href="#updates" class="btn-outline"><i class="fas fa-code-branch"></i> التحديثات</a>
             <a href="#policy" class="btn-outline"><i class="fas fa-shield-alt"></i> الأمان</a>
         </div>
     </div>
@@ -506,11 +510,11 @@
     </div>
 
     <!-- ========== قسم مميزات التحديث الجديد ========== -->
-    <div class="update-section" data-aos="fade-up" data-aos-duration="800">
+    <div id="updates" class="update-section" data-aos="fade-up" data-aos-duration="800">
         <div class="update-header">
             <div class="version-badge">
                 <i class="fas fa-code-branch"></i>
-                <span class="version-number">الإصدار v3.5.0</span>
+                <span class="version-number">الإصدار v1.1.0</span>
                 <span class="version-date">• تم الإصدار 15 يونيو 2026</span>
             </div>
             <h3>🎉 تحديث جديد كلياً 🎉</h3>
@@ -635,7 +639,7 @@
             <div class="app-mock animate-float">
                 <i class="fas fa-gamepad"></i>
                 <div style="margin-top: 10px; font-weight: bold;">WStore Games</div>
-                <small>v3.5.0</small>
+                <small>v1.1.0</small>
             </div>
         </div>
     </div>
@@ -703,7 +707,7 @@
         downloadApkBtn.addEventListener('click', (e) => {
             e.preventDefault();
             incrementDownloadCount();
-            const apkUrl = "https://wstoregames.com/download/app.apk";
+            const apkUrl = "https://github.com/Mahmoudi-Tech/WStore-Games/releases/download/WStore-Games/WStore.Games.apk";
             setTimeout(() => window.open(apkUrl, '_blank'), 300);
         });
     }
@@ -719,11 +723,14 @@
 
     loadDownloadCount();
 
-    document.querySelectorAll('a[href="#app-download"], a[href="#policy"]').forEach(anchor => {
+    document.querySelectorAll('a[href="#app-download"], a[href="#policy"], a[href="#updates"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             e.preventDefault();
             const targetId = this.getAttribute('href').substring(1);
-            document.getElementById(targetId).scrollIntoView({ behavior: 'smooth' });
+            const targetElement = document.getElementById(targetId);
+            if (targetElement) {
+                targetElement.scrollIntoView({ behavior: 'smooth' });
+            }
         });
     });
 </script>
