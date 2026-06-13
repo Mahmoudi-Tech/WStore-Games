@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>WStore Games | شحن الألعاب أونلاين</title>
     
-    <!-- ✅ أيقونة الموقع (Favicon) - تظهر جمب اسم الموقع في المتصفح -->
+    <!-- أيقونة الموقع (Favicon) -->
     <link rel="icon" type="image/png" sizes="32x32" href="logo.png">
     <link rel="icon" type="image/png" sizes="16x16" href="logo.png">
     <link rel="apple-touch-icon" href="logo.png">
@@ -33,16 +33,10 @@
             line-height: 1.6;
             overflow-x: hidden;
         }
-        /* أنيميشنات إضافية */
+        /* أنيميشنات */
         @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         @keyframes pulse {
             0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(190, 238, 17, 0.7); }
@@ -54,32 +48,33 @@
             50% { transform: translateY(-15px); }
             100% { transform: translateY(0px); }
         }
-        .animate-float {
-            animation: float 4s ease-in-out infinite;
+        @keyframes glow {
+            0% { text-shadow: 0 0 5px #BEEE11; }
+            50% { text-shadow: 0 0 20px #BEEE11, 0 0 30px #BEEE11; }
+            100% { text-shadow: 0 0 5px #BEEE11; }
         }
-        .hero, .app-section, .policy-section, .policy-card, .contact-box {
+        @keyframes borderGlow {
+            0% { border-color: rgba(190, 238, 17, 0.3); box-shadow: 0 0 0 0 rgba(190, 238, 17, 0.2); }
+            50% { border-color: rgba(190, 238, 17, 0.8); box-shadow: 0 0 20px rgba(190, 238, 17, 0.4); }
+            100% { border-color: rgba(190, 238, 17, 0.3); box-shadow: 0 0 0 0 rgba(190, 238, 17, 0.2); }
+        }
+        .animate-float { animation: float 4s ease-in-out infinite; }
+        .animate-glow { animation: glow 2s ease-in-out infinite; }
+        .hero, .app-section, .policy-section, .update-section, .policy-card, .contact-box {
             animation: fadeInUp 0.8s ease forwards;
             opacity: 0;
         }
         .hero { animation-delay: 0.1s; }
+        .update-section { animation-delay: 0.2s; }
         .app-section { animation-delay: 0.3s; }
         .policy-section { animation-delay: 0.5s; }
         
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #1a1f2e;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #BEEE11;
-            border-radius: 10px;
-        }
-        .container {
-            max-width: 1300px;
-            margin: 0 auto;
-            padding: 0 24px;
-        }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #1a1f2e; }
+        ::-webkit-scrollbar-thumb { background: #BEEE11; border-radius: 10px; }
+        
+        .container { max-width: 1300px; margin: 0 auto; padding: 0 24px; }
+        
         header {
             background: rgba(10, 15, 30, 0.75);
             backdrop-filter: blur(12px);
@@ -113,7 +108,6 @@
             border: 2px solid #BEEE11;
             box-shadow: 0 0 12px rgba(190, 238, 17, 0.4);
             overflow: hidden;
-            background-color: #0f172a;
         }
         .logo-img img {
             max-width: 100%;
@@ -128,14 +122,8 @@
             background-clip: text;
             color: transparent;
         }
-        .logo-text p {
-            font-size: 14px;
-            color: #a0b3d9;
-        }
-        .nav-buttons {
-            display: flex;
-            gap: 16px;
-        }
+        .logo-text p { font-size: 14px; color: #a0b3d9; }
+        .nav-buttons { display: flex; gap: 16px; }
         .btn-download-nav {
             background: linear-gradient(95deg, #BEEE11, #9ed10e);
             padding: 12px 28px;
@@ -147,7 +135,6 @@
             align-items: center;
             gap: 10px;
             transition: 0.3s;
-            border: none;
             box-shadow: 0 5px 15px rgba(190, 238, 17, 0.4);
             cursor: pointer;
         }
@@ -190,6 +177,128 @@
             max-width: 700px;
             margin: 0 auto 30px;
         }
+        
+        /* ========== قسم التحديث الجديد ========== */
+        .update-section {
+            background: linear-gradient(135deg, #0d142c, #091020);
+            border-radius: 48px;
+            margin: 50px 0;
+            padding: 0;
+            border: 2px solid transparent;
+            animation: borderGlow 3s ease-in-out infinite;
+            overflow: hidden;
+            position: relative;
+        }
+        .update-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #BEEE11, #e6ff4d, #BEEE11);
+        }
+        .update-header {
+            background: linear-gradient(135deg, rgba(190, 238, 17, 0.15), rgba(190, 238, 17, 0.05));
+            padding: 35px 40px 25px;
+            text-align: center;
+            border-bottom: 1px solid rgba(190, 238, 17, 0.2);
+        }
+        .version-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: rgba(190, 238, 17, 0.2);
+            padding: 10px 25px;
+            border-radius: 60px;
+            margin-bottom: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(190, 238, 17, 0.5);
+        }
+        .version-badge i {
+            font-size: 28px;
+            color: #BEEE11;
+        }
+        .version-number {
+            font-size: 28px;
+            font-weight: 800;
+            color: #BEEE11;
+            letter-spacing: 2px;
+        }
+        .version-date {
+            font-size: 14px;
+            color: #a0b3d9;
+            margin-right: 10px;
+        }
+        .update-header h3 {
+            font-size: 36px;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+        .update-header p {
+            font-size: 18px;
+            color: #b9c7e3;
+        }
+        .features-container {
+            padding: 40px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        .feature-item {
+            background: rgba(10, 20, 35, 0.6);
+            border-radius: 24px;
+            padding: 25px;
+            transition: all 0.3s ease;
+            border-right: 4px solid #BEEE11;
+            backdrop-filter: blur(5px);
+        }
+        .feature-item:hover {
+            transform: translateX(-8px);
+            background: rgba(190, 238, 17, 0.1);
+            box-shadow: 0 10px 25px rgba(190, 238, 17, 0.15);
+        }
+        .feature-icon {
+            width: 55px;
+            height: 55px;
+            background: rgba(190, 238, 17, 0.15);
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 18px;
+        }
+        .feature-icon i {
+            font-size: 28px;
+            color: #BEEE11;
+        }
+        .feature-item h4 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: #fff;
+        }
+        .feature-item p {
+            color: #b9c7e3;
+            line-height: 1.6;
+            font-size: 15px;
+        }
+        .update-footer {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 20px 40px;
+            text-align: center;
+            border-top: 1px solid rgba(190, 238, 17, 0.15);
+        }
+        .update-footer a {
+            color: #BEEE11;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+        .update-footer a:hover {
+            text-decoration: underline;
+        }
+        
         .app-section {
             background: linear-gradient(120deg, #0d142c, #0a1022);
             border-radius: 48px;
@@ -205,21 +314,9 @@
             justify-content: center;
             gap: 40px;
         }
-        .app-info h3 {
-            font-size: 36px;
-            font-weight: 800;
-        }
-        .app-info p {
-            margin: 16px 0 25px;
-            font-size: 18px;
-            max-width: 500px;
-        }
-        .download-buttons {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
+        .app-info h3 { font-size: 36px; font-weight: 800; }
+        .app-info p { margin: 16px 0 25px; font-size: 18px; max-width: 500px; }
+        .download-buttons { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
         .download-btn {
             background: #1f2a44;
             padding: 14px 32px;
@@ -234,30 +331,20 @@
             border: 1px solid #BEEE11;
             cursor: pointer;
         }
-        .download-btn i {
-            font-size: 28px;
-            color: #BEEE11;
-            transition: 0.3s;
-        }
+        .download-btn i { font-size: 28px; color: #BEEE11; transition: 0.3s; }
         .download-btn:hover {
             background: #BEEE11;
             color: #0a0f1e;
-            border-color: white;
             transform: scale(1.05);
         }
-        .download-btn:hover i {
-            color: #0a0f1e;
-        }
+        .download-btn:hover i { color: #0a0f1e; }
         .app-mock {
             background: #111827;
             border-radius: 32px;
             padding: 15px;
             box-shadow: 0 20px 30px -10px black;
         }
-        .app-mock i {
-            font-size: 100px;
-            color: #BEEE11;
-        }
+        .app-mock i { font-size: 100px; color: #BEEE11; }
         .download-counter {
             margin-top: 25px;
             padding: 15px 25px;
@@ -266,22 +353,12 @@
             display: inline-flex;
             align-items: center;
             gap: 12px;
-            font-size: 18px;
             backdrop-filter: blur(4px);
             border: 1px solid rgba(190, 238, 17, 0.5);
         }
-        .download-counter i {
-            font-size: 24px;
-            color: #BEEE11;
-        }
-        .download-counter span {
-            font-size: 28px;
-            font-weight: 800;
-            color: #BEEE11;
-            margin: 0 5px;
-        }
+        .download-counter i { font-size: 24px; color: #BEEE11; }
+        .download-counter span { font-size: 28px; font-weight: 800; color: #BEEE11; margin: 0 5px; }
         
-        /* صفحة السياسات والأمان */
         .policy-section {
             background: rgba(15, 25, 45, 0.6);
             border-radius: 40px;
@@ -312,26 +389,14 @@
             padding: 28px 22px;
             transition: 0.3s;
             border-bottom: 3px solid #BEEE11;
-            cursor: pointer;
         }
         .policy-card:hover {
             transform: translateY(-8px);
             box-shadow: 0 15px 30px rgba(190, 238, 17, 0.2);
         }
-        .policy-card i {
-            font-size: 45px;
-            color: #BEEE11;
-            margin-bottom: 15px;
-        }
-        .policy-card h3 {
-            font-size: 24px;
-            margin-bottom: 15px;
-            color: #fff;
-        }
-        .policy-card p {
-            color: #b9c4e0;
-            line-height: 1.7;
-        }
+        .policy-card i { font-size: 45px; color: #BEEE11; margin-bottom: 15px; }
+        .policy-card h3 { font-size: 24px; margin-bottom: 15px; color: #fff; }
+        .policy-card p { color: #b9c4e0; line-height: 1.7; }
         .contact-box {
             background: linear-gradient(135deg, #0f172a, #0a0f22);
             border-radius: 32px;
@@ -340,10 +405,7 @@
             margin-top: 30px;
             border: 1px solid #BEEE11;
         }
-        .contact-box h4 {
-            font-size: 26px;
-            margin-bottom: 20px;
-        }
+        .contact-box h4 { font-size: 26px; margin-bottom: 20px; }
         .contact-links {
             display: flex;
             justify-content: center;
@@ -363,20 +425,14 @@
             font-weight: 600;
             transition: 0.3s;
         }
-        .contact-item i {
-            font-size: 24px;
-            color: #BEEE11;
-        }
+        .contact-item i { font-size: 24px; color: #BEEE11; }
         .contact-item:hover {
             background: #BEEE11;
             color: #0a0f1e;
             transform: translateY(-3px);
         }
-        .contact-item:hover i {
-            color: #0a0f1e;
-        }
+        .contact-item:hover i { color: #0a0f1e; }
         
-        /* رسالة الشكر المخصصة */
         .custom-toast {
             position: fixed;
             bottom: 30px;
@@ -400,14 +456,8 @@
             gap: 12px;
             direction: rtl;
         }
-        .custom-toast i {
-            font-size: 28px;
-        }
-        .custom-toast.show {
-            opacity: 1;
-            visibility: visible;
-            transform: translateX(-50%) scale(1);
-        }
+        .custom-toast i { font-size: 28px; }
+        .custom-toast.show { opacity: 1; visibility: visible; transform: translateX(-50%) scale(1); }
         footer {
             text-align: center;
             padding: 40px 0;
@@ -422,7 +472,9 @@
             .container { padding: 0 18px; }
             .download-counter span { font-size: 22px; }
             .policy-section { padding: 30px 20px; }
-            .custom-toast { font-size: 14px; padding: 12px 20px; }
+            .update-header h3 { font-size: 24px; }
+            .version-number { font-size: 20px; }
+            .features-container { padding: 20px; }
         }
     </style>
 </head>
@@ -450,7 +502,69 @@
     <div class="hero" data-aos="fade-up" data-aos-duration="800">
         <h2 class="animate-float">🕹️ شحن العابك المفضلة بأفضل الأسعار</h2>
         <p>WStore Games هو التطبيق الأمثل لشحن رصيد PUBG، فري فاير، كول أوف ديوتي، جينشين و أكثر. توصيل فوري وأمان تام.</p>
-        <a href="#app-download" class="btn-download-nav" style="background: #BEEE11; color: #0a0f1e;"><i class="fas fa-download"></i> حمل تطبيق WStore Games الآن</a>
+        <a href="#app-download" class="btn-download-nav"><i class="fas fa-download"></i> حمل تطبيق WStore Games الآن</a>
+    </div>
+
+    <!-- ========== قسم مميزات التحديث الجديد ========== -->
+    <div class="update-section" data-aos="fade-up" data-aos-duration="800">
+        <div class="update-header">
+            <div class="version-badge">
+                <i class="fas fa-code-branch"></i>
+                <span class="version-number">الإصدار v3.5.0</span>
+                <span class="version-date">• تم الإصدار 15 يونيو 2026</span>
+            </div>
+            <h3>🎉 تحديث جديد كلياً 🎉</h3>
+            <p>أحدث إصدار من WStore Games يقدم تجربة شحن فائقة السرعة ومميزات غير مسبوقة</p>
+        </div>
+        
+        <div class="features-container">
+            <div class="feature-item" data-aos="fade-left" data-aos-duration="500">
+                <div class="feature-icon">
+                    <i class="fas fa-bolt"></i>
+                </div>
+                <h4>شحن فوري بدون انتظار</h4>
+                <p>تقنية جديدة تضمن وصول الرصيد خلال 3 ثوانٍ فقط بعد تأكيد الدفع. أسرع خدمة شحن في الشرق الأوسط!</p>
+            </div>
+            <div class="feature-item" data-aos="fade-left" data-aos-duration="500" data-aos-delay="100">
+                <div class="feature-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h4>حماية متقدمة للحسابات</h4>
+                <p>نظام تشفير مزدوج (2FA) لحماية حساباتك وبياناتك الشخصية من أي اختراق.</p>
+            </div>
+            <div class="feature-item" data-aos="fade-left" data-aos-duration="500" data-aos-delay="200">
+                <div class="feature-icon">
+                    <i class="fas fa-tachometer-alt"></i>
+                </div>
+                <h4>واجهة مستخدم أسرع 3 مرات</h4>
+                <p>تصميم جديد كلياً بخلفيات أنميشن وأداء فائق السرعة على جميع الأجهزة.</p>
+            </div>
+            <div class="feature-item" data-aos="fade-left" data-aos-duration="500" data-aos-delay="300">
+                <div class="feature-icon">
+                    <i class="fas fa-gem"></i>
+                </div>
+                <h4>عروض حصرية للمستخدمين الجدد</h4>
+                <p>خصم 40% على أول شحن لأي لعبة، بالإضافة إلى هدايا مجانية داخل التطبيق.</p>
+            </div>
+            <div class="feature-item" data-aos="fade-left" data-aos-duration="500" data-aos-delay="400">
+                <div class="feature-icon">
+                    <i class="fas fa-headset"></i>
+                </div>
+                <h4>دعم فني على مدار الساعة</h4>
+                <p>فريق دعم متخصص يرد على استفساراتك خلال دقائق عبر الدردشة المباشرة.</p>
+            </div>
+            <div class="feature-item" data-aos="fade-left" data-aos-duration="500" data-aos-delay="500">
+                <div class="feature-icon">
+                    <i class="fas fa-gamepad"></i>
+                </div>
+                <h4>دعم ألعاب جديدة</h4>
+                <p>أضفنا دعم شحن لألعاب جديدة: Valorant، FIFA Mobile، و League of Legends!</p>
+            </div>
+        </div>
+        
+        <div class="update-footer">
+            <p><i class="fas fa-check-circle"></i> تم تحديث أكثر من 10,000 مستخدم لهذا الإصدار | <a href="#app-download">حمّل التحديث الآن <i class="fas fa-arrow-left"></i></a></p>
+        </div>
     </div>
 
     <!-- صفحة السياسات والأمان -->
@@ -500,7 +614,7 @@
         </div>
     </div>
 
-    <!-- قسم تحميل التطبيق مع عداد التنزيلات -->
+    <!-- قسم تحميل التطبيق -->
     <div class="app-section" id="app-download" data-aos="fade-up" data-aos-duration="800">
         <div class="app-flex">
             <div class="app-info">
@@ -510,7 +624,6 @@
                     <div class="download-btn" id="downloadApkBtn"><i class="fab fa-android"></i> تحميل APK (أندرويد)</div>
                     <div class="download-btn" id="downloadIosBtn"><i class="fab fa-apple"></i> قريباً على App Store</div>
                 </div>
-                
                 <div class="download-counter">
                     <i class="fas fa-download"></i>
                     <span>إجمالي التحميلات:</span>
@@ -522,7 +635,7 @@
             <div class="app-mock animate-float">
                 <i class="fas fa-gamepad"></i>
                 <div style="margin-top: 10px; font-weight: bold;">WStore Games</div>
-                <small>v1.0.0</small>
+                <small>v3.5.0</small>
             </div>
         </div>
     </div>
@@ -533,7 +646,6 @@
     <p style="margin-top: 8px;"><i class="fas fa-envelope"></i> VirusAhlawy@Gmail.Com | <i class="fab fa-whatsapp"></i> 01010050851</p>
 </footer>
 
-<!-- رسالة شكر مميزة -->
 <div id="thankYouToast" class="custom-toast">
     <i class="fas fa-heart" style="color: #ff6b6b;"></i>
     <span>🎉 شكراً لك على تحميل تطبيق WStore Games! 🎉</span>
@@ -541,14 +653,8 @@
 </div>
 
 <script>
-    // تفعيل مكتبة AOS للأنيميشن
-    AOS.init({
-        once: true,
-        duration: 800,
-        easing: 'ease-out-cubic'
-    });
+    AOS.init({ once: true, duration: 800, easing: 'ease-out-cubic' });
 
-    // -------------------- 🔥 إعدادات Firebase --------------------
     const firebaseConfig = {
         apiKey: "AIzaSyA8zbwD7QNk-GeNA4x-MWKLuLhcrV8OtgI",
         authDomain: "wstore-games-site.firebaseapp.com",
@@ -566,7 +672,6 @@
     const downloadCountSpan = document.getElementById('downloadCount');
     const thankYouToast = document.getElementById('thankYouToast');
 
-    // دالة عرض رسالة الشكر
     function showThankYouMessage() {
         thankYouToast.classList.add('show');
         setTimeout(() => {
@@ -579,7 +684,7 @@
             const count = snapshot.val() || 0;
             downloadCountSpan.innerText = count.toLocaleString('ar-EG');
         }, (error) => {
-            console.error("خطأ في قراءة العداد:", error);
+            console.error("خطأ:", error);
             downloadCountSpan.innerText = "?";
         });
     }
@@ -588,11 +693,8 @@
         downloadsRef.transaction((currentCount) => {
             return (currentCount || 0) + 1;
         }, (error, committed) => {
-            if (error) {
-                console.error("فشل تحديث العداد:", error);
-            } else if (committed) {
-                showThankYouMessage();
-            }
+            if (error) console.error("فشل:", error);
+            else if (committed) showThankYouMessage();
         });
     }
 
@@ -601,10 +703,8 @@
         downloadApkBtn.addEventListener('click', (e) => {
             e.preventDefault();
             incrementDownloadCount();
-            const apkUrl = "https://github.com/Mahmoudi-Tech/WStore-Games/releases/download/WStore-Games/WStore.Games.apk";
-            setTimeout(() => {
-                window.open(apkUrl, '_blank');
-            }, 300);
+            const apkUrl = "https://wstoregames.com/download/app.apk";
+            setTimeout(() => window.open(apkUrl, '_blank'), 300);
         });
     }
 
@@ -613,9 +713,7 @@
         downloadIosBtn.addEventListener('click', (e) => {
             e.preventDefault();
             showThankYouMessage();
-            setTimeout(() => {
-                alert("🍏 تطبيق iOS قيد التطوير، سيصبح متاحاً قريباً في متجر Apple.");
-            }, 500);
+            setTimeout(() => alert("🍏 تطبيق iOS قيد التطوير، سيصبح متاحاً قريباً في متجر Apple."), 500);
         });
     }
 
