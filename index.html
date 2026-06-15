@@ -13,7 +13,7 @@
     
     <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <!-- Tajawal Font - خط عربي جميل -->
+    <!-- Tajawal Font -->
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
     <!-- Firebase SDKs -->
     <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
@@ -101,7 +101,7 @@
         
         .container { max-width: 1300px; margin: 0 auto; padding: 0 24px; }
         
-        /* ========== الهيدر ========== */
+        /* ========== الهيدر المتجاوب ========== */
         header {
             background: rgba(10, 15, 30, 0.85);
             backdrop-filter: blur(15px);
@@ -117,32 +117,32 @@
             align-items: center;
             justify-content: space-between;
             flex-wrap: wrap;
-            gap: 20px;
+            gap: 15px;
         }
         
         .logo-area {
             display: flex;
             align-items: center;
-            gap: 15px;
-            flex-wrap: wrap;
+            gap: 12px;
+            flex-shrink: 0;
         }
         
         .logo-img {
-            width: 55px;
-            height: 55px;
+            width: 45px;
+            height: 45px;
             background: linear-gradient(135deg, #11171f, #0f172a);
-            border-radius: 18px;
+            border-radius: 16px;
             display: flex;
             align-items: center;
             justify-content: center;
             border: 2px solid #BEEE11;
-            box-shadow: 0 0 20px rgba(190, 238, 17, 0.3);
+            box-shadow: 0 0 15px rgba(190, 238, 17, 0.3);
             overflow: hidden;
+            transition: all 0.3s ease;
         }
         
         .logo-img:hover {
             transform: scale(1.05);
-            box-shadow: 0 0 30px rgba(190, 238, 17, 0.5);
         }
         
         .logo-img img {
@@ -152,7 +152,7 @@
         }
         
         .logo-text h1 {
-            font-size: 28px;
+            font-size: 22px;
             font-weight: 800;
             background: linear-gradient(135deg, #FFFFFF, #BEEE11, #e6ff4d);
             -webkit-background-clip: text;
@@ -160,27 +160,33 @@
             color: transparent;
         }
         
-        .logo-text p { font-size: 13px; color: #a0b3d9; }
+        .logo-text p {
+            font-size: 11px;
+            color: #a0b3d9;
+        }
         
+        /* قائمة التنقل المتجاوبة */
         .nav-buttons {
             display: flex;
-            gap: 15px;
+            gap: 10px;
             flex-wrap: wrap;
+            justify-content: flex-end;
         }
         
         .btn-outline {
             background: transparent;
             border: 1.5px solid #BEEE11;
-            padding: 10px 24px;
+            padding: 8px 18px;
             border-radius: 40px;
             color: #eef5ff;
             font-weight: 600;
             text-decoration: none;
             transition: all 0.3s ease;
             cursor: pointer;
-            font-size: 15px;
+            font-size: 14px;
             position: relative;
             overflow: hidden;
+            white-space: nowrap;
         }
         
         .btn-outline::before {
@@ -209,41 +215,41 @@
         
         /* ========== الهيرو ========== */
         .hero {
-            padding: 80px 0 50px;
+            padding: 60px 0 40px;
             text-align: center;
         }
         
         .hero h2 {
-            font-size: 55px;
+            font-size: 42px;
             font-weight: 800;
             background: linear-gradient(135deg, #ffffff, #BEEE11, #e6ff4d);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
         }
         
         .hero p {
-            font-size: 20px;
+            font-size: 18px;
             color: #b9c7e3;
             max-width: 700px;
-            margin: 0 auto 35px;
+            margin: 0 auto 30px;
         }
         
         .btn-primary {
             background: linear-gradient(95deg, #BEEE11, #9ed10e);
-            padding: 14px 35px;
+            padding: 12px 30px;
             border-radius: 50px;
             font-weight: 700;
             color: #0a0f1e;
             text-decoration: none;
             display: inline-flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
             transition: all 0.3s ease;
             box-shadow: 0 5px 20px rgba(190, 238, 17, 0.4);
             cursor: pointer;
-            font-size: 18px;
+            font-size: 16px;
         }
         
         .btn-primary:hover {
@@ -256,9 +262,9 @@
         .countdown-section {
             background: linear-gradient(135deg, rgba(13, 20, 44, 0.9), rgba(9, 16, 32, 0.9));
             backdrop-filter: blur(10px);
-            border-radius: 50px;
-            margin: 30px 0 60px;
-            padding: 45px 30px;
+            border-radius: 40px;
+            margin: 30px 0 50px;
+            padding: 35px 25px;
             text-align: center;
             border: 1px solid rgba(190, 238, 17, 0.3);
             position: relative;
@@ -277,7 +283,7 @@
         }
         
         .countdown-title {
-            font-size: 28px;
+            font-size: 24px;
             font-weight: 700;
             margin-bottom: 10px;
             position: relative;
@@ -287,9 +293,9 @@
         .countdown-title i { color: #BEEE11; margin-left: 10px; }
         
         .countdown-date {
-            font-size: 16px;
+            font-size: 14px;
             color: #a0b3d9;
-            margin-bottom: 35px;
+            margin-bottom: 25px;
             position: relative;
             z-index: 1;
         }
@@ -297,9 +303,9 @@
         .countdown-timer {
             display: flex;
             justify-content: center;
-            gap: 25px;
+            gap: 15px;
             flex-wrap: wrap;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             position: relative;
             z-index: 1;
         }
@@ -307,21 +313,21 @@
         .countdown-box {
             background: rgba(10, 20, 35, 0.8);
             backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 20px 28px;
-            min-width: 110px;
+            border-radius: 16px;
+            padding: 15px 20px;
+            min-width: 85px;
             text-align: center;
             border: 1px solid rgba(190, 238, 17, 0.3);
             transition: all 0.3s ease;
         }
         
         .countdown-box:hover {
-            transform: translateY(-8px);
+            transform: translateY(-5px);
             border-color: #BEEE11;
         }
         
         .countdown-number {
-            font-size: 50px;
+            font-size: 38px;
             font-weight: 800;
             color: #BEEE11;
             line-height: 1;
@@ -329,13 +335,13 @@
         }
         
         .countdown-label {
-            font-size: 14px;
+            font-size: 12px;
             color: #a0b3d9;
-            margin-top: 10px;
+            margin-top: 8px;
         }
         
         .countdown-message {
-            font-size: 18px;
+            font-size: 16px;
             color: #BEEE11;
             font-weight: 600;
             position: relative;
@@ -345,35 +351,35 @@
         /* ========== بطاقات المميزات ========== */
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 30px;
-            margin: 60px 0;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin: 50px 0;
         }
         
         .feature-card {
             background: linear-gradient(135deg, rgba(15, 25, 45, 0.7), rgba(10, 20, 40, 0.7));
             backdrop-filter: blur(10px);
-            border-radius: 28px;
-            padding: 35px 25px;
+            border-radius: 24px;
+            padding: 30px 20px;
             text-align: center;
             transition: all 0.4s ease;
             border: 1px solid rgba(190, 238, 17, 0.2);
         }
         
         .feature-card:hover {
-            transform: translateY(-12px);
+            transform: translateY(-10px);
             border-color: #BEEE11;
         }
         
         .feature-icon {
-            width: 80px;
-            height: 80px;
+            width: 70px;
+            height: 70px;
             background: linear-gradient(135deg, rgba(190, 238, 17, 0.15), rgba(190, 238, 17, 0.05));
-            border-radius: 25px;
+            border-radius: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 20px;
+            margin: 0 auto 18px;
         }
         
         .feature-card:hover .feature-icon {
@@ -381,15 +387,15 @@
             background: rgba(190, 238, 17, 0.25);
         }
         
-        .feature-icon i { font-size: 40px; color: #BEEE11; }
-        .feature-card h3 { font-size: 24px; font-weight: 700; margin-bottom: 15px; }
-        .feature-card p { color: #b9c7e3; line-height: 1.7; }
+        .feature-icon i { font-size: 35px; color: #BEEE11; }
+        .feature-card h3 { font-size: 22px; font-weight: 700; margin-bottom: 12px; }
+        .feature-card p { color: #b9c7e3; line-height: 1.6; font-size: 14px; }
         
         /* ========== قسم التحديثات ========== */
         .update-section {
             background: linear-gradient(135deg, #0d142c, #091020);
-            border-radius: 48px;
-            margin: 60px 0;
+            border-radius: 40px;
+            margin: 50px 0;
             overflow: hidden;
             border: 1px solid rgba(190, 238, 17, 0.3);
             animation: borderFlow 3s ease-in-out infinite;
@@ -397,7 +403,7 @@
         
         .update-header {
             background: linear-gradient(135deg, rgba(190, 238, 17, 0.1), rgba(190, 238, 17, 0.02));
-            padding: 40px;
+            padding: 30px 25px;
             text-align: center;
             border-bottom: 1px solid rgba(190, 238, 17, 0.2);
         }
@@ -405,67 +411,68 @@
         .version-badge {
             display: inline-flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
             background: rgba(190, 238, 17, 0.15);
-            padding: 12px 30px;
+            padding: 8px 20px;
             border-radius: 50px;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             border: 1px solid rgba(190, 238, 17, 0.4);
         }
         
-        .version-badge i { font-size: 28px; color: #BEEE11; }
-        .version-number { font-size: 28px; font-weight: 800; color: #BEEE11; }
-        .version-date { font-size: 14px; color: #a0b3d9; margin-right: 10px; }
-        .update-header h3 { font-size: 38px; font-weight: 800; margin-bottom: 15px; }
-        .update-header p { font-size: 18px; color: #b9c7e3; }
+        .version-badge i { font-size: 22px; color: #BEEE11; }
+        .version-number { font-size: 22px; font-weight: 800; color: #BEEE11; }
+        .version-date { font-size: 12px; color: #a0b3d9; margin-right: 8px; }
+        .update-header h3 { font-size: 28px; font-weight: 800; margin-bottom: 10px; }
+        .update-header p { font-size: 15px; color: #b9c7e3; }
         
         .features-list {
-            padding: 40px;
+            padding: 30px 25px;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
         }
         
         .feature-item {
             background: rgba(10, 20, 35, 0.5);
-            border-radius: 20px;
-            padding: 25px;
+            border-radius: 18px;
+            padding: 20px;
             transition: all 0.3s ease;
             border-right: 3px solid #BEEE11;
         }
         
         .feature-item:hover {
-            transform: translateX(-8px);
+            transform: translateX(-6px);
             background: rgba(190, 238, 17, 0.08);
         }
         
         .feature-icon-small {
-            width: 50px;
-            height: 50px;
+            width: 45px;
+            height: 45px;
             background: rgba(190, 238, 17, 0.1);
-            border-radius: 15px;
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
         }
         
-        .feature-icon-small i { font-size: 28px; color: #BEEE11; }
-        .feature-item h4 { font-size: 20px; font-weight: 700; margin-bottom: 10px; color: #fff; }
-        .feature-item p { color: #b9c7e3; font-size: 14px; line-height: 1.6; }
+        .feature-icon-small i { font-size: 24px; color: #BEEE11; }
+        .feature-item h4 { font-size: 18px; font-weight: 700; margin-bottom: 8px; color: #fff; }
+        .feature-item p { color: #b9c7e3; font-size: 13px; line-height: 1.5; }
         .update-footer {
             background: rgba(0, 0, 0, 0.3);
-            padding: 20px 40px;
+            padding: 15px 25px;
             text-align: center;
             border-top: 1px solid rgba(190, 238, 17, 0.15);
+            font-size: 14px;
         }
         
         /* ========== قسم تعليمات التثبيت ========== */
         .install-section {
             background: linear-gradient(135deg, #0d142c, #091020);
-            border-radius: 48px;
-            margin: 60px 0;
-            padding: 50px 40px;
+            border-radius: 40px;
+            margin: 50px 0;
+            padding: 40px 25px;
             border: 1px solid rgba(190, 238, 17, 0.3);
             position: relative;
             overflow: hidden;
@@ -483,10 +490,10 @@
         }
         
         .install-title {
-            font-size: 36px;
+            font-size: 28px;
             font-weight: 800;
             text-align: center;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
             background: linear-gradient(135deg, #fff, #BEEE11);
             -webkit-background-clip: text;
             background-clip: text;
@@ -497,9 +504,9 @@
         
         .install-steps {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            margin-bottom: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
             position: relative;
             z-index: 1;
         }
@@ -507,41 +514,41 @@
         .step-card {
             background: rgba(10, 20, 35, 0.6);
             backdrop-filter: blur(10px);
-            border-radius: 28px;
-            padding: 30px 25px;
+            border-radius: 24px;
+            padding: 25px 20px;
             text-align: center;
             transition: all 0.3s ease;
             border: 1px solid rgba(190, 238, 17, 0.2);
         }
         
         .step-card:hover {
-            transform: translateY(-8px);
+            transform: translateY(-6px);
             border-color: #BEEE11;
         }
         
         .step-number {
-            width: 50px;
-            height: 50px;
+            width: 45px;
+            height: 45px;
             background: linear-gradient(135deg, #BEEE11, #9ed10e);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 20px;
-            font-size: 24px;
+            margin: 0 auto 15px;
+            font-size: 22px;
             font-weight: 800;
             color: #0a0f1e;
         }
         
-        .step-card h4 { font-size: 22px; font-weight: 700; margin-bottom: 15px; }
-        .step-card p { color: #b9c7e3; line-height: 1.7; }
+        .step-card h4 { font-size: 20px; font-weight: 700; margin-bottom: 12px; }
+        .step-card p { color: #b9c7e3; line-height: 1.6; font-size: 13px; }
         
         .warning-box {
             background: linear-gradient(135deg, rgba(255, 100, 100, 0.15), rgba(255, 100, 100, 0.05));
             border: 1px solid rgba(255, 100, 100, 0.5);
-            border-radius: 28px;
-            padding: 30px;
-            margin-top: 30px;
+            border-radius: 24px;
+            padding: 25px;
+            margin-top: 25px;
             position: relative;
             z-index: 1;
         }
@@ -551,53 +558,54 @@
         .warning-header {
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 12px;
             justify-content: center;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             flex-wrap: wrap;
         }
         
-        .warning-header i { font-size: 45px; color: #ff6b6b; }
-        .warning-header h4 { font-size: 24px; color: #ff6b6b; }
+        .warning-header i { font-size: 35px; color: #ff6b6b; }
+        .warning-header h4 { font-size: 20px; color: #ff6b6b; }
         .warning-content { text-align: center; }
-        .warning-content p { margin-bottom: 15px; color: #ffcccc; }
+        .warning-content p { margin-bottom: 12px; color: #ffcccc; font-size: 14px; }
         
         .solution-steps {
             background: rgba(0, 0, 0, 0.3);
-            border-radius: 20px;
-            padding: 20px;
-            margin-top: 15px;
+            border-radius: 18px;
+            padding: 15px;
+            margin-top: 12px;
             text-align: right;
         }
         
-        .solution-steps p { margin: 10px 0; display: flex; align-items: center; gap: 10px; justify-content: center; flex-wrap: wrap; }
-        .solution-steps i { color: #BEEE11; font-size: 18px; }
+        .solution-steps p { margin: 8px 0; display: flex; align-items: center; gap: 8px; justify-content: center; flex-wrap: wrap; font-size: 13px; }
+        .solution-steps i { color: #BEEE11; font-size: 16px; }
         
         .safety-note {
             background: rgba(190, 238, 17, 0.1);
-            border-radius: 20px;
-            padding: 20px;
-            margin-top: 20px;
+            border-radius: 18px;
+            padding: 18px;
+            margin-top: 18px;
             text-align: center;
             border: 1px solid rgba(190, 238, 17, 0.3);
         }
         
-        .safety-note i { color: #BEEE11; font-size: 28px; margin-bottom: 10px; }
+        .safety-note i { color: #BEEE11; font-size: 24px; margin-bottom: 8px; }
+        .safety-note p { font-size: 13px; }
         
         /* ========== قسم المشاركة ========== */
         .share-section {
             background: linear-gradient(135deg, #0d142c, #091020);
-            border-radius: 48px;
-            margin: 60px 0;
-            padding: 50px 40px;
+            border-radius: 40px;
+            margin: 50px 0;
+            padding: 40px 25px;
             text-align: center;
             border: 1px solid rgba(190, 238, 17, 0.3);
         }
         
         .share-title {
-            font-size: 36px;
+            font-size: 28px;
             font-weight: 800;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             background: linear-gradient(135deg, #fff, #BEEE11);
             -webkit-background-clip: text;
             background-clip: text;
@@ -607,44 +615,44 @@
         .share-buttons {
             display: flex;
             justify-content: center;
-            gap: 25px;
+            gap: 15px;
             flex-wrap: wrap;
-            margin-top: 30px;
+            margin-top: 25px;
         }
         
         .share-btn {
             background: rgba(10, 20, 35, 0.8);
             border: 1px solid rgba(190, 238, 17, 0.3);
-            padding: 15px 30px;
-            border-radius: 60px;
+            padding: 12px 22px;
+            border-radius: 50px;
             display: inline-flex;
             align-items: center;
-            gap: 12px;
-            font-size: 18px;
+            gap: 10px;
+            font-size: 15px;
             font-weight: 600;
             color: white;
             cursor: pointer;
             transition: all 0.3s ease;
         }
         
-        .share-btn i { font-size: 24px; }
+        .share-btn i { font-size: 20px; }
         .share-btn.whatsapp i { color: #25D366; }
         .share-btn.facebook i { color: #1877F2; }
         .share-btn.twitter i { color: #1DA1F2; }
         .share-btn.copy i { color: #BEEE11; }
         
         .share-btn:hover {
-            transform: translateY(-5px);
+            transform: translateY(-4px);
             background: rgba(190, 238, 17, 0.15);
             border-color: #BEEE11;
         }
         
-        /* ========== قسم تحميل التطبيق مع cooldown ========== */
+        /* ========== قسم تحميل التطبيق ========== */
         .app-section {
             background: linear-gradient(135deg, #0d142c, #0a1022);
-            border-radius: 48px;
-            margin: 60px 0;
-            padding: 55px 40px;
+            border-radius: 40px;
+            margin: 50px 0;
+            padding: 45px 30px;
             text-align: center;
             border: 1px solid rgba(190, 238, 17, 0.3);
         }
@@ -654,40 +662,41 @@
             flex-wrap: wrap;
             align-items: center;
             justify-content: center;
-            gap: 50px;
+            gap: 40px;
         }
         
-        .app-info h3 { font-size: 38px; font-weight: 800; margin-bottom: 15px; }
-        .app-info p { font-size: 18px; max-width: 500px; margin-bottom: 30px; }
+        .app-info h3 { font-size: 32px; font-weight: 800; margin-bottom: 12px; }
+        .app-info p { font-size: 16px; max-width: 450px; margin-bottom: 25px; }
         
         .download-buttons {
             display: flex;
-            gap: 20px;
+            gap: 15px;
             justify-content: center;
             flex-wrap: wrap;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
         }
         
         .download-btn {
             background: #1f2a44;
-            padding: 15px 35px;
-            border-radius: 60px;
+            padding: 12px 28px;
+            border-radius: 50px;
             display: inline-flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
             color: white;
             font-weight: 600;
             transition: all 0.3s ease;
             border: 1px solid #BEEE11;
             cursor: pointer;
             position: relative;
+            font-size: 15px;
         }
         
-        .download-btn i { font-size: 28px; color: #BEEE11; }
+        .download-btn i { font-size: 24px; color: #BEEE11; }
         .download-btn:hover {
             background: #BEEE11;
             color: #0a0f1e;
-            transform: scale(1.05);
+            transform: scale(1.03);
         }
         .download-btn:hover i { color: #0a0f1e; }
         
@@ -699,54 +708,54 @@
         
         .ready-badge {
             background: rgba(190, 238, 17, 0.2);
-            padding: 8px 20px;
+            padding: 6px 16px;
             border-radius: 50px;
             display: inline-flex;
             align-items: center;
-            gap: 10px;
-            margin-bottom: 20px;
+            gap: 8px;
+            margin-bottom: 18px;
             animation: pulse 1.5s ease-in-out infinite;
         }
         
-        .ready-badge i { color: #BEEE11; font-size: 20px; }
-        .ready-badge span { color: #BEEE11; font-weight: 600; }
+        .ready-badge i { color: #BEEE11; font-size: 18px; }
+        .ready-badge span { color: #BEEE11; font-weight: 600; font-size: 14px; }
         
         .download-counter {
             display: inline-flex;
             align-items: center;
-            gap: 12px;
-            padding: 12px 25px;
+            gap: 10px;
+            padding: 10px 20px;
             background: rgba(190, 238, 17, 0.1);
             border-radius: 50px;
             border: 1px solid rgba(190, 238, 17, 0.3);
         }
         
-        .download-counter span { font-size: 28px; font-weight: 800; color: #BEEE11; }
-        
+        .download-counter span { font-size: 24px; font-weight: 800; color: #BEEE11; }
         .app-mock {
             background: linear-gradient(135deg, #111827, #0f172a);
-            border-radius: 35px;
-            padding: 20px;
-            box-shadow: 0 25px 45px rgba(0,0,0,0.4);
+            border-radius: 30px;
+            padding: 15px;
+            box-shadow: 0 20px 35px rgba(0,0,0,0.4);
         }
         
-        .app-mock i { font-size: 100px; color: #BEEE11; }
+        .app-mock i { font-size: 80px; color: #BEEE11; }
+        .app-mock div { font-size: 14px; }
         
         /* ========== قسم الأمان ========== */
         .policy-section {
             background: rgba(15, 25, 45, 0.6);
             backdrop-filter: blur(10px);
-            border-radius: 48px;
-            padding: 50px 40px;
-            margin: 60px 0;
+            border-radius: 40px;
+            padding: 40px 30px;
+            margin: 50px 0;
             border: 1px solid rgba(190, 238, 17, 0.3);
         }
         
         .policy-title {
-            font-size: 38px;
+            font-size: 30px;
             font-weight: 800;
             text-align: center;
-            margin-bottom: 45px;
+            margin-bottom: 35px;
             background: linear-gradient(135deg, #fff, #BEEE11);
             -webkit-background-clip: text;
             background-clip: text;
@@ -755,61 +764,63 @@
         
         .policy-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            margin-bottom: 45px;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-bottom: 35px;
         }
         
         .policy-card {
             background: rgba(10, 20, 35, 0.5);
-            border-radius: 24px;
-            padding: 30px 25px;
+            border-radius: 20px;
+            padding: 25px 20px;
             text-align: center;
             transition: all 0.3s ease;
             border-bottom: 3px solid #BEEE11;
         }
         
         .policy-card:hover {
-            transform: translateY(-8px);
+            transform: translateY(-6px);
             background: rgba(190, 238, 17, 0.08);
         }
         
-        .policy-card i { font-size: 48px; color: #BEEE11; margin-bottom: 15px; }
-        .policy-card h3 { font-size: 22px; margin-bottom: 12px; }
+        .policy-card i { font-size: 40px; color: #BEEE11; margin-bottom: 12px; }
+        .policy-card h3 { font-size: 20px; margin-bottom: 10px; }
+        .policy-card p { font-size: 13px; }
         
         /* ========== قسم التواصل ========== */
         .contact-section {
             background: linear-gradient(135deg, #0f172a, #0a0f22);
-            border-radius: 48px;
-            padding: 45px;
+            border-radius: 40px;
+            padding: 35px 25px;
             text-align: center;
-            margin: 60px 0;
+            margin: 50px 0;
             border: 1px solid #BEEE11;
         }
         
-        .contact-section h4 { font-size: 28px; margin-bottom: 25px; }
+        .contact-section h4 { font-size: 24px; margin-bottom: 20px; }
         
         .contact-links {
             display: flex;
             justify-content: center;
-            gap: 30px;
+            gap: 20px;
             flex-wrap: wrap;
         }
         
         .contact-item {
             display: inline-flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
             background: #1e2a4a;
-            padding: 14px 30px;
-            border-radius: 60px;
+            padding: 12px 24px;
+            border-radius: 50px;
             text-decoration: none;
             color: white;
             font-weight: 600;
             transition: all 0.3s ease;
+            font-size: 14px;
         }
         
-        .contact-item i { font-size: 24px; color: #BEEE11; }
+        .contact-item i { font-size: 20px; color: #BEEE11; }
         .contact-item:hover {
             background: #BEEE11;
             color: #0a0f1e;
@@ -819,10 +830,10 @@
         /* ========== سهم العودة للأعلى ========== */
         .scroll-top {
             position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 55px;
-            height: 55px;
+            bottom: 25px;
+            right: 25px;
+            width: 48px;
+            height: 48px;
             background: linear-gradient(135deg, #BEEE11, #9ed10e);
             border-radius: 50%;
             display: flex;
@@ -846,19 +857,19 @@
             box-shadow: 0 15px 35px rgba(190, 238, 17, 0.5);
         }
         
-        .scroll-top i { font-size: 28px; color: #0a0f1e; }
+        .scroll-top i { font-size: 24px; color: #0a0f1e; }
         
         /* ========== توست الشكر ========== */
         .custom-toast {
             position: fixed;
-            bottom: 100px;
+            bottom: 90px;
             left: 50%;
             transform: translateX(-50%) scale(0.9);
             background: linear-gradient(135deg, #1f2a3e, #0f172a);
             backdrop-filter: blur(12px);
             color: #BEEE11;
-            padding: 20px 35px;
-            border-radius: 20px;
+            padding: 15px 25px;
+            border-radius: 18px;
             font-weight: bold;
             border-right: 4px solid #BEEE11;
             box-shadow: 0 15px 35px rgba(0,0,0,0.5);
@@ -866,9 +877,9 @@
             transition: 0.3s;
             opacity: 0;
             visibility: hidden;
-            font-size: 16px;
+            font-size: 14px;
             text-align: center;
-            min-width: 320px;
+            min-width: 280px;
             animation: successPop 0.3s ease;
         }
         
@@ -878,28 +889,69 @@
             transform: translateX(-50%) scale(1);
         }
         
-        .custom-toast i { font-size: 32px; margin-bottom: 10px; display: block; }
-        .custom-toast .toast-title { font-size: 20px; font-weight: 800; margin-bottom: 5px; }
-        .custom-toast .toast-count { color: #BEEE11; font-size: 24px; font-weight: 800; }
+        .custom-toast i { font-size: 28px; margin-bottom: 8px; display: block; }
+        .custom-toast .toast-title { font-size: 18px; font-weight: 800; margin-bottom: 5px; }
+        .custom-toast .toast-count { color: #BEEE11; font-size: 22px; font-weight: 800; }
         
         footer {
             text-align: center;
-            padding: 45px 0;
+            padding: 35px 0;
             border-top: 1px solid rgba(190, 238, 17, 0.1);
             color: #7a89b0;
+            font-size: 13px;
         }
         
+        /* ========== ريسponsive للموبايل ========== */
         @media (max-width: 768px) {
-            .hero h2 { font-size: 32px; }
-            .logo-text h1 { font-size: 20px; }
-            .btn-outline { padding: 8px 16px; font-size: 13px; }
-            .container { padding: 0 18px; }
-            .countdown-box { padding: 12px 18px; min-width: 70px; }
+            .container { padding: 0 16px; }
+            
+            .hero h2 { font-size: 28px; }
+            .hero p { font-size: 15px; }
+            
+            .logo-text h1 { font-size: 18px; }
+            .logo-text p { font-size: 9px; }
+            .logo-img { width: 38px; height: 38px; }
+            
+            .btn-outline { padding: 6px 12px; font-size: 12px; }
+            .nav-buttons { gap: 6px; }
+            
+            .countdown-box { padding: 10px 12px; min-width: 65px; }
             .countdown-number { font-size: 28px; }
-            .install-title { font-size: 26px; }
-            .share-title { font-size: 26px; }
-            .scroll-top { width: 45px; height: 45px; bottom: 20px; right: 20px; }
-            .custom-toast { min-width: 280px; padding: 15px 20px; }
+            .countdown-label { font-size: 10px; }
+            .countdown-title { font-size: 18px; }
+            
+            .install-title { font-size: 22px; }
+            .share-title { font-size: 22px; }
+            .policy-title { font-size: 24px; }
+            .app-info h3 { font-size: 24px; }
+            .update-header h3 { font-size: 22px; }
+            
+            .scroll-top { width: 40px; height: 40px; bottom: 15px; right: 15px; }
+            .scroll-top i { font-size: 20px; }
+            
+            .custom-toast { min-width: 250px; padding: 12px 18px; }
+            .custom-toast i { font-size: 24px; }
+            .custom-toast .toast-title { font-size: 16px; }
+            
+            .share-btn { padding: 8px 16px; font-size: 13px; }
+            .share-btn i { font-size: 18px; }
+            
+            .download-btn { padding: 10px 20px; font-size: 13px; }
+            .download-btn i { font-size: 20px; }
+            
+            .feature-card h3 { font-size: 18px; }
+            .policy-card h3 { font-size: 18px; }
+        }
+        
+        @media (max-width: 480px) {
+            .header-flex { flex-direction: column; align-items: center; }
+            .nav-buttons { justify-content: center; width: 100%; overflow-x: auto; padding-bottom: 5px; }
+            .btn-outline { white-space: nowrap; }
+            .countdown-timer { gap: 8px; }
+            .countdown-box { padding: 8px 10px; min-width: 55px; }
+            .countdown-number { font-size: 22px; }
+            .features-grid { gap: 15px; }
+            .install-steps { gap: 15px; }
         }
     </style>
 </head>
@@ -941,7 +993,7 @@
             موعد إصدار التطبيق الرسمي
         </div>
         <div class="countdown-date">
-            <i class="fas fa-calendar-alt"></i> 15 يونيو 2026 - الساعة 8:00 مساءً
+            <i class="fas fa-calendar-alt"></i> 30 يونيو 2026 - الساعة 8:00 مساءً
         </div>
         <div class="countdown-timer" id="countdownTimer">
             <div class="countdown-box">
@@ -1111,7 +1163,7 @@
         </div>
     </div>
 
-    <!-- قسم تحميل التطبيق مع Cooldown -->
+    <!-- قسم تحميل التطبيق -->
     <div class="app-section" id="app-download" data-aos="fade-up" data-aos-duration="1000">
         <div class="app-flex">
             <div class="app-info">
@@ -1140,8 +1192,8 @@
             </div>
             <div class="app-mock animate-float">
                 <i class="fas fa-gamepad"></i>
-                <div style="margin-top: 10px; font-weight: bold;">WStore Games</div>
-                <small>v1.1.0</small>
+                <div style="margin-top: 8px; font-weight: bold;">WStore Games</div>
+                <small>v1.2.0</small>
             </div>
         </div>
     </div>
@@ -1205,11 +1257,10 @@
 <script>
     AOS.init({ once: true, duration: 800, easing: 'ease-out-cubic' });
 
-    // رابط التحميل الجديد
     const APK_DOWNLOAD_URL = 'https://github.com/Mahmoudi-Tech/WStore-Games/releases/download/WStore-Games-1.2.0/WStore.Games.1.2.0.apk';
 
     // العداد التنازلي
-    const releaseDate = new Date(2026, 5, 15, 20, 0, 0).getTime();
+    const releaseDate = new Date(2026, 5, 30, 20, 0, 0).getTime();
     
     function updateCountdown() {
         const now = new Date().getTime();
@@ -1238,7 +1289,6 @@
     updateCountdown();
     setInterval(updateCountdown, 1000);
 
-    // سهم العودة للأعلى
     const scrollTop = document.getElementById('scrollTop');
     window.addEventListener('scroll', () => {
         if (window.scrollY > 300) scrollTop.classList.add('show');
@@ -1266,7 +1316,6 @@
     const toastCount = document.getElementById('toastCount');
     const downloadBtn = document.getElementById('downloadApkBtn');
     const downloadBtnText = document.getElementById('downloadBtnText');
-    const readyBadge = document.getElementById('readyBadge');
     const readyText = document.getElementById('readyText');
     
     let canDownload = true;
@@ -1297,7 +1346,6 @@
                 downloadBtn.classList.remove('disabled');
                 downloadBtnText.innerHTML = 'تحميل APK';
                 readyText.innerHTML = 'جاهز للتحميل الفوري ✅';
-                readyBadge.style.animation = 'pulse 1.5s ease-in-out infinite';
                 setTimeout(() => {
                     readyText.innerHTML = 'جاهز للتحميل الفوري';
                 }, 3000);
@@ -1322,9 +1370,7 @@
 
     downloadBtn.addEventListener('click', (e) => {
         e.preventDefault();
-        if (!canDownload) {
-            return;
-        }
+        if (!canDownload) return;
         incrementDownloadCount();
         startCooldown();
         setTimeout(() => {
@@ -1339,7 +1385,6 @@
 
     loadDownloadCount();
 
-    // سكرول سموث للروابط
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             e.preventDefault();
@@ -1348,7 +1393,6 @@
         });
     });
 
-    // وظائف المشاركة
     function shareApp(platform) {
         const shareText = '🚀 حمل تطبيق WStore Games الآن! أسرع تطبيق لشحن الألعاب أونلاين. حمله من هنا:';
         const shareUrl = window.location.href;
