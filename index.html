@@ -77,16 +77,9 @@
             50% { border-color: rgba(190, 238, 17, 0.8); box-shadow: 0 0 30px rgba(190, 238, 17, 0.4); }
         }
         
-        @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            25% { transform: translateX(-5px); }
-            75% { transform: translateX(5px); }
-        }
-        
-        @keyframes successPop {
-            0% { transform: scale(0.8); opacity: 0; }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); opacity: 1; }
+        @keyframes progressShine {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
         }
         
         .animate-float { animation: float 4s ease-in-out infinite; }
@@ -165,7 +158,6 @@
             color: #a0b3d9;
         }
         
-        /* قائمة التنقل المتجاوبة */
         .nav-buttons {
             display: flex;
             gap: 10px;
@@ -346,6 +338,132 @@
             font-weight: 600;
             position: relative;
             z-index: 1;
+        }
+        
+        /* ========== قسم طريقة الشحن الجديد ========== */
+        .howto-section {
+            background: linear-gradient(135deg, #0d142c, #091020);
+            border-radius: 40px;
+            margin: 50px 0;
+            padding: 40px 30px;
+            text-align: center;
+            border: 1px solid rgba(190, 238, 17, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .howto-title {
+            font-size: 32px;
+            font-weight: 800;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #fff, #BEEE11);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .howto-subtitle {
+            font-size: 16px;
+            color: #a0b3d9;
+            margin-bottom: 35px;
+        }
+        
+        .howto-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-bottom: 35px;
+        }
+        
+        .howto-card {
+            background: rgba(10, 20, 35, 0.6);
+            backdrop-filter: blur(10px);
+            border-radius: 24px;
+            padding: 30px 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(190, 238, 17, 0.2);
+        }
+        
+        .howto-card:hover {
+            transform: translateY(-8px);
+            border-color: #BEEE11;
+            box-shadow: 0 15px 30px rgba(190, 238, 17, 0.15);
+        }
+        
+        .howto-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, rgba(190, 238, 17, 0.15), rgba(190, 238, 17, 0.05));
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 18px;
+        }
+        
+        .howto-icon i {
+            font-size: 35px;
+            color: #BEEE11;
+        }
+        
+        .howto-card h4 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+        
+        .howto-card p {
+            color: #b9c7e3;
+            line-height: 1.6;
+            font-size: 14px;
+        }
+        
+        .time-badge {
+            background: rgba(190, 238, 17, 0.15);
+            border-radius: 50px;
+            padding: 12px 25px;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 10px;
+            border: 1px solid rgba(190, 238, 17, 0.4);
+        }
+        
+        .time-badge i {
+            font-size: 24px;
+            color: #BEEE11;
+        }
+        
+        .time-badge span {
+            font-size: 18px;
+            font-weight: 700;
+            color: #BEEE11;
+        }
+        
+        .time-badge small {
+            font-size: 14px;
+            color: #a0b3d9;
+        }
+        
+        .guarantee-note {
+            background: rgba(190, 238, 17, 0.08);
+            border-radius: 20px;
+            padding: 20px;
+            margin-top: 25px;
+            text-align: center;
+            border: 1px dashed rgba(190, 238, 17, 0.4);
+        }
+        
+        .guarantee-note i {
+            font-size: 28px;
+            color: #BEEE11;
+            margin-bottom: 10px;
+        }
+        
+        .guarantee-note p {
+            font-size: 15px;
+            font-weight: 500;
         }
         
         /* ========== بطاقات المميزات ========== */
@@ -901,46 +1019,27 @@
             font-size: 13px;
         }
         
-        /* ========== ريسponsive للموبايل ========== */
+        /* ========== ريسponsive ========== */
         @media (max-width: 768px) {
             .container { padding: 0 16px; }
-            
             .hero h2 { font-size: 28px; }
             .hero p { font-size: 15px; }
-            
             .logo-text h1 { font-size: 18px; }
             .logo-text p { font-size: 9px; }
             .logo-img { width: 38px; height: 38px; }
-            
             .btn-outline { padding: 6px 12px; font-size: 12px; }
             .nav-buttons { gap: 6px; }
-            
             .countdown-box { padding: 10px 12px; min-width: 65px; }
             .countdown-number { font-size: 28px; }
-            .countdown-label { font-size: 10px; }
-            .countdown-title { font-size: 18px; }
-            
+            .howto-title { font-size: 24px; }
             .install-title { font-size: 22px; }
             .share-title { font-size: 22px; }
             .policy-title { font-size: 24px; }
             .app-info h3 { font-size: 24px; }
             .update-header h3 { font-size: 22px; }
-            
             .scroll-top { width: 40px; height: 40px; bottom: 15px; right: 15px; }
-            .scroll-top i { font-size: 20px; }
-            
             .custom-toast { min-width: 250px; padding: 12px 18px; }
-            .custom-toast i { font-size: 24px; }
-            .custom-toast .toast-title { font-size: 16px; }
-            
-            .share-btn { padding: 8px 16px; font-size: 13px; }
-            .share-btn i { font-size: 18px; }
-            
-            .download-btn { padding: 10px 20px; font-size: 13px; }
-            .download-btn i { font-size: 20px; }
-            
-            .feature-card h3 { font-size: 18px; }
-            .policy-card h3 { font-size: 18px; }
+            .time-badge span { font-size: 16px; }
         }
         
         @media (max-width: 480px) {
@@ -950,8 +1049,19 @@
             .countdown-timer { gap: 8px; }
             .countdown-box { padding: 8px 10px; min-width: 55px; }
             .countdown-number { font-size: 22px; }
-            .features-grid { gap: 15px; }
-            .install-steps { gap: 15px; }
+            .howto-steps { gap: 15px; }
+        }
+        
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+        
+        @keyframes successPop {
+            0% { transform: scale(0.8); opacity: 0; }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); opacity: 1; }
         }
     </style>
 </head>
@@ -970,6 +1080,7 @@
         </div>
         <div class="nav-buttons">
             <a href="#app-download" class="btn-outline"><i class="fas fa-mobile-alt"></i> التحميل</a>
+            <a href="#howto" class="btn-outline"><i class="fas fa-credit-card"></i> طريقة الشحن</a>
             <a href="#updates" class="btn-outline"><i class="fas fa-code-branch"></i> التحديثات</a>
             <a href="#install" class="btn-outline"><i class="fas fa-download"></i> التثبيت</a>
             <a href="#policy" class="btn-outline"><i class="fas fa-shield-alt"></i> الأمان</a>
@@ -986,7 +1097,7 @@
         <a href="#app-download" class="btn-primary animate-pulse"><i class="fas fa-download"></i> حمل تطبيق WStore Games الآن</a>
     </div>
 
-    <!-- عداد تنازلي -->
+    <!-- عداد تنازلي - التاريخ 15 يونيو -->
     <div class="countdown-section" data-aos="fade-up" data-aos-duration="1000">
         <div class="countdown-title">
             <i class="fas fa-clock"></i>
@@ -1018,12 +1129,53 @@
         </div>
     </div>
 
+    <!-- ========== قسم طريقة الشحن ========== -->
+    <div id="howto" class="howto-section" data-aos="fade-up" data-aos-duration="1000">
+        <h2 class="howto-title"><i class="fas fa-coins"></i> طريقة الشحن</h2>
+        <p class="howto-subtitle">خطوات بسيطة لشحن رصيدك بسرعة وأمان</p>
+        
+        <div class="howto-steps">
+            <div class="howto-card" data-aos="zoom-in" data-aos-duration="600">
+                <div class="howto-icon"><i class="fas fa-gamepad"></i></div>
+                <h4>1. اختر اللعبة</h4>
+                <p>اختر اللعبة التي تريد شحنها من داخل التطبيق (PUBG، Free Fire، COD، Genshin Impact وغيرها)</p>
+            </div>
+            <div class="howto-card" data-aos="zoom-in" data-aos-duration="600" data-aos-delay="100">
+                <div class="howto-icon"><i class="fas fa-credit-card"></i></div>
+                <h4>2. قم بالدفع</h4>
+                <p>اختر طريقة الدفع المناسبة لك (فودافون كاش، إنستا باي، بطاقات ائتمان، أو محافظ رقمية)</p>
+            </div>
+            <div class="howto-card" data-aos="zoom-in" data-aos-duration="600" data-aos-delay="200">
+                <div class="howto-icon"><i class="fas fa-upload"></i></div>
+                <h4>3. إيصال الدفع</h4>
+                <p>قم برفع إيصال الدفع من خلال التطبيق لتأكيد عملية الدفع بنجاح</p>
+            </div>
+            <div class="howto-card" data-aos="zoom-in" data-aos-duration="600" data-aos-delay="300">
+                <div class="howto-icon"><i class="fas fa-check-circle"></i></div>
+                <h4>4. تأكيد الشحن</h4>
+                <p>سيتم تأكيد طلبك والتحقق من الإيصال خلال دقائق</p>
+            </div>
+        </div>
+        
+        <div class="time-badge animate-pulse">
+            <i class="fas fa-hourglass-half"></i>
+            <span>⏱️ بعد تأكيد الدفع ورفع الإيصال</span>
+            <i class="fas fa-arrow-left"></i>
+            <span>سيتم شحن رصيدك خلال 3 دقائق فقط!</span>
+        </div>
+        
+        <div class="guarantee-note">
+            <i class="fas fa-shield-alt"></i>
+            <p><strong>ضمان سريع للشحن:</strong> بمجرد رفع إيصال الدفع وتأكيده، لن يتجاوز وقت الشحن 3 دقائق. فريق الدعم يعمل على مدار الساعة لخدمتك!</p>
+        </div>
+    </div>
+
     <!-- بطاقات المميزات -->
     <div class="features-grid">
         <div class="feature-card" data-aos="fade-left" data-aos-duration="800">
             <div class="feature-icon"><i class="fas fa-bolt"></i></div>
             <h3>شحن فوري</h3>
-            <p>احصل على رصيدك خلال ثوانٍ من تأكيد الدفع. أسرع خدمة شحن في المنطقة.</p>
+            <p>احصل على رصيدك خلال دقائق من تأكيد الدفع. أسرع خدمة شحن في المنطقة.</p>
         </div>
         <div class="feature-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="100">
             <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
@@ -1042,8 +1194,8 @@
         <div class="update-header">
             <div class="version-badge">
                 <i class="fas fa-code-branch"></i>
-                <span class="version-number">الإصدار v1.1.0</span>
-                <span class="version-date">• سيتم الإصدار يوم 15 يونيو 2026</span>
+                <span class="version-number">الإصدار v1.2.0</span>
+                <span class="version-date">• تم الإصدار 15 يونيو 2026</span>
             </div>
             <h3>🎉 تحديث جديد كلياً 🎉</h3>
             <p>أحدث إصدار من WStore Games يقدم تجربة شحن فائقة السرعة ومميزات غير مسبوقة</p>
@@ -1053,7 +1205,7 @@
             <div class="feature-item" data-aos="fade-left" data-aos-duration="600">
                 <div class="feature-icon-small"><i class="fas fa-bolt"></i></div>
                 <h4>شحن فوري بدون انتظار</h4>
-                <p>تقنية جديدة تضمن وصول الرصيد خلال 3 ثوانٍ فقط بعد تأكيد الدفع.</p>
+                <p>تقنية جديدة تضمن وصول الرصيد خلال 3 دقائق فقط بعد تأكيد الدفع ورفع الإيصال.</p>
             </div>
             <div class="feature-item" data-aos="fade-left" data-aos-duration="600" data-aos-delay="100">
                 <div class="feature-icon-small"><i class="fas fa-shield-alt"></i></div>
@@ -1238,6 +1390,7 @@
 
 <footer>
     <p>© 2026 WStore Games - جميع الحقوق محفوظة | شحن آمن وسريع لجميع الألعاب</p>
+    <p style="margin-top: 10px; font-size: 12px;">⏱️ بعد تأكيد الدفع ورفع الإيصال، سيتم شحن رصيدك خلال 3 دقائق فقط!</p>
 </footer>
 
 <!-- سهم العودة للأعلى -->
@@ -1259,7 +1412,7 @@
 
     const APK_DOWNLOAD_URL = 'https://github.com/Mahmoudi-Tech/WStore-Games/releases/download/WStore-Games-1.2.0/WStore.Games.1.2.0.apk';
 
-    // العداد التنازلي
+    // تاريخ الإصدار: 15 يونيو 2026
     const releaseDate = new Date(2026, 5, 15, 20, 0, 0).getTime();
     
     function updateCountdown() {
