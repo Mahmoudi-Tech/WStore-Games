@@ -22,11 +22,14 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     
     <style>
+        /* ========== المتغيرات ========== */
         :root {
             --bg-primary: #0a0f1e;
             --bg-secondary: #0c1225;
-            --bg-card: rgba(15, 25, 45, 0.7);
-            --bg-card-hover: rgba(10, 20, 40, 0.7);
+            --bg-card: rgba(15, 25, 45, 0.85);
+            --bg-card-solid: #0d142c;
+            --bg-card-hover: rgba(10, 20, 40, 0.9);
+            --bg-input: rgba(10, 20, 35, 0.8);
             --text-primary: #eef5ff;
             --text-secondary: #b9c7e3;
             --text-muted: #a0b3d9;
@@ -35,35 +38,38 @@
             --shadow-color: rgba(190, 238, 17, 0.2);
             --accent: #BEEE11;
             --accent-dark: #9ed10e;
-            --header-bg: rgba(10, 15, 30, 0.85);
-            --input-bg: rgba(10, 20, 35, 0.6);
-            --toast-bg: linear-gradient(135deg, #1f2a3e, #0f172a);
+            --header-bg: rgba(10, 15, 30, 0.92);
+            --toast-bg: #1f2a3e;
             --launch-bg: rgba(190, 238, 17, 0.12);
             --warning-bg: rgba(255, 100, 100, 0.15);
             --warning-border: rgba(255, 100, 100, 0.5);
             --transition-speed: 0.5s;
+            --app-mock-bg: #111827;
         }
 
         /* ========== الوضع النهاري ========== */
         [data-theme="light"] {
-            --bg-primary: #f0f4ff;
-            --bg-secondary: #e8edf8;
-            --bg-card: rgba(255, 255, 255, 0.85);
-            --bg-card-hover: rgba(240, 245, 255, 0.9);
+            --bg-primary: #e8edf8;
+            --bg-secondary: #d5ddee;
+            --bg-card: rgba(255, 255, 255, 0.92);
+            --bg-card-solid: #f0f4ff;
+            --bg-card-hover: rgba(240, 245, 255, 0.95);
+            --bg-input: rgba(255, 255, 255, 0.9);
             --text-primary: #1a1f2e;
             --text-secondary: #3a4055;
             --text-muted: #5a6075;
             --border-color: rgba(190, 238, 17, 0.5);
             --border-hover: rgba(190, 238, 17, 0.8);
             --shadow-color: rgba(0, 0, 0, 0.1);
-            --header-bg: rgba(240, 244, 255, 0.9);
-            --input-bg: rgba(255, 255, 255, 0.8);
-            --toast-bg: linear-gradient(135deg, #ffffff, #f0f4ff);
+            --header-bg: rgba(232, 237, 248, 0.95);
+            --toast-bg: #ffffff;
             --launch-bg: rgba(190, 238, 17, 0.2);
             --warning-bg: rgba(255, 200, 200, 0.3);
             --warning-border: rgba(255, 100, 100, 0.7);
+            --app-mock-bg: #e0e5f0;
         }
 
+        /* ========== إعادة تعيين ========== */
         * {
             margin: 0;
             padding: 0;
@@ -76,7 +82,7 @@
         
         body {
             font-family: 'Tajawal', sans-serif;
-            background: linear-gradient(145deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+            background: var(--bg-primary);
             color: var(--text-primary);
             line-height: 1.6;
             overflow-x: hidden;
@@ -147,7 +153,7 @@
             padding: 0 24px;
         }
         
-        /* ========== زر الوضع الليلي/النهاري ========== */
+        /* ========== زر الوضع ========== */
         .theme-toggle {
             position: fixed;
             bottom: 90px;
@@ -181,10 +187,11 @@
             transform: rotate(180deg);
         }
         
-        /* ========== الهيدر المتجاوب ========== */
+        /* ========== الهيدر ========== */
         header {
             background: var(--header-bg);
             backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
             border-bottom: 1px solid var(--border-color);
             position: sticky;
             top: 0;
@@ -219,6 +226,7 @@
             box-shadow: 0 0 15px rgba(190, 238, 17, 0.3);
             overflow: hidden;
             transition: all 0.3s ease;
+            flex-shrink: 0;
         }
         
         .logo-img:hover {
@@ -338,7 +346,7 @@
             box-shadow: 0 15px 30px rgba(190, 238, 17, 0.5);
         }
         
-        /* ========== قسم إطلاق النسخة الجديدة ========== */
+        /* ========== قسم الإطلاق ========== */
         .launch-section {
             background: var(--launch-bg);
             border-radius: 40px;
@@ -416,7 +424,7 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            background: var(--input-bg);
+            background: var(--bg-input);
             padding: 8px 18px;
             border-radius: 30px;
             font-size: 14px;
@@ -428,7 +436,7 @@
             font-size: 16px;
         }
         
-        /* ========== قسم طريقة الشحن ========== */
+        /* ========== طريقة الشحن ========== */
         .howto-section {
             background: var(--bg-card);
             border-radius: 40px;
@@ -464,8 +472,9 @@
         }
         
         .howto-card {
-            background: var(--input-bg);
+            background: var(--bg-input);
             backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             border-radius: 24px;
             padding: 30px 20px;
             text-align: center;
@@ -551,7 +560,7 @@
             color: var(--text-secondary);
         }
         
-        /* ========== بطاقات المميزات ========== */
+        /* ========== المميزات ========== */
         .features-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -562,6 +571,7 @@
         .feature-card {
             background: var(--bg-card);
             backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             border-radius: 24px;
             padding: 30px 20px;
             text-align: center;
@@ -595,7 +605,7 @@
         .feature-card h3 { font-size: 22px; font-weight: 700; margin-bottom: 12px; color: var(--text-primary); }
         .feature-card p { color: var(--text-secondary); line-height: 1.6; font-size: 14px; }
         
-        /* ========== قسم التحديثات ========== */
+        /* ========== التحديثات ========== */
         .update-section {
             background: var(--bg-card);
             border-radius: 40px;
@@ -637,7 +647,7 @@
         }
         
         .feature-item {
-            background: var(--input-bg);
+            background: var(--bg-input);
             border-radius: 18px;
             padding: 20px;
             transition: all 0.3s ease;
@@ -672,7 +682,7 @@
             color: var(--text-secondary);
         }
         
-        /* ========== قسم تعليمات التثبيت ========== */
+        /* ========== التثبيت ========== */
         .install-section {
             background: var(--bg-card);
             border-radius: 40px;
@@ -706,8 +716,9 @@
         }
         
         .step-card {
-            background: var(--input-bg);
+            background: var(--bg-input);
             backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             border-radius: 24px;
             padding: 25px 20px;
             text-align: center;
@@ -786,7 +797,7 @@
         .safety-note i { color: var(--accent); font-size: 24px; margin-bottom: 8px; }
         .safety-note p { font-size: 13px; color: var(--text-secondary); }
         
-        /* ========== قسم المشاركة ========== */
+        /* ========== المشاركة ========== */
         .share-section {
             background: var(--bg-card);
             border-radius: 40px;
@@ -815,7 +826,7 @@
         }
         
         .share-btn {
-            background: var(--input-bg);
+            background: var(--bg-input);
             border: 1px solid var(--border-color);
             padding: 12px 22px;
             border-radius: 50px;
@@ -841,7 +852,7 @@
             border-color: var(--border-hover);
         }
         
-        /* ========== قسم تحميل التطبيق ========== */
+        /* ========== تحميل التطبيق ========== */
         .app-section {
             background: var(--bg-card);
             border-radius: 40px;
@@ -871,7 +882,7 @@
         }
         
         .download-btn {
-            background: var(--input-bg);
+            background: var(--bg-input);
             padding: 12px 28px;
             border-radius: 50px;
             display: inline-flex;
@@ -925,20 +936,23 @@
         }
         
         .download-counter span { font-size: 24px; font-weight: 800; color: var(--accent); }
+        
         .app-mock {
-            background: linear-gradient(135deg, #111827, #0f172a);
+            background: var(--app-mock-bg);
             border-radius: 30px;
             padding: 15px;
-            box-shadow: 0 20px 35px rgba(0,0,0,0.4);
+            box-shadow: 0 20px 35px rgba(0,0,0,0.3);
         }
         
         .app-mock i { font-size: 80px; color: var(--accent); }
         .app-mock div { font-size: 14px; color: var(--text-primary); }
+        .app-mock small { color: var(--text-muted); }
         
-        /* ========== قسم الأمان ========== */
+        /* ========== الأمان ========== */
         .policy-section {
             background: var(--bg-card);
             backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             border-radius: 40px;
             padding: 40px 30px;
             margin: 50px 0;
@@ -964,7 +978,7 @@
         }
         
         .policy-card {
-            background: var(--input-bg);
+            background: var(--bg-input);
             border-radius: 20px;
             padding: 25px 20px;
             text-align: center;
@@ -981,7 +995,7 @@
         .policy-card h3 { font-size: 20px; margin-bottom: 10px; color: var(--text-primary); }
         .policy-card p { font-size: 13px; color: var(--text-secondary); }
         
-        /* ========== قسم التواصل ========== */
+        /* ========== التواصل ========== */
         .contact-section {
             background: var(--bg-card);
             border-radius: 40px;
@@ -1004,7 +1018,7 @@
             display: inline-flex;
             align-items: center;
             gap: 10px;
-            background: var(--input-bg);
+            background: var(--bg-input);
             padding: 12px 24px;
             border-radius: 50px;
             text-decoration: none;
@@ -1021,8 +1035,9 @@
             color: #0a0f1e;
             transform: translateY(-3px);
         }
+        .contact-item:hover i { color: #0a0f1e; }
         
-        /* ========== سهم العودة للأعلى ========== */
+        /* ========== سهم العودة ========== */
         .scroll-top {
             position: fixed;
             bottom: 25px;
@@ -1055,7 +1070,7 @@
         
         .scroll-top i { font-size: 24px; color: #0a0f1e; }
         
-        /* ========== توست الشكر ========== */
+        /* ========== توست ========== */
         .custom-toast {
             position: fixed;
             bottom: 90px;
@@ -1063,6 +1078,7 @@
             transform: translateX(-50%) scale(0.9);
             background: var(--toast-bg);
             backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             color: var(--accent);
             padding: 15px 25px;
             border-radius: 18px;
@@ -1077,6 +1093,7 @@
             text-align: center;
             min-width: 280px;
             animation: successPop 0.3s ease;
+            border: 1px solid var(--border-color);
         }
         
         .custom-toast.show {
@@ -1088,7 +1105,9 @@
         .custom-toast i { font-size: 28px; margin-bottom: 8px; display: block; }
         .custom-toast .toast-title { font-size: 18px; font-weight: 800; margin-bottom: 5px; color: var(--text-primary); }
         .custom-toast .toast-count { color: var(--accent); font-size: 22px; font-weight: 800; }
+        .custom-toast strong { color: var(--text-primary); }
         
+        /* ========== فوتر ========== */
         footer {
             text-align: center;
             padding: 35px 0;
@@ -1195,7 +1214,7 @@
         <a href="#app-download" class="btn-primary animate-pulse"><i class="fas fa-download"></i> حمل تطبيق Witcher Store Games الآن</a>
     </div>
 
-    <!-- قسم إطلاق النسخة الجديدة -->
+    <!-- قسم الإطلاق -->
     <div class="launch-section" data-aos="fade-up" data-aos-duration="1000">
         <div class="launch-badge">
             <i class="fas fa-rocket"></i>
@@ -1217,7 +1236,7 @@
         </div>
     </div>
 
-    <!-- قسم طريقة الشحن -->
+    <!-- طريقة الشحن -->
     <div id="howto" class="howto-section" data-aos="fade-up" data-aos-duration="1000">
         <h2 class="howto-title"><i class="fas fa-coins"></i> طريقة الشحن</h2>
         <p class="howto-subtitle">خطوات بسيطة لشحن رصيدك بسرعة وأمان</p>
@@ -1258,7 +1277,7 @@
         </div>
     </div>
 
-    <!-- بطاقات المميزات -->
+    <!-- المميزات -->
     <div class="features-grid">
         <div class="feature-card" data-aos="fade-left" data-aos-duration="800">
             <div class="feature-icon"><i class="fas fa-bolt"></i></div>
@@ -1277,7 +1296,7 @@
         </div>
     </div>
 
-    <!-- قسم التحديثات -->
+    <!-- التحديثات -->
     <div id="updates" class="update-section" data-aos="fade-up" data-aos-duration="1000">
         <div class="update-header">
             <div class="version-badge">
@@ -1327,7 +1346,7 @@
         </div>
     </div>
 
-    <!-- قسم تعليمات التثبيت -->
+    <!-- التثبيت -->
     <div id="install" class="install-section" data-aos="fade-up" data-aos-duration="1000">
         <h2 class="install-title"><i class="fas fa-download"></i> كيفية تثبيت التطبيق من خارج متجر Google Play</h2>
         
@@ -1379,7 +1398,7 @@
         </div>
     </div>
 
-    <!-- قسم المشاركة -->
+    <!-- المشاركة -->
     <div id="share" class="share-section" data-aos="fade-up" data-aos-duration="1000">
         <h2 class="share-title"><i class="fas fa-share-alt"></i> شارك التطبيق مع الأصدقاء</h2>
         <p>ادعُ أصدقك واستفيد من العروض الحصرية عند كل دعوة!</p>
@@ -1403,7 +1422,7 @@
         </div>
     </div>
 
-    <!-- قسم تحميل التطبيق -->
+    <!-- تحميل التطبيق -->
     <div class="app-section" id="app-download" data-aos="fade-up" data-aos-duration="1000">
         <div class="app-flex">
             <div class="app-info">
@@ -1438,7 +1457,7 @@
         </div>
     </div>
 
-    <!-- قسم الأمان -->
+    <!-- الأمان -->
     <div id="policy" class="policy-section" data-aos="fade-up" data-aos-duration="1000">
         <h2 class="policy-title"><i class="fas fa-shield-heart"></i> سياسات الخصوصية والأمان</h2>
         <div class="policy-grid">
@@ -1460,7 +1479,7 @@
         </div>
     </div>
 
-    <!-- قسم التواصل -->
+    <!-- التواصل -->
     <div class="contact-section" data-aos="flip-up" data-aos-duration="800">
         <h4><i class="fas fa-envelope"></i> تواصل معنا</h4>
         <div class="contact-links">
@@ -1481,17 +1500,17 @@
     <p style="margin-top: 10px; font-size: 12px;">⏱️ بعد تأكيد الدفع ورفع الإيصال، سيتم شحن رصيدك خلال 3 دقائق فقط!</p>
 </footer>
 
-<!-- سهم العودة للأعلى -->
+<!-- سهم العودة -->
 <div class="scroll-top" id="scrollTop">
     <i class="fas fa-arrow-up"></i>
 </div>
 
-<!-- زر الوضع الليلي/النهاري -->
+<!-- زر الوضع -->
 <button class="theme-toggle" id="themeToggle" aria-label="تبديل الوضع">
     <i class="fas fa-moon"></i>
 </button>
 
-<!-- توست الشكر -->
+<!-- توست -->
 <div id="thankYouToast" class="custom-toast">
     <i class="fas fa-check-circle" style="color: var(--accent);"></i>
     <div class="toast-title">تم التحميل بنجاح 🎉</div>
@@ -1504,12 +1523,11 @@
     // تفعيل AOS
     AOS.init({ once: true, duration: 800, easing: 'ease-out-cubic' });
 
-    // ========== نظام الوضع الليلي/النهاري ==========
+    // ========== الوضع الليلي/النهاري ==========
     const themeToggle = document.getElementById('themeToggle');
     const htmlElement = document.documentElement;
     const themeIcon = themeToggle.querySelector('i');
 
-    // التحقق من الوضع المحفوظ
     const savedTheme = localStorage.getItem('theme') || 'dark';
     htmlElement.setAttribute('data-theme', savedTheme);
     updateThemeIcon(savedTheme);
