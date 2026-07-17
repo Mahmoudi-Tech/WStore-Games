@@ -1520,10 +1520,10 @@
 
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
-    // تفعيل AOS
+    // ==================== تهيئة AOS ====================
     AOS.init({ once: true, duration: 800, easing: 'ease-out-cubic' });
 
-    // ========== الوضع الليلي/النهاري ==========
+    // ==================== الوضع الليلي/النهاري ====================
     const themeToggle = document.getElementById('themeToggle');
     const htmlElement = document.documentElement;
     const themeIcon = themeToggle.querySelector('i');
@@ -1549,8 +1549,7 @@
         updateThemeIcon(newTheme);
     });
 
-    const APK_DOWNLOAD_URL = 'https://github.com/Mahmoudi-Tech/WStore-Games/releases/download/v1.6.5/Witcher-Store-V1.6.5.apk';
-
+    // ==================== سهم العودة للأعلى ====================
     const scrollTop = document.getElementById('scrollTop');
     window.addEventListener('scroll', () => {
         if (window.scrollY > 300) scrollTop.classList.add('show');
@@ -1558,7 +1557,10 @@
     });
     scrollTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
-    // Firebase
+    // ==================== رابط التحميل الجديد v1.6.5 ====================
+    const APK_DOWNLOAD_URL = 'https://github.com/Mahmoudi-Tech/WStore-Games/releases/download/WStore-Games-1.6.5/WStore.Games.1.6.5.apk';
+
+    // ==================== Firebase ====================
     const firebaseConfig = {
         apiKey: "AIzaSyA8zbwD7QNk-GeNA4x-MWKLuLhcrV8OtgI",
         authDomain: "wstore-games-site.firebaseapp.com",
@@ -1583,6 +1585,7 @@
     let canDownload = true;
     let cooldownInterval = null;
 
+    // دالة عرض رسالة الشكر
     function showThankYouMessage(downloadCount) {
         toastCount.innerText = downloadCount;
         thankYouToast.classList.add('show');
@@ -1591,6 +1594,24 @@
         }, 5000);
     }
 
+    // دالة قراءة عدد التحميلات من Firebase
+    function loadDownloadCount() {
+        downloadsRef.on('value', (snapshot) => {
+            const count = snapshot.val() || 0;
+            downloadCountSpan.innerText = count.toLocaleString('ar-EG');
+        });
+    }
+
+    // دالة زيادة العداد في Firebase
+    function incrementDownloadCount() {
+        downloadsRef.transaction((currentCount) => {
+            const newCount = (currentCount || 0) + 1;
+            showThankYouMessage(newCount);
+            return newCount;
+        });
+    }
+
+    // بدء تشغيل الـ Cooldown
     function startCooldown() {
         canDownload = false;
         let seconds = 10;
@@ -1615,26 +1636,16 @@
         }, 1000);
     }
 
-    function loadDownloadCount() {
-        downloadsRef.on('value', (snapshot) => {
-            const count = snapshot.val() || 0;
-            downloadCountSpan.innerText = count.toLocaleString('ar-EG');
-        });
-    }
-
-    function incrementDownloadCount() {
-        downloadsRef.transaction((currentCount) => {
-            const newCount = (currentCount || 0) + 1;
-            showThankYouMessage(newCount);
-            return newCount;
-        });
-    }
-
+    // ==================== أزرار التحميل ====================
     downloadBtn.addEventListener('click', (e) => {
         e.preventDefault();
         if (!canDownload) return;
+        
+        // زيادة العداد
         incrementDownloadCount();
+        // بدء الـ Cooldown
         startCooldown();
+        // فتح رابط التحميل
         setTimeout(() => {
             window.open(APK_DOWNLOAD_URL, '_blank');
         }, 500);
@@ -1645,8 +1656,10 @@
         alert('🍏 تطبيق iOS قيد التطوير، سيصبح متاحاً قريباً');
     });
 
+    // ==================== تحميل العداد ====================
     loadDownloadCount();
 
+    // ==================== سكرول سموث ====================
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             e.preventDefault();
@@ -1655,6 +1668,7 @@
         });
     });
 
+    // ==================== وظائف المشاركة ====================
     function shareApp(platform) {
         const shareText = '🚀 حمل تطبيق Witcher Store Games الآن! أسرع تطبيق لشحن الألعاب أونلاين. حمله من هنا:';
         const shareUrl = window.location.href;
