@@ -1,73 +1,133 @@
-: 5px; color: var(--text-primary); }
-        .custom-toast .toast-count { color: var(--accent); font-size: 22px; font-weight: 800; }
-        .custom-toast strong { color: var(--text-primary); }
-        
-        /* ========== فوتر ========== */
-        footer {
-            text-align: center;
-            padding: 35px 0;
-            border-top: 1px solid var(--border-color);
-            color: var(--text-muted);
-            font-size: 13px;
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Witcher Store Games | شحن الألعاب أونلاين</title>
+    
+    <!-- أيقونة الموقع -->
+    <link rel="icon" type="image/png" sizes="32x32" href="logo.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="logo.png">
+    <link rel="apple-touch-icon" href="logo.png">
+    <link rel="shortcut icon" href="logo.png">
+    
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Tajawal Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <style>
+        /* ========== المتغيرات ========== */
+        :root {
+            --bg-primary: #0a0f1e;
+            --bg-secondary: #0c1225;
+            --bg-card: rgba(15, 25, 45, 0.85);
+            --bg-card-solid: #0d142c;
+            --bg-card-hover: rgba(10, 20, 40, 0.9);
+            --bg-input: rgba(10, 20, 35, 0.8);
+            --text-primary: #eef5ff;
+            --text-secondary: #b9c7e3;
+            --text-muted: #a0b3d9;
+            --border-color: rgba(190, 238, 17, 0.3);
+            --border-hover: rgba(190, 238, 17, 0.6);
+            --shadow-color: rgba(190, 238, 17, 0.2);
+            --accent: #BEEE11;
+            --accent-dark: #9ed10e;
+            --header-bg: rgba(10, 15, 30, 0.92);
+            --toast-bg: #1f2a3e;
+            --launch-bg: rgba(190, 238, 17, 0.12);
+            --warning-bg: rgba(255, 100, 100, 0.15);
+            --warning-border: rgba(255, 100, 100, 0.5);
+            --transition-speed: 0.5s;
+            --app-mock-bg: #111827;
+        }
+
+        /* ========== الوضع النهاري ========== */
+        [data-theme="light"] {
+            --bg-primary: #e8edf8;
+            --bg-secondary: #d5ddee;
+            --bg-card: rgba(255, 255, 255, 0.92);
+            --bg-card-solid: #f0f4ff;
+            --bg-card-hover: rgba(240, 245, 255, 0.95);
+            --bg-input: rgba(255, 255, 255, 0.9);
+            --text-primary: #1a1f2e;
+            --text-secondary: #3a4055;
+            --text-muted: #5a6075;
+            --border-color: rgba(190, 238, 17, 0.5);
+            --border-hover: rgba(190, 238, 17, 0.8);
+            --shadow-color: rgba(0, 0, 0, 0.1);
+            --header-bg: rgba(232, 237, 248, 0.95);
+            --toast-bg: #ffffff;
+            --launch-bg: rgba(190, 238, 17, 0.2);
+            --warning-bg: rgba(255, 200, 200, 0.3);
+            --warning-border: rgba(255, 100, 100, 0.7);
+            --app-mock-bg: #e0e5f0;
+        }
+
+        /* ========== إعادة تعيين ========== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: background-color var(--transition-speed) ease,
+                        color var(--transition-speed) ease,
+                        border-color var(--transition-speed) ease,
+                        box-shadow var(--transition-speed) ease;
         }
         
-        /* ========== ريسponsive ========== */
-        @media (max-width: 1024px) {
-            .container { padding: 0 20px; }
-            .hero h2 { font-size: 36px; }
-            .launch-version { font-size: 42px; }
-            .launch-title { font-size: 32px; }
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
         }
         
-        @media (max-width: 768px) {
-            .container { padding: 0 16px; }
-            .hero h2 { font-size: 28px; }
-            .hero p { font-size: 15px; }
-            .logo-text h1 { font-size: 18px; }
-            .logo-text p { font-size: 9px; }
-            .logo-img { width: 38px; height: 38px; }
-            .btn-outline { padding: 6px 12px; font-size: 12px; }
-            .nav-buttons { gap: 6px; }
-            .launch-title { font-size: 24px; }
-            .launch-version { font-size: 32px; }
-            .launch-features { gap: 15px; }
-            .howto-title { font-size: 24px; }
-            .install-title { font-size: 22px; }
-            .share-title { font-size: 22px; }
-            .policy-title { font-size: 24px; }
-            .app-info h3 { font-size: 24px; }
-            .update-header h3 { font-size: 22px; }
-            .scroll-top { width: 40px; height: 40px; bottom: 15px; right: 15px; }
-            .scroll-top i { font-size: 20px; }
-            .custom-toast { min-width: 250px; padding: 12px 18px; }
-            .time-badge span { font-size: 16px; }
-            .theme-toggle { width: 44px; height: 44px; font-size: 20px; bottom: 80px; right: 15px; }
+        /* ========== أنيميشنات ========== */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(60px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         
-        @media (max-width: 480px) {
-            .header-flex { flex-direction: column; align-items: center; }
-            .nav-buttons { justify-content: center; width: 100%; overflow-x: auto; padding-bottom: 5px; flex-wrap: nowrap; }
-            .btn-outline { white-space: nowrap; font-size: 11px; padding: 5px 10px; }
-            .launch-title { font-size: 20px; }
-            .launch-version { font-size: 28px; }
-            .howto-steps { gap: 15px; }
-            .launch-features { flex-direction: column; align-items: center; }
-            .launch-section { padding: 30px 15px; }
-            .howto-section { padding: 30px 15px; }
-            .app-section { padding: 30px 15px; }
-            .policy-section { padding: 30px 15px; }
-            .install-section { padding: 30px 15px; }
-            .share-section { padding: 30px 15px; }
-            .hero { padding: 40px 0 30px; }
-            .theme-toggle { width: 40px; height: 40px; font-size: 18px; bottom: 75px; right: 10px; }
-            .scroll-top { width: 38px; height: 38px; bottom: 10px; right: 10px; }
-            .scroll-top i { font-size: 18px; }
+        @keyframes fadeInLeft {
+            from { opacity: 0; transform: translateX(-60px); }
+            to { opacity: 1; transform: translateX(0); }
         }
         
-        @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            25% { transform: translateX(-5px); }
-            75% { transform: translateX(5px); }
+        @keyframes fadeInRight {
+            from { opacity: 0; transform: translateX(60px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(190, 238, 17, 0.7); }
+            50% { transform: scale(1.05); box-shadow: 0 0 0 20px rgba(190, 238, 17, 0); }
+        }
+        
+        @keyframes glow {
+            0%, 100% { text-shadow: 0 0 10px rgba(190, 238, 17, 0.3); }
+            50% { text-shadow: 0 0 30px rgba(190, 238, 17, 0.8); }
+        }
+        
+        @keyframes rotateSlow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        @keyframes borderFlow {
+            0%, 100% { border-color: rgba(190, 238, 17, 0.3); box-shadow: 0 0 0 0 rgba(190, 238, 17, 0.2); }
+            50% { border-color: rgba(190, 238, 17, 0.8); box-shadow: 0 0 30px rgba(190, 238, 17, 0.4); }
         }
         
         @keyframes successPop {
@@ -75,520 +135,493 @@
             50% { transform: scale(1.1); }
             100% { transform: scale(1); opacity: 1; }
         }
-    </style>
-</head>
-<body>
-
-<header>
-    <div class="container header-flex">
-        <div class="logo-area">
-            <div class="logo-img">
-                <img src="logo.png" alt="Witcher Store Games Logo" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2240%22%20height%3D%2240%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22%23BEEE11%22%3E%3Cpath%20d%3D%22M12%202C6.48%202%202%206.48%202%2012s4.48%2010%2010%2010%2010-4.48%2010-10S17.52%202%2012%202zm0%204c1.1%200%202%20.9%202%202s-.9%202-2%202-2-.9-2-2%20.9-2%202-2zm4%2012H8v-1c0-1.33%202.67-2%204-2s4%20.67%204%202v1z%22%2F%3E%3C%2Fsvg%3E';">
-            </div>
-            <div class="logo-text">
-                <h1>Witcher Store Games</h1>
-                <p>شحن في ثواني • أفضل العروض</p>
-            </div>
-        </div>
-        <div class="nav-buttons">
-            <a href="#app-download" class="btn-outline"><i class="fas fa-mobile-alt"></i> التحميل</a>
-            <a href="#howto" class="btn-outline"><i class="fas fa-credit-card"></i> طريقة الشحن</a>
-            <a href="#updates" class="btn-outline"><i class="fas fa-code-branch"></i> التحديثات</a>
-            <a href="#install" class="btn-outline"><i class="fas fa-download"></i> التثبيت</a>
-            <a href="#policy" class="btn-outline"><i class="fas fa-shield-alt"></i> الأمان</a>
-            <a href="#share" class="btn-outline"><i class="fas fa-share-alt"></i> مشاركة</a>
-        </div>
-    </div>
-</header>
-
-<main class="container">
-    <!-- هيرو -->
-    <div class="hero" data-aos="fade-up" data-aos-duration="1000">
-        <h2 class="animate-float">🕹️ شحن العابك المفضلة بأفضل الأسعار</h2>
-        <p>Witcher Store Games هو التطبيق الأمثل لشحن رصيد PUBG، فري فاير، كول أوف ديوتي، جينشين و أكثر. توصيل فوري وأمان تام.</p>
-        <a href="#app-download" class="btn-primary animate-pulse"><i class="fas fa-download"></i> حمل تطبيق Witcher Store Games الآن</a>
-    </div>
-
-    <!-- قسم الإطلاق -->
-    <div class="launch-section" data-aos="fade-up" data-aos-duration="1000">
-        <div class="launch-badge">
-            <i class="fas fa-rocket"></i>
-            <span>🔥 تم الإطلاق رسمياً</span>
-        </div>
-        <div class="launch-version">v1.7.3</div>
-        <h2 class="launch-title">🎉 تم انطلاق النسخة الجديدة رسمياً 🎉</h2>
-        <p class="launch-subtitle">
-            <i class="fas fa-check-circle"></i> 
-            أحدث إصدار من Witcher Store Games مع مميزات جديدة كلياً وتجربة شحن فائقة السرعة
-            <i class="fas fa-check-circle"></i>
-        </p>
-        <div class="launch-features">
-            <span class="launch-feature"><i class="fas fa-bolt"></i> شحن فوري</span>
-            <span class="launch-feature"><i class="fas fa-shield-alt"></i> أمان متقدم</span>
-            <span class="launch-feature"><i class="fas fa-tachometer-alt"></i> سرعة فائقة</span>
-            <span class="launch-feature"><i class="fas fa-gem"></i> عروض حصرية</span>
-            <span class="launch-feature"><i class="fas fa-gamepad"></i> ألعاب جديدة</span>
-        </div>
-    </div>
-
-    <!-- طريقة الشحن -->
-    <div id="howto" class="howto-section" data-aos="fade-up" data-aos-duration="1000">
-        <h2 class="howto-title"><i class="fas fa-coins"></i> طريقة الشحن</h2>
-        <p class="howto-subtitle">خطوات بسيطة لشحن رصيدك بسرعة وأمان</p>
         
-        <div class="howto-steps">
-            <div class="howto-card" data-aos="zoom-in" data-aos-duration="600">
-                <div class="howto-icon"><i class="fas fa-gamepad"></i></div>
-                <h4>1. اختر اللعبة</h4>
-                <p>اختر اللعبة التي تريد شحنها من داخل التطبيق (PUBG، Free Fire، COD، Genshin Impact وغيرها)</p>
-            </div>
-            <div class="howto-card" data-aos="zoom-in" data-aos-duration="600" data-aos-delay="100">
-                <div class="howto-icon"><i class="fas fa-credit-card"></i></div>
-                <h4>2. قم بالدفع</h4>
-                <p>اختر طريقة الدفع المناسبة لك (فودافون كاش، إنستا باي، بطاقات ائتمان، أو محافظ رقمية)</p>
-            </div>
-            <div class="howto-card" data-aos="zoom-in" data-aos-duration="600" data-aos-delay="200">
-                <div class="howto-icon"><i class="fas fa-receipt"></i></div>
-                <h4>3. إيصال الدفع</h4>
-                <p>قم برفع إيصال الدفع من خلال التطبيق لتأكيد عملية الدفع بنجاح</p>
-            </div>
-            <div class="howto-card" data-aos="zoom-in" data-aos-duration="600" data-aos-delay="300">
-                <div class="howto-icon"><i class="fas fa-check-circle"></i></div>
-                <h4>4. تأكيد الشحن</h4>
-                <p>سيتم تأكيد طلبك والتحقق من الإيصال خلال دقائق</p>
-            </div>
-        </div>
+        .animate-float { animation: float 4s ease-in-out infinite; }
+        .animate-pulse { animation: pulse 2s ease-in-out infinite; }
+        .animate-glow { animation: glow 3s ease-in-out infinite; }
         
-        <div class="time-badge animate-pulse">
-            <i class="fas fa-hourglass-half"></i>
-            <span>⏱️ بعد تأكيد الدفع ورفع الإيصال</span>
-            <i class="fas fa-arrow-left"></i>
-            <span>سيتم شحن رصيدك خلال 3 دقائق فقط!</span>
-        </div>
+        html { scroll-behavior: smooth; }
         
-        <div class="guarantee-note">
-            <i class="fas fa-shield-alt"></i>
-            <p><strong>ضمان سريع للشحن:</strong> بمجرد رفع إيصال الدفع وتأكيده، لن يتجاوز وقت الشحن 3 دقائق. فريق الدعم يعمل على مدار الساعة لخدمتك!</p>
-        </div>
-    </div>
-
-    <!-- المميزات -->
-    <div class="features-grid">
-        <div class="feature-card" data-aos="fade-left" data-aos-duration="800">
-            <div class="feature-icon"><i class="fas fa-bolt"></i></div>
-            <h3>شحن فوري</h3>
-            <p>احصل على رصيدك خلال دقائق من تأكيد الدفع. أسرع خدمة شحن في المنطقة.</p>
-        </div>
-        <div class="feature-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="100">
-            <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
-            <h3>أمان تام</h3>
-            <p>تشفير متقدم لحماية بياناتك وحساباتك من أي اختراق.</p>
-        </div>
-        <div class="feature-card" data-aos="fade-right" data-aos-duration="800" data-aos-delay="200">
-            <div class="feature-icon"><i class="fas fa-headset"></i></div>
-            <h3>دعم 24/7</h3>
-            <p>فريق دعم متخصص يرد على استفساراتك على مدار الساعة.</p>
-        </div>
-    </div>
-
-    <!-- التحديثات -->
-    <div id="updates" class="update-section" data-aos="fade-up" data-aos-duration="1000">
-        <div class="update-header">
-            <div class="version-badge">
-                <i class="fas fa-code-branch"></i>
-                <span class="version-number">الإصدار v1.7.3</span>
-                <span class="version-date">• تم الإصدار 15 يونيو 2026</span>
-            </div>
-            <h3>🎉 تحديث جديد كلياً 🎉</h3>
-            <p>أحدث إصدار من Witcher Store Games يقدم تجربة شحن فائقة السرعة ومميزات غير مسبوقة</p>
-        </div>
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg-secondary); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--accent-dark); }
         
-        <div class="features-list">
-            <div class="feature-item" data-aos="fade-left" data-aos-duration="600">
-                <div class="feature-icon-small"><i class="fas fa-bolt"></i></div>
-                <h4>شحن فوري بدون انتظار</h4>
-                <p>تقنية جديدة تضمن وصول الرصيد خلال 3 دقائق فقط بعد تأكيد الدفع ورفع الإيصال.</p>
-            </div>
-            <div class="feature-item" data-aos="fade-left" data-aos-duration="600" data-aos-delay="100">
-                <div class="feature-icon-small"><i class="fas fa-shield-alt"></i></div>
-                <h4>حماية متقدمة للحسابات</h4>
-                <p>نظام تشفير مزدوج (2FA) لحماية حساباتك وبياناتك الشخصية.</p>
-            </div>
-            <div class="feature-item" data-aos="fade-left" data-aos-duration="600" data-aos-delay="200">
-                <div class="feature-icon-small"><i class="fas fa-tachometer-alt"></i></div>
-                <h4>واجهة مستخدم أسرع 3 مرات</h4>
-                <p>تصميم جديد كلياً بخلفيات أنميشن وأداء فائق السرعة.</p>
-            </div>
-            <div class="feature-item" data-aos="fade-left" data-aos-duration="600" data-aos-delay="300">
-                <div class="feature-icon-small"><i class="fas fa-gem"></i></div>
-                <h4>عروض حصرية للمستخدمين الجدد</h4>
-                <p>خصم 40% على أول شحن لأي لعبة، بالإضافة إلى هدايا مجانية.</p>
-            </div>
-            <div class="feature-item" data-aos="fade-left" data-aos-duration="600" data-aos-delay="400">
-                <div class="feature-icon-small"><i class="fas fa-headset"></i></div>
-                <h4>دعم فني على مدار الساعة</h4>
-                <p>فريق دعم متخصص يرد على استفساراتك خلال دقائق.</p>
-            </div>
-            <div class="feature-item" data-aos="fade-left" data-aos-duration="600" data-aos-delay="500">
-                <div class="feature-icon-small"><i class="fas fa-gamepad"></i></div>
-                <h4>دعم ألعاب جديدة</h4>
-                <p>أضفنا دعم شحن لألعاب جديدة: Valorant، FIFA Mobile، و League of Legends!</p>
-            </div>
-        </div>
-        
-        <div class="update-footer">
-            <p><i class="fas fa-check-circle"></i> تحديث ضخم ينتظرك! استعد لتجربة جديدة كلياً</p>
-        </div>
-    </div>
-
-    <!-- التثبيت -->
-    <div id="install" class="install-section" data-aos="fade-up" data-aos-duration="1000">
-        <h2 class="install-title"><i class="fas fa-download"></i> كيفية تثبيت التطبيق من خارج متجر Google Play</h2>
-        
-        <div class="install-steps">
-            <div class="step-card" data-aos="zoom-in" data-aos-duration="600">
-                <div class="step-number">1</div>
-                <h4>تحميل ملف APK</h4>
-                <p>اضغط على زر تحميل التطبيق من الموقع، سيتم تحميل ملف APK على جهازك.</p>
-            </div>
-            <div class="step-card" data-aos="zoom-in" data-aos-duration="600" data-aos-delay="100">
-                <div class="step-number">2</div>
-                <h4>السماح بالتثبيت من مصادر خارجية</h4>
-                <p>اذهب إلى الإعدادات ← الأمان ← فعّل "مصادر غير معروفة".</p>
-            </div>
-            <div class="step-card" data-aos="zoom-in" data-aos-duration="600" data-aos-delay="200">
-                <div class="step-number">3</div>
-                <h4>فتح ملف APK</h4>
-                <p>بعد التحميل، افتح ملف APK من مجلد التنزيلات واضغط على "تثبيت".</p>
-            </div>
-            <div class="step-card" data-aos="zoom-in" data-aos-duration="600" data-aos-delay="300">
-                <div class="step-number">4</div>
-                <h4>بدء الاستخدام</h4>
-                <p>بعد اكتمال التثبيت، افتح التطبيق واستمتع بخدمات الشحن الفوري!</p>
-            </div>
-        </div>
-        
-        <div class="warning-box" data-aos="fade-up" data-aos-duration="700">
-            <div class="warning-header">
-                <i class="fas fa-shield-alt"></i>
-                <h4>⚠️ رسالة حماية من Google</h4>
-                <i class="fab fa-google"></i>
-            </div>
-            <div class="warning-content">
-                <p>قد تظهر لك رسالة من Google Play Protect أثناء التثبيت: <strong>"هذا التطبيق غير آمن"</strong> أو <strong>"Google غير قادرة على فحص التطبيق"</strong>.</p>
-                <p><strong>لا تقلق! هذا إجراء أمني طبيعي من Google لأي تطبيق يتم تحميله من خارج المتجر.</strong></p>
-                
-                <div class="solution-steps">
-                    <p><i class="fas fa-check-circle"></i> <strong>الحل بسيط:</strong></p>
-                    <p><i class="fas fa-angle-left"></i> اضغط على "تثبيت على أي حال" أو "تثبيت رغم المخاطر"</p>
-                    <p><i class="fas fa-angle-left"></i> أو اذهب إلى الإعدادات ← Google ← Play Protect ← إيقاف الفحص مؤقتاً</p>
-                    <p><i class="fas fa-angle-left"></i> بعد التثبيت يمكنك إعادة تشغيل الحماية مرة أخرى</p>
-                </div>
-            </div>
-        </div>
-        
-        <div class="safety-note" data-aos="fade-up" data-aos-duration="700" data-aos-delay="200">
-            <i class="fas fa-check-circle"></i>
-            <p><strong>ملاحظة أمان:</strong> تطبيق Witcher Store Games آمن 100% وخالي من الفيروسات. نحن نستخدم تشفير SSL لحماية بياناتك.</p>
-        </div>
-    </div>
-
-    <!-- المشاركة -->
-    <div id="share" class="share-section" data-aos="fade-up" data-aos-duration="1000">
-        <h2 class="share-title"><i class="fas fa-share-alt"></i> شارك التطبيق مع الأصدقاء</h2>
-        <p>ادعُ أصدقك واستفيد من العروض الحصرية عند كل دعوة!</p>
-        <div class="share-buttons">
-            <div class="share-btn whatsapp" onclick="shareApp('whatsapp')">
-                <i class="fab fa-whatsapp"></i>
-                <span>واتساب</span>
-            </div>
-            <div class="share-btn facebook" onclick="shareApp('facebook')">
-                <i class="fab fa-facebook"></i>
-                <span>فيسبوك</span>
-            </div>
-            <div class="share-btn twitter" onclick="shareApp('twitter')">
-                <i class="fab fa-twitter"></i>
-                <span>تويتر</span>
-            </div>
-            <div class="share-btn copy" onclick="copyLink()">
-                <i class="fas fa-link"></i>
-                <span>نسخ الرابط</span>
-            </div>
-        </div>
-    </div>
-
-    <!-- تحميل التطبيق -->
-    <div class="app-section" id="app-download" data-aos="fade-up" data-aos-duration="1000">
-        <div class="app-flex">
-            <div class="app-info">
-                <div class="ready-badge" id="readyBadge">
-                    <i class="fas fa-hourglass-half"></i>
-                    <span id="readyText">جاهز للتحميل الفوري</span>
-                </div>
-                <h3><i class="fas fa-rocket"></i> Witcher Store Games App</h3>
-                <p>تطبيق شحن الألعاب الأول في العالم العربي! حمل التطبيق الآن واستمتع بشحن فوري وخصومات تصل إلى 40%.</p>
-                <div class="download-buttons">
-                    <div class="download-btn" id="downloadApkBtn">
-                        <i class="fab fa-android"></i>
-                        <span id="downloadBtnText">تحميل APK</span>
-                    </div>
-                    <div class="download-btn" id="downloadIosBtn">
-                        <i class="fab fa-apple"></i>
-                        <span>قريباً على App Store</span>
-                    </div>
-                </div>
-                <div class="download-counter">
-                    <i class="fas fa-download"></i>
-                    <span>إجمالي التحميلات:</span>
-                    <span id="downloadCount">0</span>
-                    <i class="fas fa-users"></i>
-                </div>
-            </div>
-            <div class="app-mock animate-float">
-                <i class="fas fa-gamepad"></i>
-                <div style="margin-top: 8px; font-weight: bold;">Witcher Store Games</div>
-                <small>v1.7.3</small>
-            </div>
-        </div>
-    </div>
-
-    <!-- الأمان -->
-    <div id="policy" class="policy-section" data-aos="fade-up" data-aos-duration="1000">
-        <h2 class="policy-title"><i class="fas fa-shield-heart"></i> سياسات الخصوصية والأمان</h2>
-        <div class="policy-grid">
-            <div class="policy-card" data-aos="zoom-in" data-aos-duration="600">
-                <i class="fas fa-lock"></i>
-                <h3>أمان تام للبيانات</h3>
-                <p>بياناتك مشفرة بالكامل. لا نشارك معلوماتك مع أي طرف ثالث.</p>
-            </div>
-            <div class="policy-card" data-aos="zoom-in" data-aos-duration="600" data-aos-delay="100">
-                <i class="fas fa-credit-card"></i>
-                <h3>طرق دفع آمنة</h3>
-                <p>بوابات دفع معتمدة ومشفرة لحماية معاملاتك المالية.</p>
-            </div>
-            <div class="policy-card" data-aos="zoom-in" data-aos-duration="600" data-aos-delay="200">
-                <i class="fas fa-user-secret"></i>
-                <h3>خصوصية تامة</h3>
-                <p>نلتزم بعدم مشاركة بياناتك مع أي جهة خارجية.</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- التواصل -->
-    <div class="contact-section" data-aos="flip-up" data-aos-duration="800">
-        <h4><i class="fas fa-envelope"></i> تواصل معنا</h4>
-        <div class="contact-links">
-            <a href="https://wa.me/201010050851" target="_blank" class="contact-item">
-                <i class="fab fa-whatsapp"></i>
-                <span>01010050851</span>
-            </a>
-            <a href="mailto:VirusAhlawy@Gmail.Com" class="contact-item">
-                <i class="fas fa-envelope"></i>
-                <span>VirusAhlawy@Gmail.Com</span>
-            </a>
-        </div>
-    </div>
-</main>
-
-<footer>
-    <p>© 2026 Witcher Store Games - جميع الحقوق محفوظة | شحن آمن وسريع لجميع الألعاب</p>
-    <p style="margin-top: 10px; font-size: 12px;">⏱️ بعد تأكيد الدفع ورفع الإيصال، سيتم شحن رصيدك خلال 3 دقائق فقط!</p>
-</footer>
-
-<!-- سهم العودة -->
-<div class="scroll-top" id="scrollTop">
-    <i class="fas fa-arrow-up"></i>
-</div>
-
-<!-- زر الوضع -->
-<button class="theme-toggle" id="themeToggle" aria-label="تبديل الوضع">
-    <i class="fas fa-moon"></i>
-</button>
-
-<!-- توست -->
-<div id="thankYouToast" class="custom-toast">
-    <i class="fas fa-check-circle" style="color: var(--accent);"></i>
-    <div class="toast-title">تم التحميل بنجاح 🎉</div>
-    <div>شكرًا! تم تحميل <strong>Witcher Store Games</strong></div>
-    <div><span class="toast-count" id="toastCount">0</span> مرة. استمتع بأسرع شحن للألعاب.</div>
-</div>
-
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<script>
-    // ==================== تهيئة AOS ====================
-    AOS.init({ once: true, duration: 800, easing: 'ease-out-cubic' });
-
-    // ==================== الوضع الليلي/النهاري ====================
-    const themeToggle = document.getElementById('themeToggle');
-    const htmlElement = document.documentElement;
-    const themeIcon = themeToggle.querySelector('i');
-
-    const savedTheme = localStorage.getItem('theme') || 'dark';
-    htmlElement.setAttribute('data-theme', savedTheme);
-    updateThemeIcon(savedTheme);
-
-    function updateThemeIcon(theme) {
-        if (theme === 'light') {
-            themeIcon.className = 'fas fa-sun';
-        } else {
-            themeIcon.className = 'fas fa-moon';
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 24px;
         }
-    }
-
-    themeToggle.addEventListener('click', () => {
-        const currentTheme = htmlElement.getAttribute('data-theme');
-        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
         
-        htmlElement.setAttribute('data-theme', newTheme);
-        localStorage.setItem('theme', newTheme);
-        updateThemeIcon(newTheme);
-    });
-
-    // ==================== سهم العودة للأعلى ====================
-    const scrollTop = document.getElementById('scrollTop');
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 300) scrollTop.classList.add('show');
-        else scrollTop.classList.remove('show');
-    });
-    scrollTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-
-    // ==================== رابط التحميل الجديد v1.7.3 ====================
-    const APK_DOWNLOAD_URL = 'https://github.com/Mahmoudi-Tech/WStore-Games/releases/download/v1.7.3/Witcher-Store-v1.7.3.apk';
-
-    // ==================== Firebase ====================
-    const firebaseConfig = {
-        apiKey: "AIzaSyA8zbwD7QNk-GeNA4x-MWKLuLhcrV8OtgI",
-        authDomain: "wstore-games-site.firebaseapp.com",
-        databaseURL: "https://wstore-games-site-default-rtdb.firebaseio.com",
-        projectId: "wstore-games-site",
-        storageBucket: "wstore-games-site.firebasestorage.app",
-        messagingSenderId: "422122681134",
-        appId: "1:422122681134:web:0036b85a274996c49000bf"
-    };
-
-    firebase.initializeApp(firebaseConfig);
-    const database = firebase.database();
-    const downloadsRef = database.ref('appDownloads');
-
-    const downloadCountSpan = document.getElementById('downloadCount');
-    const thankYouToast = document.getElementById('thankYouToast');
-    const toastCount = document.getElementById('toastCount');
-    const downloadBtn = document.getElementById('downloadApkBtn');
-    const downloadBtnText = document.getElementById('downloadBtnText');
-    const readyText = document.getElementById('readyText');
-    
-    let canDownload = true;
-    let cooldownInterval = null;
-
-    // دالة عرض رسالة الشكر
-    function showThankYouMessage(downloadCount) {
-        toastCount.innerText = downloadCount;
-        thankYouToast.classList.add('show');
-        setTimeout(() => {
-            thankYouToast.classList.remove('show');
-        }, 5000);
-    }
-
-    // دالة قراءة عدد التحميلات من Firebase
-    function loadDownloadCount() {
-        downloadsRef.on('value', (snapshot) => {
-            const count = snapshot.val() || 0;
-            downloadCountSpan.innerText = count.toLocaleString('ar-EG');
-        });
-    }
-
-    // دالة زيادة العداد في Firebase
-    function incrementDownloadCount() {
-        downloadsRef.transaction((currentCount) => {
-            const newCount = (currentCount || 0) + 1;
-            showThankYouMessage(newCount);
-            return newCount;
-        });
-    }
-
-    // بدء تشغيل الـ Cooldown
-    function startCooldown() {
-        canDownload = false;
-        let seconds = 10;
-        downloadBtn.classList.add('disabled');
-        downloadBtnText.innerHTML = `انتظر ${seconds} ثانية`;
-        
-        cooldownInterval = setInterval(() => {
-            seconds--;
-            if (seconds >= 0) {
-                downloadBtnText.innerHTML = `انتظر ${seconds} ثانية`;
-            }
-            if (seconds < 0) {
-                clearInterval(cooldownInterval);
-                canDownload = true;
-                downloadBtn.classList.remove('disabled');
-                downloadBtnText.innerHTML = 'تحميل APK';
-                readyText.innerHTML = 'جاهز للتحميل الفوري ✅';
-                setTimeout(() => {
-                    readyText.innerHTML = 'جاهز للتحميل الفوري';
-                }, 3000);
-            }
-        }, 1000);
-    }
-
-    // ==================== أزرار التحميل ====================
-    downloadBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        if (!canDownload) return;
-        
-        // زيادة العداد
-        incrementDownloadCount();
-        // بدء الـ Cooldown
-        startCooldown();
-        // فتح رابط التحميل
-        setTimeout(() => {
-            window.open(APK_DOWNLOAD_URL, '_blank');
-        }, 500);
-    });
-
-    document.getElementById('downloadIosBtn').addEventListener('click', (e) => {
-        e.preventDefault();
-        alert('🍏 تطبيق iOS قيد التطوير، سيصبح متاحاً قريباً');
-    });
-
-    // ==================== تحميل العداد ====================
-    loadDownloadCount();
-
-    // ==================== سكرول سموث ====================
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) target.scrollIntoView({ behavior: 'smooth' });
-        });
-    });
-
-    // ==================== وظائف المشاركة ====================
-    function shareApp(platform) {
-        const shareText = '🚀 حمل تطبيق Witcher Store Games الآن! أسرع تطبيق لشحن الألعاب أونلاين. حمله من هنا:';
-        const shareUrl = window.location.href;
-        const fullText = `${shareText}\n${shareUrl}`;
-        
-        switch(platform) {
-            case 'whatsapp':
-                window.open(`https://wa.me/?text=${encodeURIComponent(fullText)}`, '_blank');
-                break;
-            case 'facebook':
-                window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`, '_blank');
-                break;
-            case 'twitter':
-                window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(fullText)}`, '_blank');
-                break;
+        /* ========== زر الوضع ========== */
+        .theme-toggle {
+            position: fixed;
+            bottom: 90px;
+            right: 25px;
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            background: var(--accent);
+            border: none;
+            color: #0a0f1e;
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 999;
+            box-shadow: 0 5px 20px rgba(190, 238, 17, 0.4);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
-    }
-    
-    function copyLink() {
-        navigator.clipboard.writeText(window.location.href);
-        alert('✅ تم نسخ رابط التطبيق! يمكنك الآن مشاركته مع أصدقائك.');
-    }
-    
-    window.shareApp = shareApp;
-    window.copyLink = copyLink;
-</script>
-</body>
-</html>
+        
+        .theme-toggle:hover {
+            transform: scale(1.1) rotate(20deg);
+            box-shadow: 0 10px 30px rgba(190, 238, 17, 0.6);
+        }
+        
+        .theme-toggle i {
+            transition: transform 0.5s ease;
+        }
+        
+        .theme-toggle:hover i {
+            transform: rotate(180deg);
+        }
+        
+        /* ========== الهيدر ========== */
+        header {
+            background: var(--header-bg);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 15px 0;
+        }
+        
+        .header-flex {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-shrink: 0;
+        }
+        
+        .logo-img {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, #11171f, #0f172a);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid var(--accent);
+            box-shadow: 0 0 15px rgba(190, 238, 17, 0.3);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+        }
+        
+        .logo-img:hover {
+            transform: scale(1.05);
+        }
+        
+        .logo-img img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+        
+        .logo-text h1 {
+            font-size: 22px;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--text-primary), var(--accent), #e6ff4d);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .logo-text p {
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+        
+        .nav-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 1.5px solid var(--accent);
+            padding: 8px 18px;
+            border-radius: 40px;
+            color: var(--text-primary);
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            font-size: 14px;
+            position: relative;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+        
+        .btn-outline::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(190, 238, 17, 0.2);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+        
+        .btn-outline:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+        
+        .btn-outline:hover {
+            background: rgba(190, 238, 17, 0.15);
+            border-color: var(--accent-dark);
+            transform: translateY(-2px);
+        }
+        
+        /* ========== الهيرو ========== */
+        .hero {
+            padding: 60px 0 40px;
+            text-align: center;
+        }
+        
+        .hero h2 {
+            font-size: 42px;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--text-primary), var(--accent), #e6ff4d);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 18px;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(95deg, var(--accent), var(--accent-dark));
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: 700;
+            color: #0a0f1e;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(190, 238, 17, 0.4);
+            cursor: pointer;
+            font-size: 16px;
+            border: none;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-4px);
+            background: linear-gradient(95deg, #d4ff33, var(--accent));
+            box-shadow: 0 15px 30px rgba(190, 238, 17, 0.5);
+        }
+        
+        /* ========== قسم الإطلاق ========== */
+        .launch-section {
+            background: var(--launch-bg);
+            border-radius: 40px;
+            margin: 30px 0 50px;
+            padding: 45px 30px;
+            text-align: center;
+            border: 2px solid rgba(190, 238, 17, 0.5);
+            position: relative;
+            overflow: hidden;
+            animation: borderFlow 3s ease-in-out infinite;
+        }
+        
+        .launch-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: rgba(190, 238, 17, 0.2);
+            padding: 10px 28px;
+            border-radius: 50px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(190, 238, 17, 0.5);
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        .launch-badge i {
+            font-size: 28px;
+            color: var(--accent);
+        }
+        
+        .launch-badge span {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--accent);
+        }
+        
+        .launch-title {
+            font-size: 38px;
+            font-weight: 800;
+            margin-bottom: 12px;
+            background: linear-gradient(135deg, var(--text-primary), var(--accent), #e6ff4d);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .launch-version {
+            font-size: 52px;
+            font-weight: 900;
+            color: var(--accent);
+            margin-bottom: 15px;
+            text-shadow: 0 0 30px rgba(190, 238, 17, 0.4);
+        }
+        
+        .launch-subtitle {
+            font-size: 18px;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .launch-subtitle i {
+            color: var(--accent);
+            margin: 0 5px;
+        }
+        
+        .launch-features {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 25px;
+        }
+        
+        .launch-feature {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--bg-input);
+            padding: 8px 18px;
+            border-radius: 30px;
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+        
+        .launch-feature i {
+            color: var(--accent);
+            font-size: 16px;
+        }
+        
+        /* ========== طريقة الشحن ========== */
+        .howto-section {
+            background: var(--bg-card);
+            border-radius: 40px;
+            margin: 50px 0;
+            padding: 40px 30px;
+            text-align: center;
+            border: 1px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .howto-title {
+            font-size: 32px;
+            font-weight: 800;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, var(--text-primary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .howto-subtitle {
+            font-size: 16px;
+            color: var(--text-muted);
+            margin-bottom: 35px;
+        }
+        
+        .howto-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-bottom: 35px;
+        }
+        
+        .howto-card {
+            background: var(--bg-input);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 24px;
+            padding: 30px 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-color);
+        }
+        
+        .howto-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--border-hover);
+            box-shadow: 0 15px 30px var(--shadow-color);
+        }
+        
+        .howto-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, rgba(190, 238, 17, 0.15), rgba(190, 238, 17, 0.05));
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 18px;
+        }
+        
+        .howto-icon i {
+            font-size: 35px;
+            color: var(--accent);
+        }
+        
+        .howto-card h4 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+        
+        .howto-card p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            font-size: 14px;
+        }
+        
+        .time-badge {
+            background: rgba(190, 238, 17, 0.15);
+            border-radius: 50px;
+            padding: 12px 25px;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 10px;
+            border: 1px solid rgba(190, 238, 17, 0.4);
+        }
+        
+        .time-badge i {
+            font-size: 24px;
+            color: var(--accent);
+        }
+        
+        .time-badge span {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--accent);
+        }
+        
+        .guarantee-note {
+            background: rgba(190, 238, 17, 0.08);
+            border-radius: 20px;
+            padding: 20px;
+            margin-top: 25px;
+            text-align: center;
+            border: 1px dashed rgba(190, 238, 17, 0.4);
+        }
+        
+        .guarantee-note i {
+            font-size: 28px;
+            color: var(--accent);
+            margin-bottom: 10px;
+        }
+        
+        .guarantee-note p {
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+        
+        /* ========== المميزات ========== */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin: 50px 0;
+        }
+        
+        .feature-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 24px;
+            padding: 30px 20px;
+            text-align: center;
+            transition: all 0.4s ease;
+            border: 1px solid var(--border-color);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--border-hover);
+            box-shadow: 0 15px 30px var(--shadow-color);
+        }
+        
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, rgba(190, 238, 17, 0.15), rgba(190, 238, 17, 0.05));
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 18px;
+        }
+        
+        .feature-card:hover .feature-icon {
+            transform: scale(1.1);
+            background: rgba(190, 238, 17, 0.25);
+        }
+        
+        .feature-icon i { font-size: 35px; color: var(--accent); }
+        .feature-card h3 { font-size: 22px; font-weight: 700; margin-bottom: 12px; color: var(--text-primary); }
+        .feature-card p { color: var(--text-secondary); line-height: 1.6; font-size: 14px; }
+        
+        /* ========== التحديثات ========== */
+        .update-section {
+            background: var(--bg-card);
+            border-radius: 40px;
+            margin: 50px 0;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            animation: borderFlow 3s ease-in-out infinite;
+        }
+        
+        .update-header {
+            background: linear-gradient(135deg, rgba(190, 238, 17, 0.1), rgba(190, 238, 17, 0.02));
+            padding: 30px 25px;
+            text-align: center;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .version-badge {
+            display: inline-flex;
+            align
