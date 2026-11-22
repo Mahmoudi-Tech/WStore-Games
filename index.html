@@ -2,7 +2,7 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Witcher Store V2.4.1 | أقوى تطبيق شحن ألعاب في مصر والوطن العربي</title>
     
     <!-- 🌟 أيقونة المتصفح المتحركة (Favicon) 🌟 -->
@@ -36,30 +36,39 @@
             box-sizing: border-box;
             font-family: 'Cairo', sans-serif;
             scroll-behavior: smooth;
+            -webkit-tap-highlight-color: transparent;
         }
 
         body {
             background-color: var(--bg-dark);
             color: #ffffff;
             overflow-x: hidden;
+            width: 100%;
         }
 
-        /* خلفية الفضاء 3D */
+        /* ====== خلفية الفضاء النارية 3D (ظاهرة دائماً على كل الأجهزة) ====== */
         #bg-canvas {
             position: fixed;
             top: 0;
             left: 0;
             width: 100vw;
             height: 100vh;
-            z-index: -1;
+            z-index: 0;
+            pointer-events: none;
         }
 
-        /* ====== الهيدر الزجاجي ====== */
+        /* جعل كل أقسام الموقع فوق الخلفية الـ 3D مباشرة */
+        .hero, .payment-strip, .section, footer {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ====== الهيدر الزجاجي الديناميكي ====== */
         nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 12px 6%;
+            padding: clamp(8px, 1.5vw, 12px) clamp(12px, 5vw, 6%);
             background: rgba(5, 5, 8, 0.8);
             backdrop-filter: blur(20px);
             border-bottom: 1px solid rgba(255, 0, 60, 0.25);
@@ -73,20 +82,20 @@
         .brand {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: clamp(8px, 1.2vw, 12px);
             text-decoration: none;
         }
 
         .brand img {
-            width: 52px;
-            height: 52px;
+            width: clamp(38px, 4.5vw, 52px);
+            height: clamp(38px, 4.5vw, 52px);
             border-radius: 14px;
             border: 2px solid var(--primary);
             box-shadow: 0 0 15px var(--primary);
         }
 
         .brand-text h2 {
-            font-size: 1.5rem;
+            font-size: clamp(1rem, 2vw, 1.5rem);
             font-weight: 900;
             color: #fff;
             letter-spacing: 1px;
@@ -94,27 +103,29 @@
         }
 
         .brand-text span {
-            font-size: 0.75rem;
+            font-size: clamp(0.65rem, 1vw, 0.75rem);
             color: var(--gold);
             font-weight: 700;
+            display: block;
         }
 
         .nav-actions {
             display: flex;
-            gap: 12px;
+            gap: clamp(6px, 1vw, 12px);
             align-items: center;
         }
 
         .nav-btn {
-            padding: 9px 20px;
+            padding: clamp(6px, 1vw, 9px) clamp(10px, 2vw, 20px);
             border-radius: 50px;
             text-decoration: none;
             font-weight: 800;
-            font-size: 0.95rem;
+            font-size: clamp(0.72rem, 1.1vw, 0.95rem);
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
             transition: 0.3s;
+            white-space: nowrap;
         }
 
         .nav-apk {
@@ -133,14 +144,14 @@
             transform: translateY(-3px) scale(1.05);
         }
 
-        /* ====== القسم الرئيسي (Hero 3D) ====== */
+        /* ====== القسم الرئيسي الديناميكي (Hero 3D) ====== */
         .hero {
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 130px 6% 70px;
-            gap: 50px;
+            padding: clamp(95px, 12vw, 130px) clamp(15px, 5vw, 6%) clamp(40px, 6vw, 70px);
+            gap: clamp(30px, 4vw, 50px);
         }
 
         .hero-text {
@@ -158,13 +169,13 @@
             padding: 6px 18px;
             border-radius: 50px;
             font-weight: 800;
-            font-size: 0.9rem;
+            font-size: clamp(0.75rem, 1.2vw, 0.9rem);
             margin-bottom: 20px;
             box-shadow: 0 0 20px rgba(255, 204, 0, 0.25);
         }
 
         .hero-text h1 {
-            font-size: 3.6rem;
+            font-size: clamp(1.9rem, 4vw, 3.6rem);
             font-weight: 900;
             line-height: 1.2;
             margin-bottom: 20px;
@@ -179,27 +190,29 @@
         }
 
         .hero-text p {
-            font-size: 1.2rem;
+            font-size: clamp(0.95rem, 1.4vw, 1.2rem);
             color: #c4c4d4;
             line-height: 1.8;
-            margin-bottom: 35px;
+            margin-bottom: 30px;
             max-width: 620px;
         }
 
         /* أزرار التحميل والواتساب الثلاثية الأبعاد */
         .cta-group {
             display: flex;
-            gap: 20px;
+            gap: 16px;
             flex-wrap: wrap;
         }
 
         .btn-mega-3d {
+            flex: 1 1 240px;
             display: flex;
             align-items: center;
-            gap: 16px;
+            justify-content: center;
+            gap: 14px;
             background: linear-gradient(135deg, var(--primary), #6a00ff);
             color: #fff;
-            padding: 14px 30px;
+            padding: clamp(12px, 1.5vw, 14px) clamp(20px, 2.5vw, 30px);
             border-radius: 22px;
             text-decoration: none;
             box-shadow: 0 10px 0 #590016, 0 20px 40px rgba(255, 0, 60, 0.5);
@@ -215,31 +228,38 @@
         }
 
         .btn-mega-3d img {
-            width: 58px;
-            height: 58px;
+            width: clamp(46px, 4.5vw, 58px);
+            height: clamp(46px, 4.5vw, 58px);
             border-radius: 15px;
             border: 2px solid var(--gold);
+            flex-shrink: 0;
+        }
+
+        .btn-mega-info {
+            text-align: right;
         }
 
         .btn-mega-info span {
             display: block;
-            font-size: 0.8rem;
+            font-size: clamp(0.7rem, 1vw, 0.8rem);
             color: var(--gold);
             font-weight: 700;
         }
 
         .btn-mega-info strong {
-            font-size: 1.35rem;
+            font-size: clamp(1.05rem, 1.5vw, 1.35rem);
             font-weight: 900;
         }
 
         .btn-wa-3d {
+            flex: 1 1 240px;
             display: flex;
             align-items: center;
+            justify-content: center;
             gap: 14px;
             background: linear-gradient(135deg, #1ebc57, #0d7a35);
             color: #fff;
-            padding: 14px 28px;
+            padding: clamp(12px, 1.5vw, 14px) clamp(20px, 2.5vw, 28px);
             border-radius: 22px;
             text-decoration: none;
             box-shadow: 0 10px 0 #07471e, 0 20px 40px rgba(37, 211, 102, 0.35);
@@ -253,23 +273,24 @@
         }
 
         .btn-wa-3d i {
-            font-size: 2.8rem;
+            font-size: clamp(2.2rem, 3vw, 2.8rem);
         }
 
-        /* ====== مجسم الموبايل الـ 3D التفاعلي ====== */
+        /* ====== مجسم الموبايل الـ 3D التفاعلي (نفس الشكل في الموبايل والكمبيوتر) ====== */
         .hero-visual {
             flex: 1;
             display: flex;
             justify-content: center;
             align-items: center;
             perspective: 1200px;
+            padding: 15px 35px;
         }
 
         .phone-3d-wrap {
-            width: 310px;
-            height: 570px;
+            width: clamp(235px, 26vw, 310px);
+            height: clamp(435px, 48vw, 570px);
             background: linear-gradient(145deg, #1a1a2e, #0a0a12);
-            border-radius: 45px;
+            border-radius: clamp(32px, 3.5vw, 45px);
             border: 4px solid #33334d;
             box-shadow: 0 30px 70px rgba(0,0,0,0.9), 0 0 50px rgba(255, 0, 60, 0.4);
             position: relative;
@@ -278,13 +299,13 @@
             flex-direction: column;
             align-items: center;
             justify-content: space-between;
-            padding: 25px 20px;
+            padding: clamp(18px, 2vw, 25px) clamp(14px, 1.8vw, 20px);
         }
 
         /* نوتش الموبايل */
         .phone-notch {
-            width: 110px;
-            height: 22px;
+            width: 38%;
+            height: 20px;
             background: #050508;
             border-radius: 20px;
             border: 1px solid #222;
@@ -293,20 +314,20 @@
         /* شاشة الموبايل وبداخلها اللوجو المتحرك */
         .phone-screen-content {
             text-align: center;
-            transform: translateZ(50px); /* يبرز خارج شاشة الموبايل */
+            transform: translateZ(50px);
         }
 
         .phone-screen-content img {
-            width: 180px;
-            height: 180px;
-            border-radius: 35px;
+            width: clamp(130px, 15vw, 180px);
+            height: clamp(130px, 15vw, 180px);
+            border-radius: 30px;
             border: 3px solid var(--gold);
             box-shadow: 0 15px 35px rgba(255, 0, 60, 0.6);
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
 
         .phone-screen-content h3 {
-            font-size: 1.7rem;
+            font-size: clamp(1.3rem, 1.8vw, 1.7rem);
             font-weight: 900;
             color: #fff;
         }
@@ -314,7 +335,7 @@
         .phone-screen-content p {
             color: var(--gold);
             font-weight: 700;
-            font-size: 0.9rem;
+            font-size: clamp(0.75rem, 1vw, 0.9rem);
             margin-top: 5px;
         }
 
@@ -322,72 +343,73 @@
             background: var(--primary);
             color: #fff;
             width: 100%;
-            padding: 12px;
+            padding: clamp(9px, 1.2vw, 12px);
             border-radius: 15px;
             text-align: center;
             font-weight: 800;
+            font-size: clamp(0.8rem, 1.1vw, 0.95rem);
             text-decoration: none;
             box-shadow: 0 0 20px var(--primary);
             transform: translateZ(35px);
         }
 
-        /* أيقونات طائرة 3D حول الموبايل */
+        /* أيقونات طائرة 3D حول الموبايل (تظهر على الموبايل والكمبيوتر معاً) */
         .floating-badge {
             position: absolute;
-            background: rgba(15, 15, 25, 0.9);
+            background: rgba(15, 15, 25, 0.92);
             border: 1px solid var(--primary);
-            padding: 10px 16px;
+            padding: clamp(6px, 0.9vw, 10px) clamp(10px, 1.3vw, 16px);
             border-radius: 16px;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
             font-weight: 800;
-            font-size: 0.9rem;
+            font-size: clamp(0.68rem, 1vw, 0.9rem);
             box-shadow: 0 15px 30px rgba(0,0,0,0.8);
-            transform: translateZ(85px); /* بروز قوي جداً */
+            transform: translateZ(85px);
             backdrop-filter: blur(10px);
+            white-space: nowrap;
         }
 
-        .fb-1 { top: 12%; right: -45px; border-color: var(--gold); }
-        .fb-2 { bottom: 22%; left: -55px; border-color: var(--whatsapp); }
-        .fb-3 { top: 50%; right: -60px; border-color: var(--primary); }
+        .fb-1 { top: 12%; right: -16%; border-color: var(--gold); }
+        .fb-2 { bottom: 22%; left: -18%; border-color: var(--whatsapp); }
+        .fb-3 { top: 50%; right: -18%; border-color: var(--primary); }
 
         /* ====== شريط وسائل الدفع والضمان ====== */
         .payment-strip {
             background: rgba(255, 255, 255, 0.03);
             border-top: 1px solid rgba(255, 255, 255, 0.08);
             border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-            padding: 25px 6%;
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 20px;
+            padding: clamp(18px, 2.5vw, 25px) 4%;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
             text-align: center;
         }
 
         .pay-item {
             display: flex;
             align-items: center;
-            gap: 12px;
-            font-size: 1.1rem;
+            justify-content: center;
+            gap: 10px;
+            font-size: clamp(0.82rem, 1.2vw, 1.1rem);
             font-weight: 800;
             color: #ddd;
         }
 
         .pay-item i {
-            font-size: 1.8rem;
+            font-size: clamp(1.3rem, 1.8vw, 1.8rem);
             color: var(--gold);
         }
 
         /* ====== الأقسام والبطاقات 3D ====== */
         .section {
-            padding: 90px 6%;
+            padding: clamp(55px, 7vw, 90px) clamp(15px, 5vw, 6%);
             text-align: center;
         }
 
         .sec-title {
-            font-size: 2.7rem;
+            font-size: clamp(1.65rem, 3.2vw, 2.7rem);
             font-weight: 900;
             margin-bottom: 12px;
         }
@@ -399,20 +421,20 @@
 
         .sec-sub {
             color: #999;
-            font-size: 1.1rem;
-            margin-bottom: 55px;
+            font-size: clamp(0.88rem, 1.2vw, 1.1rem);
+            margin-bottom: clamp(35px, 4vw, 55px);
         }
 
         .grid-3d {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
-            gap: 35px;
+            grid-template-columns: repeat(auto-fit, minmax(clamp(240px, 22vw, 270px), 1fr));
+            gap: clamp(22px, 3vw, 35px);
         }
 
         .card-3d {
             background: var(--glass);
             border-radius: 26px;
-            padding: 40px 25px;
+            padding: clamp(30px, 3.5vw, 40px) clamp(18px, 2vw, 25px);
             border: 1px solid rgba(255, 255, 255, 0.1);
             transform-style: preserve-3d;
             transform: perspective(1000px);
@@ -434,7 +456,7 @@
         }
 
         .icon-3d {
-            font-size: 4rem;
+            font-size: clamp(3.2rem, 4vw, 4rem);
             margin-bottom: 20px;
             display: inline-block;
             transform: translateZ(65px);
@@ -445,7 +467,7 @@
         }
 
         .card-3d h3 {
-            font-size: 1.55rem;
+            font-size: clamp(1.3rem, 1.6vw, 1.55rem);
             font-weight: 900;
             margin-bottom: 12px;
             transform: translateZ(45px);
@@ -453,6 +475,7 @@
 
         .card-3d p {
             color: #b5b5c5;
+            font-size: clamp(0.92rem, 1.1vw, 1rem);
             line-height: 1.7;
             transform: translateZ(30px);
         }
@@ -464,13 +487,13 @@
             background: linear-gradient(135deg, rgba(37, 211, 102, 0.15), rgba(18, 18, 28, 0.9));
             border: 2px solid var(--whatsapp);
             border-radius: 30px;
-            padding: 50px 35px;
+            padding: clamp(30px, 5vw, 50px) clamp(18px, 4vw, 35px);
             box-shadow: 0 0 50px rgba(37, 211, 102, 0.2);
             transform-style: preserve-3d;
         }
 
         .phone-number-display {
-            font-size: 2.5rem;
+            font-size: clamp(1.75rem, 3.5vw, 2.5rem);
             font-weight: 900;
             color: var(--gold);
             letter-spacing: 3px;
@@ -483,17 +506,17 @@
         /* ====== زر الواتساب العائم أسفل الشاشة ====== */
         .floating-wa {
             position: fixed;
-            bottom: 25px;
-            left: 25px;
+            bottom: 22px;
+            left: 22px;
             background: var(--whatsapp);
             color: #fff;
-            width: 65px;
-            height: 65px;
+            width: clamp(55px, 5vw, 65px);
+            height: clamp(55px, 5vw, 65px);
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 2.3rem;
+            font-size: clamp(1.9rem, 2.5vw, 2.3rem);
             box-shadow: 0 0 25px var(--whatsapp);
             z-index: 9999;
             text-decoration: none;
@@ -515,24 +538,28 @@
         }
 
         footer img {
-            width: 80px;
+            width: clamp(65px, 6vw, 80px);
             border-radius: 20px;
             border: 2px solid var(--primary);
             margin-bottom: 12px;
         }
 
-        /* التجاوب مع الموبايل */
-        @media (max-width: 992px) {
+        /* التجاوب الديناميكي مع الموبايل والتابلت مع بقاء جميع العناصر 100% */
+        @media (max-width: 900px) {
             .hero {
                 flex-direction: column-reverse;
                 text-align: center;
-                padding-top: 120px;
             }
-            .hero-text h1 { font-size: 2.4rem; }
-            .cta-group { justify-content: center; }
-            .floating-badge { display: none; } /* إخفاء الشارات الجانبية في الشاشات الصغيرة جداً لعدم التداخل */
-            .nav-wa span { display: none; }
-            .phone-number-display { font-size: 1.9rem; }
+            .hero-text p {
+                margin-left: auto;
+                margin-right: auto;
+            }
+            .cta-group {
+                justify-content: center;
+            }
+            .payment-strip {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
     </style>
 </head>
@@ -561,7 +588,7 @@
                 <i class="fa-brands fa-whatsapp"></i> <span>01010050851</span>
             </a>
             <a href="https://github.com/Mahmoudi-Tech/WStore-Games/releases/download/v2.4.1/Witcher-Store-V2.4.1.apk" class="nav-btn nav-apk">
-                <i class="fa-solid fa-download"></i> تحميل التطبيق
+                <i class="fa-solid fa-download"></i> <span>تحميل التطبيق</span>
             </a>
         </div>
     </nav>
@@ -649,7 +676,7 @@
             </div>
 
             <div class="card-3d" data-tilt data-tilt-scale="1.05">
-                <i class="fa-solid fa-fire-flame-Simple icon-3d fa-fire"></i>
+                <i class="fa-solid fa-fire icon-3d"></i>
                 <h3>جواهر فري فاير (Free Fire)</h3>
                 <p>شحن فوري لجواهر فري فاير بالـ ID، مع توفر العضويات الأسبوعية والشهرية وعروض الدروب بأقل سعر.</p>
             </div>
@@ -697,18 +724,18 @@
     <!-- قسم اتصل بنا عبر الواتساب -->
     <section class="section">
         <div class="contact-box-3d" data-tilt data-tilt-max="8">
-            <i class="fa-brands fa-whatsapp" style="font-size: 4.5rem; color: var(--whatsapp); margin-bottom: 15px;"></i>
-            <h2 style="font-size: 2.2rem; font-weight: 900;">هل لديك استفسار أو تحتاج مساعدة؟</h2>
-            <p style="color: #ccc; font-size: 1.15rem; margin-top: 10px;">
+            <i class="fa-brands fa-whatsapp" style="font-size: clamp(3.2rem, 5vw, 4.5rem); color: var(--whatsapp); margin-bottom: 15px;"></i>
+            <h2 style="font-size: clamp(1.5rem, 2.8vw, 2.2rem); font-weight: 900;">هل لديك استفسار أو تحتاج مساعدة؟</h2>
+            <p style="color: #ccc; font-size: clamp(0.95rem, 1.3vw, 1.15rem); margin-top: 10px;">
                 فريق دعم <strong>Witcher Store</strong> متواجد لخدمتك على مدار الساعة عبر الواتساب للرد على جميع استفساراتك وتفعيل الحسابات.
             </p>
             
             <!-- رقم الواتساب واضح وكبير -->
             <span class="phone-number-display"><i class="fa-solid fa-phone-volume"></i> 01010050851</span>
 
-            <a href="https://wa.me/201010050851?text=مرحبا%20Witcher%20Store%20تواصلت%20معكم%20من%20الموقع%20الرسمي" target="_blank" class="btn-wa-3d" style="display: inline-flex; margin-top: 10px;">
+            <a href="https://wa.me/201010050851?text=مرحبا%20Witcher%20Store%20تواصلت%20معكم%20من%20الموقع%20الرسمي" target="_blank" class="btn-wa-3d" style="display: inline-flex; margin-top: 10px; max-width: 420px; width: 100%;">
                 <i class="fa-brands fa-whatsapp" style="font-size: 2rem;"></i>
-                <strong style="font-size: 1.2rem;">اضغط هنا للتحدث معنا عبر واتساب الآن</strong>
+                <strong style="font-size: clamp(0.95rem, 1.3vw, 1.2rem);">اضغط هنا للتحدث معنا عبر واتساب الآن</strong>
             </a>
         </div>
     </section>
@@ -725,13 +752,14 @@
     <!-- مكتبة Vanilla-Tilt لتحريك الكروت والموبايل 3D -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
     
-    <!-- مكتبة Three.js لخلفية الفضاء الثلاثية الأبعاد -->
+    <!-- مكتبة Three.js لخلفية الفضاء الثلاثية الأبعاد (نفس الخلفية التي طلبتها بالضبط) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script>
         const scene = new THREE.Scene();
         const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
         const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('bg-canvas'), alpha: true });
         renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
         // إنشاء مجموعتين من الجزيئات المضيئة (أحمر وذهبي)
         function createParticles(colorHex, count, size) {
@@ -763,6 +791,14 @@
             mouseX = (e.clientX / window.innerWidth) - 0.5;
             mouseY = (e.clientY / window.innerHeight) - 0.5;
         });
+
+        // دعم اللمس في الهواتف أيضاً لتتحرك الخلفية مع الإصبع
+        document.addEventListener('touchmove', (e) => {
+            if(e.touches.length > 0) {
+                mouseX = (e.touches[0].clientX / window.innerWidth) - 0.5;
+                mouseY = (e.touches[0].clientY / window.innerHeight) - 0.5;
+            }
+        }, { passive: true });
 
         function animate() {
             requestAnimationFrame(animate);
