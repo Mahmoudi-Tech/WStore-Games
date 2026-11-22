@@ -21,12 +21,13 @@
     
     <style>
         :root {
-            --primary: #ff003c;
-            --gold: #ffcc00;
-            --purple: #7000ff;
+            --primary-fire: #e50914;   /* أحمر ناري أصلي */
+            --flame-orange: #ff4d00;   /* برتقالي مشتعل */
+            --gold: #ffb703;           /* ذهبي ناري */
+            --purple: #8a2be2;         /* بنفسجي طاقة */
             --whatsapp: #25D366;
-            --bg-dark: #050508;
-            --glass: rgba(16, 16, 26, 0.78);
+            --bg-dark: #070304;
+            --glass: rgba(25, 10, 14, 0.75);
         }
 
         * {
@@ -46,31 +47,50 @@
             position: relative;
         }
 
-        /* خلفية الـ 3D الديناميكية */
+        /* 🔥 الطبقة النارية المتوهجة في الخلفية 🔥 */
+        .fire-backdrop {
+            position: fixed;
+            inset: 0;
+            background: 
+                radial-gradient(circle at 50% 15%, rgba(229, 9, 20, 0.35) 0%, transparent 55%),
+                radial-gradient(circle at 85% 50%, rgba(255, 77, 0, 0.25) 0%, transparent 50%),
+                radial-gradient(circle at 15% 65%, rgba(229, 9, 20, 0.28) 0%, transparent 50%),
+                radial-gradient(circle at 50% 100%, rgba(255, 60, 0, 0.4) 0%, transparent 60%);
+            z-index: -2;
+            pointer-events: none;
+            animation: pulseFireGlow 4s ease-in-out infinite alternate;
+        }
+
+        @keyframes pulseFireGlow {
+            0% { opacity: 0.75; transform: scale(1); }
+            100% { opacity: 1; transform: scale(1.08); }
+        }
+
+        /* 🔥 كانفاس شرارات النار الـ 3D 🔥 */
         #bg-canvas {
             position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
+            width: 100vw;
+            height: 100vh;
             z-index: -1;
             pointer-events: none;
         }
 
-        /* ====== الهيدر الديناميكي (نفس الشكل في الموبايل والكمبيوتر) ====== */
+        /* ====== الهيدر الديناميكي الناري ====== */
         nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: clamp(8px, 1.5vw, 15px) clamp(12px, 5vw, 6%);
-            background: rgba(5, 5, 8, 0.85);
+            background: rgba(12, 4, 6, 0.85);
             backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(255, 0, 60, 0.3);
+            border-bottom: 1px solid rgba(229, 9, 20, 0.45);
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+            box-shadow: 0 10px 30px rgba(229, 9, 20, 0.2);
         }
 
         .brand {
@@ -84,14 +104,16 @@
             width: clamp(38px, 4.5vw, 54px);
             height: clamp(38px, 4.5vw, 54px);
             border-radius: 12px;
-            border: 2px solid var(--primary);
-            box-shadow: 0 0 15px var(--primary);
+            border: 2px solid var(--primary-fire);
+            box-shadow: 0 0 18px var(--primary-fire);
         }
 
         .brand-text h2 {
             font-size: clamp(1rem, 2vw, 1.5rem);
             font-weight: 900;
-            color: #fff;
+            background: linear-gradient(45deg, #fff, var(--gold), var(--primary-fire));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
             line-height: 1.1;
         }
 
@@ -122,9 +144,9 @@
         }
 
         .nav-apk {
-            background: linear-gradient(45deg, var(--primary), var(--purple));
+            background: linear-gradient(45deg, var(--primary-fire), var(--flame-orange));
             color: #fff;
-            box-shadow: 0 0 15px rgba(255, 0, 60, 0.5);
+            box-shadow: 0 0 20px rgba(229, 9, 20, 0.7);
         }
 
         .nav-wa {
@@ -134,7 +156,8 @@
         }
 
         .nav-btn:hover {
-            transform: scale(1.05);
+            transform: scale(1.06);
+            box-shadow: 0 0 25px var(--primary-fire);
         }
 
         /* ====== الواجهة الرئيسية الديناميكية (Hero 3D) ====== */
@@ -144,7 +167,7 @@
             align-items: center;
             justify-content: space-between;
             padding: clamp(95px, 12vw, 140px) clamp(15px, 5vw, 6%) clamp(40px, 6vw, 70px);
-            gap: clamp(30px, 4vw, 50px);
+            gap: clamp(35px, 4vw, 50px);
             width: 100%;
         }
 
@@ -157,15 +180,15 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            background: rgba(255, 204, 0, 0.12);
-            border: 1px solid var(--gold);
+            background: rgba(229, 9, 20, 0.2);
+            border: 1px solid var(--primary-fire);
             color: var(--gold);
             padding: 6px 16px;
             border-radius: 50px;
             font-weight: 800;
             font-size: clamp(0.75rem, 1.2vw, 0.95rem);
             margin-bottom: 15px;
-            box-shadow: 0 0 20px rgba(255, 204, 0, 0.25);
+            box-shadow: 0 0 20px rgba(229, 9, 20, 0.45);
         }
 
         .hero-text h1 {
@@ -177,20 +200,20 @@
         }
 
         .hero-text h1 .glow-word {
-            background: linear-gradient(90deg, var(--primary), var(--gold));
+            background: linear-gradient(90deg, var(--primary-fire), var(--flame-orange), var(--gold));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 0 20px rgba(255, 0, 60, 0.4));
+            filter: drop-shadow(0 0 25px rgba(229, 9, 20, 0.6));
         }
 
         .hero-text p {
             font-size: clamp(0.95rem, 1.4vw, 1.2rem);
-            color: #c4c4d4;
+            color: #e0d5d6;
             line-height: 1.75;
             margin-bottom: 28px;
         }
 
-        /* أزرار التحميل والواتساب 3D الموحدة */
+        /* أزرار التحميل والواتساب 3D النارية */
         .cta-group {
             display: flex;
             gap: 15px;
@@ -208,17 +231,17 @@
             text-decoration: none;
             color: #fff;
             transition: 0.15s;
-            border: 2px solid rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.25);
         }
 
         .btn-mega-3d {
-            background: linear-gradient(135deg, var(--primary), #6a00ff);
-            box-shadow: 0 8px 0 #590016, 0 15px 35px rgba(255, 0, 60, 0.5);
+            background: linear-gradient(135deg, var(--primary-fire), var(--flame-orange), #9000ff);
+            box-shadow: 0 8px 0 #5a0008, 0 15px 35px rgba(229, 9, 20, 0.65);
         }
 
         .btn-wa-3d {
             background: linear-gradient(135deg, #1ebc57, #0d7a35);
-            box-shadow: 0 8px 0 #07471e, 0 15px 35px rgba(37, 211, 102, 0.35);
+            box-shadow: 0 8px 0 #07471e, 0 15px 35px rgba(37, 211, 102, 0.4);
         }
 
         .btn-mega-3d:active, .btn-mega-3d:hover,
@@ -254,23 +277,61 @@
             font-size: clamp(2.2rem, 3vw, 2.8rem);
         }
 
-        /* ====== مجسم الموبايل الـ 3D الديناميكي (يعمل بنفس الشكل على كل الشاشات) ====== */
+        /* ====== مجسم الموبايل الـ 3D + حلقات الطاقة النارية ====== */
         .hero-visual {
             flex: 0.9;
             display: flex;
             justify-content: center;
             align-items: center;
             perspective: 1200px;
-            padding: 15px 35px; /* مساحة للشارات الطائرة في الموبايل والكمبيوتر */
+            padding: 25px 35px;
+            position: relative;
+            transform-style: preserve-3d;
+        }
+
+        /* 🔥 حلقات النار والطاقة الثلاثية الأبعاد خلف الموبايل 🔥 */
+        .fire-ring {
+            position: absolute;
+            border-radius: 50%;
+            border: 3px solid transparent;
+            pointer-events: none;
+        }
+
+        .ring-1 {
+            width: clamp(290px, 34vw, 430px);
+            height: clamp(290px, 34vw, 430px);
+            border-top-color: var(--primary-fire);
+            border-bottom-color: var(--flame-orange);
+            box-shadow: 0 0 35px rgba(229, 9, 20, 0.6), inset 0 0 25px rgba(229, 9, 20, 0.4);
+            animation: spinRing1 7s linear infinite;
+        }
+
+        .ring-2 {
+            width: clamp(330px, 39vw, 490px);
+            height: clamp(330px, 39vw, 490px);
+            border-left-color: var(--gold);
+            border-right-color: var(--primary-fire);
+            box-shadow: 0 0 30px rgba(255, 183, 3, 0.4);
+            animation: spinRing2 10s linear infinite;
+        }
+
+        @keyframes spinRing1 {
+            0% { transform: rotateX(65deg) rotateY(15deg) rotateZ(0deg); }
+            100% { transform: rotateX(65deg) rotateY(15deg) rotateZ(360deg); }
+        }
+
+        @keyframes spinRing2 {
+            0% { transform: rotateX(-55deg) rotateY(25deg) rotateZ(360deg); }
+            100% { transform: rotateX(-55deg) rotateY(25deg) rotateZ(0deg); }
         }
 
         .phone-3d-wrap {
             width: clamp(230px, 26vw, 310px);
             height: clamp(430px, 48vw, 560px);
-            background: linear-gradient(145deg, #1a1a2e, #0a0a12);
+            background: linear-gradient(145deg, #240b10, #0c0406);
             border-radius: clamp(32px, 3.5vw, 45px);
-            border: 4px solid #383854;
-            box-shadow: 0 25px 60px rgba(0,0,0,0.9), 0 0 45px rgba(255, 0, 60, 0.45);
+            border: 4px solid #5c1620;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.95), 0 0 55px rgba(229, 9, 20, 0.6);
             position: relative;
             transform-style: preserve-3d;
             display: flex;
@@ -279,9 +340,9 @@
             justify-content: space-between;
             padding: clamp(18px, 2vw, 25px) clamp(14px, 1.8vw, 20px);
             animation: autoFloat3D 5s ease-in-out infinite;
+            z-index: 5;
         }
 
-        /* حركة 3D تلقائية تعمل على الموبايل والكمبيوتر دائماً */
         @keyframes autoFloat3D {
             0%, 100% { transform: rotateY(-8deg) rotateX(5deg) translateY(0px); }
             50% { transform: rotateY(8deg) rotateX(-5deg) translateY(-15px); }
@@ -290,14 +351,14 @@
         .phone-notch {
             width: 38%;
             height: 18px;
-            background: #050508;
+            background: #050203;
             border-radius: 20px;
-            border: 1px solid #222;
+            border: 1px solid #3a0d13;
         }
 
         .phone-screen-content {
             text-align: center;
-            transform: translateZ(50px);
+            transform: translateZ(55px);
         }
 
         .phone-screen-content img {
@@ -305,7 +366,7 @@
             height: clamp(125px, 14vw, 175px);
             border-radius: 28px;
             border: 3px solid var(--gold);
-            box-shadow: 0 15px 35px rgba(255, 0, 60, 0.65);
+            box-shadow: 0 15px 40px rgba(229, 9, 20, 0.85);
             margin-bottom: 12px;
         }
 
@@ -313,6 +374,7 @@
             font-size: clamp(1.25rem, 1.8vw, 1.65rem);
             font-weight: 900;
             color: #fff;
+            text-shadow: 0 0 15px var(--primary-fire);
         }
 
         .phone-screen-content p {
@@ -322,7 +384,7 @@
         }
 
         .phone-btn-inside {
-            background: linear-gradient(90deg, var(--primary), var(--purple));
+            background: linear-gradient(90deg, var(--primary-fire), var(--flame-orange));
             color: #fff;
             width: 100%;
             padding: clamp(9px, 1.2vw, 12px);
@@ -331,15 +393,15 @@
             font-weight: 800;
             font-size: clamp(0.8rem, 1.1vw, 0.95rem);
             text-decoration: none;
-            box-shadow: 0 0 20px var(--primary);
-            transform: translateZ(35px);
+            box-shadow: 0 0 25px var(--primary-fire);
+            transform: translateZ(40px);
         }
 
-        /* الشارات الطائرة 3D حول الهاتف (تظهر في الموبايل والكمبيوتر معاً!) */
+        /* الشارات الطائرة 3D حول الهاتف */
         .floating-badge {
             position: absolute;
-            background: rgba(12, 12, 22, 0.92);
-            border: 1.5px solid var(--primary);
+            background: rgba(20, 6, 9, 0.92);
+            border: 1.5px solid var(--primary-fire);
             padding: clamp(6px, 0.9vw, 10px) clamp(10px, 1.3vw, 16px);
             border-radius: 14px;
             display: flex;
@@ -347,21 +409,21 @@
             gap: 6px;
             font-weight: 800;
             font-size: clamp(0.68rem, 1vw, 0.88rem);
-            box-shadow: 0 12px 25px rgba(0,0,0,0.85);
-            transform: translateZ(75px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.9), 0 0 15px rgba(229, 9, 20, 0.4);
+            transform: translateZ(80px);
             white-space: nowrap;
             z-index: 10;
         }
 
         .fb-1 { top: 14%; right: -16%; border-color: var(--gold); }
         .fb-2 { bottom: 22%; left: -18%; border-color: var(--whatsapp); }
-        .fb-3 { top: 52%; right: -18%; border-color: var(--primary); }
+        .fb-3 { top: 52%; right: -18%; border-color: var(--primary-fire); }
 
-        /* ====== شريط وسائل الدفع الديناميكي ====== */
+        /* ====== شريط وسائل الدفع الناري ====== */
         .payment-strip {
-            background: rgba(255, 255, 255, 0.03);
-            border-top: 1px solid rgba(255, 255, 255, 0.08);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            background: linear-gradient(90deg, rgba(229, 9, 20, 0.18), rgba(255, 77, 0, 0.12), rgba(229, 9, 20, 0.18));
+            border-top: 1px solid rgba(229, 9, 20, 0.35);
+            border-bottom: 1px solid rgba(229, 9, 20, 0.35);
             padding: clamp(18px, 2.5vw, 28px) 4%;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -376,15 +438,16 @@
             gap: 8px;
             font-size: clamp(0.8rem, 1.2vw, 1.05rem);
             font-weight: 800;
-            color: #eee;
+            color: #fff;
         }
 
         .pay-item i {
             font-size: clamp(1.2rem, 1.8vw, 1.7rem);
             color: var(--gold);
+            filter: drop-shadow(0 0 8px var(--primary-fire));
         }
 
-        /* ====== الأقسام والبطاقات الـ 3D الموحدة ====== */
+        /* ====== الأقسام والبطاقات الـ 3D النارية ====== */
         .section {
             padding: clamp(50px, 7vw, 90px) clamp(15px, 5vw, 6%);
             text-align: center;
@@ -397,12 +460,12 @@
         }
 
         .sec-title span {
-            color: var(--primary);
-            text-shadow: 0 0 20px var(--primary);
+            color: var(--primary-fire);
+            text-shadow: 0 0 25px var(--primary-fire);
         }
 
         .sec-sub {
-            color: #aaa;
+            color: #ccb8ba;
             font-size: clamp(0.85rem, 1.2vw, 1.1rem);
             margin-bottom: clamp(30px, 4vw, 55px);
         }
@@ -417,11 +480,12 @@
             background: var(--glass);
             border-radius: 24px;
             padding: clamp(28px, 3.5vw, 40px) clamp(18px, 2vw, 25px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(229, 9, 20, 0.25);
             transform-style: preserve-3d;
             transform: perspective(1000px);
             position: relative;
-            box-shadow: 0 20px 45px rgba(0,0,0,0.7);
+            box-shadow: 0 20px 45px rgba(0,0,0,0.8), 0 0 25px rgba(229, 9, 20, 0.15);
+            backdrop-filter: blur(12px);
         }
 
         .card-3d::after {
@@ -430,7 +494,7 @@
             inset: 0;
             border-radius: 24px;
             padding: 2px;
-            background: linear-gradient(135deg, var(--primary), transparent, var(--gold));
+            background: linear-gradient(135deg, var(--primary-fire), transparent, var(--gold));
             -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
             -webkit-mask-composite: xor;
             mask-composite: exclude;
@@ -442,10 +506,10 @@
             margin-bottom: 15px;
             display: inline-block;
             transform: translateZ(55px);
-            background: linear-gradient(45deg, var(--gold), var(--primary));
+            background: linear-gradient(45deg, var(--gold), var(--flame-orange), var(--primary-fire));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 10px 20px rgba(255, 0, 60, 0.5));
+            filter: drop-shadow(0 10px 20px rgba(229, 9, 20, 0.6));
         }
 
         .card-3d h3 {
@@ -456,7 +520,7 @@
         }
 
         .card-3d p {
-            color: #b5b5c5;
+            color: #d4c4c6;
             font-size: clamp(0.9rem, 1.1vw, 1rem);
             line-height: 1.7;
             transform: translateZ(25px);
@@ -466,11 +530,11 @@
         .contact-box-3d {
             max-width: 900px;
             margin: 0 auto;
-            background: linear-gradient(135deg, rgba(37, 211, 102, 0.15), rgba(18, 18, 28, 0.92));
+            background: linear-gradient(135deg, rgba(37, 211, 102, 0.18), rgba(25, 10, 14, 0.92));
             border: 2px solid var(--whatsapp);
             border-radius: 28px;
             padding: clamp(30px, 5vw, 50px) clamp(18px, 4vw, 35px);
-            box-shadow: 0 0 45px rgba(37, 211, 102, 0.22);
+            box-shadow: 0 0 45px rgba(37, 211, 102, 0.25);
             transform-style: preserve-3d;
         }
 
@@ -482,7 +546,7 @@
             margin: 15px 0 22px;
             display: block;
             direction: ltr;
-            text-shadow: 0 0 20px rgba(255, 204, 0, 0.4);
+            text-shadow: 0 0 20px rgba(255, 183, 3, 0.5);
         }
 
         /* زر الواتساب العائم */
@@ -513,20 +577,21 @@
 
         /* الفوتر */
         footer {
-            background: #030305;
+            background: rgba(5, 2, 3, 0.9);
             padding: 40px 5% 25px;
             text-align: center;
-            border-top: 1px solid rgba(255, 0, 60, 0.2);
+            border-top: 1px solid rgba(229, 9, 20, 0.35);
         }
 
         footer img {
             width: clamp(65px, 6vw, 80px);
             border-radius: 18px;
-            border: 2px solid var(--primary);
+            border: 2px solid var(--primary-fire);
+            box-shadow: 0 0 25px var(--primary-fire);
             margin-bottom: 10px;
         }
 
-        /* ضبط الاصطفاف على الشاشات العمودية (الهواتف) مع الحفاظ على نفس العناصر 100% */
+        /* ضبط الاصطفاف على الشاشات العمودية مع الحفاظ على جميع العناصر 100% */
         @media (max-width: 900px) {
             .hero {
                 flex-direction: column-reverse;
@@ -541,7 +606,10 @@
 </head>
 <body>
 
-    <!-- خلفية الـ 3D الديناميكية -->
+    <!-- 🔥 طبقة الإضاءة النارية الخلفية 🔥 -->
+    <div class="fire-backdrop"></div>
+
+    <!-- 🔥 خلفية شرارات النار الـ 3D التفاعلية 🔥 -->
     <canvas id="bg-canvas"></canvas>
 
     <!-- زر الواتساب العائم الدائم -->
@@ -573,7 +641,7 @@
     <section class="hero">
         <div class="hero-text">
             <div class="version-pill">
-                <i class="fa-solid fa-fire"></i> التحديث الجديد كلياً V2.4.1 متاح الآن!
+                <i class="fa-solid fa-fire-flame-curved"></i> التحديث الناري الجديد V2.4.1 متاح الآن!
             </div>
             <h1>سيطر على ألعابك واشحن في ثواني مع <span class="glow-word">Witcher Store</span></h1>
             <p>
@@ -601,9 +669,13 @@
             </div>
         </div>
 
-        <!-- مجسم الهاتف الثلاثي الأبعاد والشارات البارزة (يعمل على الهاتف والكمبيوتر بنفس الشكل) -->
+        <!-- مجسم الهاتف الثلاثي الأبعاد + حلقات النار الـ 3D -->
         <div class="hero-visual">
-            <div class="phone-3d-wrap" data-tilt data-tilt-max="18" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.25">
+            <!-- حلقات الطاقة النارية الدوارة -->
+            <div class="fire-ring ring-1"></div>
+            <div class="fire-ring ring-2"></div>
+
+            <div class="phone-3d-wrap" data-tilt data-tilt-max="18" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.3">
                 <div class="phone-notch"></div>
                 
                 <!-- شارات 3D بارزة حول الهاتف -->
@@ -614,7 +686,7 @@
                     <i class="fa-solid fa-shield-halved" style="color: var(--whatsapp);"></i> آمن ومضمون
                 </div>
                 <div class="floating-badge fb-3">
-                    <i class="fa-solid fa-tags" style="color: var(--primary);"></i> أسعار الجملة
+                    <i class="fa-solid fa-fire" style="color: var(--primary-fire);"></i> أسعار نارية
                 </div>
 
                 <!-- محتوى شاشة الموبايل -->
@@ -652,7 +724,7 @@
             </div>
 
             <div class="card-3d" data-tilt data-tilt-scale="1.03">
-                <i class="fa-solid fa-fire icon-3d"></i>
+                <i class="fa-solid fa-fire-flame-curved icon-3d"></i>
                 <h3>جواهر فري فاير (Free Fire)</h3>
                 <p>شحن فوري لجواهر فري فاير بالـ ID، مع توفر العضويات الأسبوعية والشهرية وعروض الدروب بأقل سعر.</p>
             </div>
@@ -724,10 +796,10 @@
         <p style="color: #555; font-size: 0.8rem; margin-top: 12px;">جميع الحقوق محفوظة © 2024 Witcher Store</p>
     </footer>
 
-    <!-- مكتبة Vanilla-Tilt لتحريك الكروت والموبايل 3D (تدعم اللمس في الهواتف + الجيروسكوب + الماوس) -->
+    <!-- مكتبة Vanilla-Tilt لتحريك الكروت والموبايل 3D -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
     
-    <!-- مكتبة Three.js لخلفية الفضاء الثلاثية الأبعاد المتجاوبة مع اللمس والماوس -->
+    <!-- 🔥 محرك الـ 3D للخلفية النارية المشتعلة (Three.js Fire Embers) 🔥 -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script>
         const canvas = document.getElementById('bg-canvas');
@@ -737,7 +809,26 @@
         renderer.setSize(window.innerWidth, window.innerHeight);
         renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-        function createParticles(colorHex, count, size) {
+        // صناعة خامة شرارة النار المتوهجة (Glow Texture) برمجياً
+        function createFireSparkTexture() {
+            const sparkCanvas = document.createElement('canvas');
+            sparkCanvas.width = 64;
+            sparkCanvas.height = 64;
+            const ctx = sparkCanvas.getContext('2d');
+            const gradient = ctx.createRadialGradient(32, 32, 0, 32, 32, 32);
+            gradient.addColorStop(0, 'rgba(255, 255, 255, 1)');
+            gradient.addColorStop(0.3, 'rgba(255, 120, 0, 0.9)');
+            gradient.addColorStop(0.6, 'rgba(229, 9, 20, 0.5)');
+            gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, 64, 64);
+            return new THREE.CanvasTexture(sparkCanvas);
+        }
+
+        const sparkTexture = createFireSparkTexture();
+
+        // إنشاء طبقات شرارات النار (أحمر ناري + برتقالي لهب + ذهبي متوهج)
+        function createFireEmbers(colorHex, count, size) {
             const geo = new THREE.BufferGeometry();
             const pos = new Float32Array(count * 3);
             for(let i = 0; i < count * 3; i++) {
@@ -746,30 +837,35 @@
             geo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
             const mat = new THREE.PointsMaterial({
                 size: size,
+                map: sparkTexture,
                 color: colorHex,
                 transparent: true,
-                opacity: 0.85,
+                opacity: 0.95,
+                depthWrite: false,
                 blending: THREE.AdditiveBlending
             });
             return new THREE.Points(geo, mat);
         }
 
-        const redParticles = createParticles(0xff003c, 950, 0.032);
-        const goldParticles = createParticles(0xffcc00, 450, 0.026);
-        scene.add(redParticles);
-        scene.add(goldParticles);
+        const fireRed = createFireEmbers(0xe50914, 1100, 0.14);
+        const fireOrange = createFireEmbers(0xff4d00, 750, 0.18);
+        const fireGold = createFireEmbers(0xffb703, 450, 0.12);
 
-        camera.position.z = 4;
+        scene.add(fireRed);
+        scene.add(fireOrange);
+        scene.add(fireGold);
+
+        camera.position.z = 4.2;
 
         let targetX = 0, targetY = 0;
 
-        // تفاعل مع الماوس في الكمبيوتر
+        // تفاعل النار مع الماوس في الكمبيوتر
         document.addEventListener('mousemove', (e) => {
             targetX = (e.clientX / window.innerWidth) - 0.5;
             targetY = (e.clientY / window.innerHeight) - 0.5;
         });
 
-        // تفاعل مع اللمس والتمرير في الموبايل ليكون ديناميكياً تماماً
+        // تفاعل النار مع اللمس في الهواتف
         document.addEventListener('touchmove', (e) => {
             if(e.touches.length > 0) {
                 targetX = (e.touches[0].clientX / window.innerWidth) - 0.5;
@@ -777,20 +873,33 @@
             }
         }, { passive: true });
 
+        // تحريك شرارات النار للأعلى والدوران الثلاثي الأبعاد
+        function animateFireParticles(points, speedY, rotSpeed) {
+            const positions = points.geometry.attributes.position.array;
+            for(let i = 1; i < positions.length; i += 3) {
+                positions[i] += speedY;
+                if(positions[i] > 9) {
+                    positions[i] = -9; // إعادة الشرارة من الأسفل لتستمر النار للأبد
+                }
+            }
+            points.geometry.attributes.position.needsUpdate = true;
+            points.rotation.y += rotSpeed;
+        }
+
         function animate() {
             requestAnimationFrame(animate);
-            redParticles.rotation.y += 0.0022;
-            redParticles.rotation.x += 0.001;
-            goldParticles.rotation.y -= 0.0018;
 
-            camera.position.x += (targetX * 1.2 - camera.position.x) * 0.05;
-            camera.position.y += (-targetY * 1.2 - camera.position.y) * 0.05;
+            animateFireParticles(fireRed, 0.012, 0.002);
+            animateFireParticles(fireOrange, 0.018, -0.0015);
+            animateFireParticles(fireGold, 0.022, 0.0025);
+
+            camera.position.x += (targetX * 1.4 - camera.position.x) * 0.05;
+            camera.position.y += (-targetY * 1.4 - camera.position.y) * 0.05;
 
             renderer.render(scene, camera);
         }
         animate();
 
-        // تحديث فوري وديناميكي عند تدوير شاشة الموبايل أو تغيير مقاس المتصفح
         window.addEventListener('resize', () => {
             renderer.setSize(window.innerWidth, window.innerHeight);
             camera.aspect = window.innerWidth / window.innerHeight;
